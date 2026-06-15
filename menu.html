@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Lost in Burg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cream: '#FEF5ED', orange: '#FF5722', 'orange-dark': '#E64A19', charcoal: '#1A1A1A', 'warm-gray': '#F5EDE3' },
+          fontFamily: { anton: ['Anton', 'sans-serif'], oswald: ['Oswald', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
+    html { overflow-x: hidden; }
+    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
+    .rough-border  { border: 3px solid var(--charcoal); }
+    .mobile-menu   { display: none; }
+    .mobile-menu.open { display: flex; }
+    .reveal-wrap   { overflow: hidden; }
+    .reveal-line   { display: block; will-change: transform; }
+
+    /* ── Category filter ── */
+    .cat-btn { transition: all .25s ease; position: relative; overflow: hidden; }
+    .cat-btn::before { content: ''; position: absolute; inset: 0; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(0.77,0,0.175,1); }
+    .cat-btn.active { color: var(--cream); border-color: var(--orange); }
+    .cat-btn.active::before { transform: scaleX(1); }
+    .cat-btn:not(.active):hover { border-color: var(--orange); color: var(--orange); }
+    .cat-btn span { position: relative; z-index: 1; }
+
+    /* ── Menu card ── */
+    .menu-card {
+      cursor: pointer;
+      transition: transform .3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow .3s ease;
+      will-change: transform;
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 8px 8px 0 var(--charcoal); }
+
+    /* ── Image hover: grayscale-to-color with clip reveal ── */
+    .menu-img-wrap { position: relative; overflow: hidden; }
+    .menu-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(0.7) contrast(1.15);
+      transform: scale(1.08);
+      transition: filter .7s ease, transform .8s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: block;
+    }
+    .menu-card:hover .menu-img-wrap img { filter: grayscale(0) contrast(1); transform: scale(1.0); }
+
+    /* Clip-path warm tint reveal */
+    .menu-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--orange) 0%, transparent 70%);
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path .55s cubic-bezier(0.77,0,0.175,1);
+      mix-blend-mode: soft-light; opacity: 0.45; pointer-events: none;
+    }
+    .menu-card:hover .menu-img-wrap::after {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* ── Price tag ── */
+    .price-tag { font-family: 'Anton', sans-serif; }
+
+    /* ── Modal ── */
+    #modal-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; align-items: center; justify-content: center; padding: 1rem;
+    }
+    #modal-overlay.open { display: flex; }
+    #modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(26,26,26,0.88);
+      backdrop-filter: blur(6px);
+    }
+    #modal-box {
+      position: relative; z-index: 1;
+      background: var(--cream);
+      border: 3px solid var(--charcoal);
+      max-width: 680px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+    }
+    #modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      width: 44px; height: 44px;
+      background: var(--charcoal); color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.1rem; font-weight: bold;
+      transition: background .2s;
+    }
+    #modal-close:hover { background: var(--orange); }
+
+    /* Modal image parallax container */
+    .modal-img-wrap { height: 300px; overflow: hidden; position: relative; }
+    .modal-img-wrap img {
+      width: 100%; height: 130%; object-fit: cover;
+      transform: translateY(-10%);
+      filter: contrast(1.1);
+    }
+
+    /* ── Section transitions ── */
+    .menu-section { opacity: 1; transition: opacity .3s ease; }
+
+    /* ── Button styles ── */
+    .btn-primary {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--orange); color: var(--cream);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em;
+      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden; transition: background .3s;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0; background: var(--charcoal);
+      transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
+    .btn-outline {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      border: 2px solid var(--charcoal); color: var(--charcoal);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em;
+      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden; transition: color .3s;
+    }
+    .btn-outline::before {
+      content: ''; position: absolute; inset: 0; background: var(--charcoal);
+      transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1);
+    }
+    .btn-outline:hover { color: var(--cream); }
+    .btn-outline:hover::before { transform: translateX(0); }
+    .btn-outline .btn-inner { position: relative; z-index: 1; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #F5EDE3; }
+    ::-webkit-scrollbar-thumb { background: var(--orange); }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-orange flex items-center justify-center">
+          <span class="font-anton text-cream text-xl leading-none">LB</span>
+        </div>
+        <div>
+          <span class="font-oswald font-700 text-lg uppercase tracking-tight text-charcoal">Lost in Burg</span>
+          <div class="section-label text-orange" style="font-size:.6rem; letter-spacing:.15em;">Kozhikode Beach</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
+        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Our Story</a>
+        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Menu</a>
+        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Events</a>
+        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Find Us</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4">
+        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
+        <a href="contact.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Find Us</span></a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-4 h-0.5 bg-charcoal block"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
+      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
+      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Our Story</a>
+      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Menu</a>
+      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
+      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Find Us</a>
+      <div class="border-t border-orange/30 pt-4 mt-2"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
+    </div>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ═══ -->
+  <div class="pt-16">
+    <div class="bg-charcoal py-16 md:py-28 px-6 md:px-16 relative overflow-hidden">
+      <!-- Ghost text -->
+      <div class="absolute right-0 inset-y-0 flex items-center overflow-hidden pointer-events-none select-none">
+        <span class="font-anton text-white/[0.04] uppercase whitespace-nowrap" style="font-size: clamp(8rem, 22vw, 20rem); line-height:1;">MENU</span>
+      </div>
+      <!-- Horizontal orange line accent -->
+      <div class="absolute bottom-0 left-0 right-0 h-1 bg-orange"></div>
+      <div class="relative z-10 max-w-screen-2xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-orange">What We Serve</span>
+          </div>
+          <div data-reveal data-reveal-stagger="0.07">
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">The <span class="text-orange">Full</span></div></div>
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">Lineup.</div></div>
+          </div>
+        </div>
+        <p class="font-inter text-white/50 text-sm max-w-xs leading-relaxed">Click any item to reveal the full description. We keep things simple — the food does the talking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STICKY CATEGORY FILTER ═══ -->
+  <div class="sticky top-16 z-40 bg-cream border-b-2 border-charcoal py-4 px-6 md:px-16">
+    <div class="max-w-screen-2xl mx-auto flex items-center gap-3 overflow-x-auto pb-1">
+      <button class="cat-btn active font-oswald font-600 uppercase tracking-widest text-sm px-6 py-2 border-2 border-charcoal whitespace-nowrap" data-category="all"><span>All Items</span></button>
+      <button class="cat-btn font-oswald font-600 uppercase tracking-widest text-sm px-6 py-2 border-2 border-charcoal whitespace-nowrap" data-category="burgers"><span>Burgers</span></button>
+      <button class="cat-btn font-oswald font-600 uppercase tracking-widest text-sm px-6 py-2 border-2 border-charcoal whitespace-nowrap" data-category="steaks"><span>Steaks</span></button>
+      <button class="cat-btn font-oswald font-600 uppercase tracking-widest text-sm px-6 py-2 border-2 border-charcoal whitespace-nowrap" data-category="starters"><span>Starters & Sides</span></button>
+      <button class="cat-btn font-oswald font-600 uppercase tracking-widest text-sm px-6 py-2 border-2 border-charcoal whitespace-nowrap" data-category="drinks"><span>Drinks</span></button>
+    </div>
+  </div>
+
+  <!-- ═══ MENU GRID ═══ -->
+  <main class="max-w-screen-2xl mx-auto px-6 md:px-16 py-16 md:py-24">
+
+    <!-- ── BURGERS ── -->
+    <div class="menu-section mb-20" data-section="burgers">
+      <div class="flex items-center gap-6 mb-12">
+        <div class="reveal-wrap flex-shrink-0">
+          <h2 class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;" data-reveal>Burgers</h2>
+        </div>
+        <div class="flex-1 h-px bg-charcoal opacity-15"></div>
+        <span class="section-label text-orange flex-shrink-0">3 items</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- The Aristocrat -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="burgers"
+          data-title="The Aristocrat" data-price="₹349" data-tag="Burgers"
+          data-desc="The champion of all burgers. Double patty with beef bacon & raw onion rings. Every component earns its place — the crunch of the onion rings, the smoke of the beef bacon, the double-ground patty that stays juicy under pressure. A burger that demands respect."
+          data-img="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:220px;">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80" alt="The Aristocrat" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-lg text-charcoal">The Aristocrat</h3>
+              <span class="price-tag text-orange text-xl">₹349</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Double patty, beef bacon & raw onion rings. The champion.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+
+        <!-- God's Plan -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="burgers"
+          data-title="The God's Plan" data-price="₹499" data-tag="Burgers"
+          data-desc="Beef patty topped with cheese & buttery bone marrow. This is not a subtle burger. The bone marrow melts into the patty, the cheese pulls in every direction, and the whole thing lands somewhere between indulgence and revelation."
+          data-img="https://images.unsplash.com/photo-1553979459-d1029b0e0e79?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:220px;">
+            <img src="https://images.unsplash.com/photo-1553979459-d1029b0e0e79?auto=format&fit=crop&w=700&q=80" alt="The God's Plan" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-lg text-charcoal">The God's Plan</h3>
+              <span class="price-tag text-orange text-xl">₹499</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Cheese & buttery bone marrow. Indulgence redefined.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+
+        <!-- Cheesy Chick 2.0 -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="burgers"
+          data-title="The Cheesy Chick 2.0" data-price="₹299" data-tag="Burgers"
+          data-desc="Triple chicken thigh attack with gherkins. Not a breast in sight — only the richest, juiciest thigh meat, tripled up and stacked. The gherkins cut through the fat with a tangy sharpness that ties the whole sandwich together. Version 2.0 is no accident."
+          data-img="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:220px;">
+            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=80" alt="The Cheesy Chick 2.0" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-lg text-charcoal">The Cheesy Chick 2.0</h3>
+              <span class="price-tag text-orange text-xl">₹299</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Triple chicken thigh with gherkins. Better than the original.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEAKS ── -->
+    <div class="menu-section mb-20" data-section="steaks">
+      <div class="flex items-center gap-6 mb-12">
+        <h2 class="font-anton text-charcoal uppercase flex-shrink-0" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">Steaks</h2>
+        <div class="flex-1 h-px bg-charcoal opacity-15"></div>
+        <span class="section-label text-orange flex-shrink-0">2 items</span>
+      </div>
+
+      <!-- Steaks: editorial 2-column — one larger -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Fillet Mignon — larger card -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="steaks"
+          data-title="Fillet Mignon" data-price="₹450 / 100G" data-tag="Steaks"
+          data-desc="Prime cut of tenderloin — the softest of all steaks. The fillet mignon sits at the top of the cut hierarchy for a reason. Zero connective tissue. Pure, butter-soft muscle that barely needs a knife. Priced per 100g so you control exactly how much luxury you want tonight."
+          data-img="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:300px;">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Fillet Mignon" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-xl text-charcoal">Fillet Mignon</h3>
+              <span class="price-tag text-orange text-xl">₹450<span class="text-sm font-inter font-400">/100G</span></span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Prime cut of tenderloin. The gold standard in softness.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+
+        <!-- Rib Eye -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="steaks"
+          data-title="Rib Eye Steak" data-price="₹480 / 100G" data-tag="Steaks"
+          data-desc="A combination of multiple muscles, each having different textures. The rib eye is not a simple cut — it's a landscape of flavour. The longissimus dorsi for tenderness, the spinalis for rich beefy depth, the cap that's been called the best bite in the entire animal. Every forkful is different."
+          data-img="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:300px;">
+            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Rib Eye Steak" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-xl text-charcoal">Rib Eye Steak</h3>
+              <span class="price-tag text-orange text-xl">₹480<span class="text-sm font-inter font-400">/100G</span></span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Multiple muscles, each with a different texture. Complex.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STARTERS & SIDES ── -->
+    <div class="menu-section mb-20" data-section="starters">
+      <div class="flex items-center gap-6 mb-12">
+        <h2 class="font-anton text-charcoal uppercase flex-shrink-0" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">Starters <span class="text-orange">&</span> Sides</h2>
+        <div class="flex-1 h-px bg-charcoal opacity-15"></div>
+        <span class="section-label text-orange flex-shrink-0">2 items</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Crowded Fries -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="starters"
+          data-title="Crowded Fries" data-price="₹329 / ₹379" data-tag="Starters & Sides"
+          data-desc="6mm fries loaded with cheese and in-house sauces. These are not an afterthought. Thick-cut at exactly 6mm for maximum interior fluff and exterior crunch, then buried under a molten cheese layer and our rotating trio of house sauces. Get these with everything."
+          data-img="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:240px;">
+            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80" alt="Crowded Fries" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-xl text-charcoal">Crowded Fries</h3>
+              <span class="price-tag text-orange text-xl">₹329<span class="text-sm font-inter">/₹379</span></span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">6mm fries, molten cheese, house sauces. The essential side.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+
+        <!-- Naked Oysters -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="starters"
+          data-title="Naked Oysters" data-price="₹399" data-tag="Starters & Sides"
+          data-desc="Raw oysters served with pickled shallots and green apple. These arrive cold, briny, and unapologetic. The pickled shallots add a vinegar-sharp brightness, the green apple slices cut the saltiness with a clean tartness. Best eaten in one go, eyes closed, facing the ocean."
+          data-img="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:240px;">
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Naked Oysters" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-xl text-charcoal">Naked Oysters</h3>
+              <span class="price-tag text-orange text-xl">₹399</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Raw, pickled shallots, green apple. Ocean in a shell.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DRINKS ── -->
+    <div class="menu-section" data-section="drinks">
+      <div class="flex items-center gap-6 mb-12">
+        <h2 class="font-anton text-charcoal uppercase flex-shrink-0" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">Drinks</h2>
+        <div class="flex-1 h-px bg-charcoal opacity-15"></div>
+        <span class="section-label text-orange flex-shrink-0">2 items</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Malabar Reserve -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="drinks"
+          data-title="Malabar Reserve Milkshake" data-price="₹299" data-tag="Drinks"
+          data-desc="A signature milkshake built on Malabar's finest. Thick, cold, and unmistakably local — this shake takes flavours native to the Malabar coast and transforms them into a drink that's both familiar and completely new. The kind of thing you order and then immediately wonder if you should get two."
+          data-img="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:240px;">
+            <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=700&q=80" alt="Malabar Reserve Milkshake" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-lg text-charcoal">Malabar Reserve Milkshake</h3>
+              <span class="price-tag text-orange text-xl">₹299</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Thick, cold, unmistakably Malabar. Our signature shake.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+
+        <!-- Brazilian Lemonade -->
+        <div class="menu-card rough-border overflow-hidden bg-warm-gray" data-category="drinks"
+          data-title="Brazilian Lemonade" data-price="₹200" data-tag="Drinks"
+          data-desc="The Brazilian way: whole limes blended with sweetened condensed milk and water, then passed through a sieve for a creamy, frothy result that's tangy and sweet at once. Nothing else on the menu pairs better with our burgers — the acidity cuts the fat perfectly."
+          data-img="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=85"
+          onclick="openModal(this)">
+          <div class="menu-img-wrap" style="height:240px;">
+            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80" alt="Brazilian Lemonade" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-700 uppercase text-lg text-charcoal">Brazilian Lemonade</h3>
+              <span class="price-tag text-orange text-xl">₹200</span>
+            </div>
+            <p class="font-inter text-sm text-charcoal/60 leading-relaxed mb-4">Creamy, tangy, frothy. The burger's perfect partner.</p>
+            <span class="section-label text-orange" style="font-size:.65rem;">Tap to reveal →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══ MODAL ═══ -->
+  <div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal-backdrop" onclick="closeModal()"></div>
+    <div id="modal-box">
+      <button id="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="" />
+      </div>
+
+      <div class="p-6 md:p-8">
+        <div class="flex items-center justify-between mb-4">
+          <span id="modal-tag" class="section-label text-orange bg-orange/10 px-3 py-1.5"></span>
+          <span id="modal-price" class="font-anton text-charcoal text-3xl"></span>
+        </div>
+        <h2 id="modal-title" class="font-anton text-charcoal uppercase mb-4" style="font-size:clamp(2rem,4vw,3rem); line-height:.9;"></h2>
+        <div class="w-12 h-1 bg-orange mb-5"></div>
+        <p id="modal-desc" class="font-inter text-charcoal/80 leading-relaxed text-base mb-8"></p>
+        <div class="flex flex-wrap gap-4">
+          <button onclick="closeModal()" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Back to Menu</span></button>
+          <a href="contact.html" class="btn-outline"><span class="btn-inner">Find Us</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+            <div><span class="font-oswald font-700 text-lg uppercase tracking-tight">Lost in Burg</span><div class="section-label text-orange" style="font-size:.6rem; letter-spacing:.15em;">Kozhikode Beach</div></div>
+          </div>
+          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
+            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
+            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
+            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
+            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
+        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="premium-effects.js"></script>
+
+  <script>
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+    // ── Modal ──
+    const overlay = document.getElementById('modal-overlay');
+    const modalBox = document.getElementById('modal-box');
+
+    function openModal(card) {
+      document.getElementById('modal-img').src    = card.dataset.img;
+      document.getElementById('modal-img').alt    = card.dataset.title;
+      document.getElementById('modal-title').textContent = card.dataset.title;
+      document.getElementById('modal-desc').textContent  = card.dataset.desc;
+      document.getElementById('modal-price').textContent = card.dataset.price;
+      document.getElementById('modal-tag').textContent   = card.dataset.tag;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // GSAP entrance
+      gsap.fromTo(modalBox, { y: 40, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' });
+      document.getElementById('modal-close').focus();
+    }
+
+    function closeModal() {
+      gsap.to(modalBox, {
+        y: 20, opacity: 0, scale: 0.97, duration: 0.3, ease: 'power2.in',
+        onComplete: () => { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // ── Category filter ──
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const sel = btn.dataset.category;
+        document.querySelectorAll('.menu-section').forEach(s => {
+          const show = sel === 'all' || s.dataset.section === sel;
+          gsap.to(s, { opacity: show ? 1 : 0, y: show ? 0 : 20, duration: 0.4, ease: 'power2.out',
+            onComplete: () => { s.style.display = show ? '' : 'none'; }
+          });
+          if (show) { s.style.display = ''; gsap.fromTo(s, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }); }
+        });
+      });
+    });
+
+    // ── Init premium effects ──
+    initPremiumEffects();
+
+    window.addEventListener('load', () => {
+      // Stagger menu cards on load
+      gsap.from('.menu-card', {
+        scrollTrigger: { trigger: 'main', start: 'top 80%' },
+        y: 40, opacity: 0, stagger: 0.08, duration: 0.7, ease: 'power3.out'
+      });
+    });
+  </script>
+</body>
+</html>

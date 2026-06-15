@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Us — Lost in Burg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cream: '#FEF5ED', orange: '#FF5722', 'orange-dark': '#E64A19', charcoal: '#1A1A1A', 'warm-gray': '#F5EDE3' },
+          fontFamily: { anton: ['Anton', 'sans-serif'], oswald: ['Oswald', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
+    html { overflow-x: hidden; }
+    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
+    .rough-border  { border: 3px solid var(--charcoal); }
+    .mobile-menu   { display: none; }
+    .mobile-menu.open { display: flex; }
+    .reveal-wrap   { overflow: hidden; }
+    .reveal-line   { display: block; will-change: transform; }
+
+    /* ── Header: orange full-bleed ── */
+    .contact-hero { position: relative; overflow: hidden; }
+    .contact-hero-bg { position: absolute; inset: 0; }
+    .contact-hero-bg img {
+      width: 100%; height: 115%; object-fit: cover;
+      filter: brightness(0.25) contrast(1.3) saturate(0.4);
+      transform: translateY(-5%);
+      will-change: transform;
+    }
+    .contact-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,87,34,0.85) 0%, rgba(255,87,34,0.6) 50%, rgba(26,26,26,0.7) 100%);
+    }
+
+    /* ── Info cards ── */
+    .info-card {
+      transition: transform .3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow .3s ease;
+      will-change: transform;
+    }
+    .info-card:hover { transform: translateY(-5px); box-shadow: 6px 6px 0 var(--charcoal); }
+
+    /* ── Form: underline style inputs ── */
+    .form-field { position: relative; }
+    .form-label {
+      font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--charcoal); opacity: 0.4;
+      display: block; margin-bottom: 6px;
+      transition: opacity .2s, color .2s;
+    }
+    .form-field:focus-within .form-label { opacity: 1; color: var(--orange); }
+    .form-input {
+      width: 100%; background: transparent;
+      border: 0; border-bottom: 2px solid rgba(26,26,26,0.2);
+      padding: 10px 0; font-family: 'Inter', sans-serif;
+      font-size: 1rem; color: var(--charcoal); outline: none;
+      transition: border-color .25s ease;
+    }
+    .form-input::placeholder { color: var(--charcoal); opacity: 0.25; }
+    .form-input:focus { border-bottom-color: var(--orange); }
+    select.form-input {
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%231A1A1A' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 4px center;
+    }
+    textarea.form-input { resize: none; padding-top: 10px; }
+
+    /* Form line-reveal animations */
+    .form-row { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .form-row.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Submit btn ── */
+    .btn-primary {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--orange); color: var(--cream);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem;
+      padding: 1rem 2.5rem; overflow: hidden; border: none; cursor: pointer;
+    }
+    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
+    .btn-outline {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      border: 2px solid var(--charcoal); color: var(--charcoal);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem;
+      padding: 1rem 2.5rem; overflow: hidden;
+    }
+    .btn-outline::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-outline:hover { color: var(--cream); }
+    .btn-outline:hover::before { transform: translateX(0); }
+    .btn-outline .btn-inner { position: relative; z-index: 1; }
+
+    /* ── Hours table ── */
+    .hours-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; }
+    .hours-row + .hours-row { border-top: 1px solid rgba(26,26,26,0.08); padding-top: .75rem; margin-top: .75rem; }
+
+    /* ── Map wrapper ── */
+    .map-wrap { position: relative; overflow: hidden; }
+    .map-wrap::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange); z-index: 2;
+    }
+    .map-wrap iframe { display: block; filter: grayscale(0.3) contrast(1.05); }
+
+    /* ── Success ── */
+    #form-success { display: none; }
+    #form-success.show { display: flex; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #F5EDE3; }
+    ::-webkit-scrollbar-thumb { background: var(--orange); }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+        <div>
+          <span class="font-oswald font-700 text-lg uppercase tracking-tight text-charcoal">Lost in Burg</span>
+          <div class="section-label text-orange" style="font-size:.6rem; letter-spacing:.15em;">Kozhikode Beach</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
+        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Our Story</a>
+        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Menu</a>
+        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Events</a>
+        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Find Us</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4">
+        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
+        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Order Now</span></a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-4 h-0.5 bg-charcoal block"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
+      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
+      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Our Story</a>
+      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
+      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
+      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Find Us</a>
+      <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO HEADER ═══ -->
+  <section class="contact-hero pt-16" style="min-height: 55vh; display:flex; align-items:flex-end;">
+    <div class="contact-hero-bg" data-parallax-wrap>
+      <img
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85"
+        alt="Kozhikode Beach"
+        fetchpriority="high"
+        data-parallax="0.18"
+      />
+    </div>
+    <div class="contact-hero-overlay"></div>
+
+    <!-- Ghost type -->
+    <div class="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none" aria-hidden="true">
+      <span class="font-anton text-white/[0.04]" style="font-size:clamp(7rem,20vw,18rem); line-height:1; white-space:nowrap; padding-left:clamp(1rem,4vw,5rem);">FIND US</span>
+    </div>
+
+    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 pb-16 md:pb-24 w-full">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-10 h-px bg-cream opacity-60"></div>
+        <span class="section-label text-cream opacity-70">Get Here</span>
+      </div>
+      <div data-reveal data-reveal-stagger="0.07">
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">Come find</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">us on the</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">beach.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INFO STRIP ═══ -->
+  <div class="bg-warm-gray border-b-2 border-charcoal py-10 px-6 md:px-16">
+    <div class="max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+      <div class="info-card flex items-start gap-4 p-6 rough-border bg-cream" data-cursor="Directions">
+        <div class="w-12 h-12 bg-orange flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <div class="section-label text-orange mb-1">Location</div>
+          <p class="font-oswald font-600 text-charcoal text-lg uppercase leading-tight">Kozhikode Beach<br />Kerala, India</p>
+        </div>
+      </div>
+
+      <div class="info-card flex items-start gap-4 p-6 rough-border bg-cream" data-cursor="Hours">
+        <div class="w-12 h-12 bg-orange flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="section-label text-orange mb-1">Hours</div>
+          <p class="font-oswald font-600 text-charcoal text-lg uppercase leading-tight">4:30 PM – 3:00 AM<br /><span class="text-orange">Every Day</span></p>
+        </div>
+      </div>
+
+      <div class="info-card flex items-start gap-4 p-6 rough-border bg-cream" data-cursor="Follow">
+        <div class="w-12 h-12 bg-orange flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-cream" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div>
+          <div class="section-label text-orange mb-1">Connect</div>
+          <p class="font-oswald font-600 text-charcoal text-lg uppercase leading-tight">@lostinburg<br /><span class="text-sm font-inter font-400 normal-case text-charcoal/50">Instagram & Facebook</span></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ MAP + FORM SPLIT ═══ -->
+  <section class="max-w-screen-2xl mx-auto px-6 md:px-16 py-20 md:py-36">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- LEFT: Map + hours -->
+      <div>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-10 h-px bg-orange"></div>
+          <span class="section-label text-orange">On the Map</span>
+        </div>
+        <div data-reveal>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">Right on <span class="text-orange">the</span></div></div>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">beachfront.</div></div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-wrap rough-border mt-10 mb-6" style="height:380px;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.4476!2d75.7760!3d11.2530!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65938563c2ed9%3A0x7e37efde7a8b558!2sKozhikode%20Beach!5e0!3m2!1sen!2sin!4v1700000000000"
+            width="100%" height="100%"
+            style="border:0;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lost in Burg — Kozhikode Beach">
+          </iframe>
+        </div>
+
+        <a href="https://maps.google.com/?q=Kozhikode+Beach+Kerala" target="_blank" rel="noopener noreferrer"
+           class="btn-outline inline-flex mb-12" data-magnetic="0.25">
+          <span class="btn-inner">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            Open in Google Maps
+          </span>
+        </a>
+
+        <!-- Hours breakdown -->
+        <div class="rough-border p-6 md:p-8 bg-warm-gray">
+          <h3 class="font-oswald font-700 uppercase text-charcoal tracking-wider text-lg mb-6">Opening Hours</h3>
+          <div>
+            <div class="hours-row">
+              <span class="font-inter text-charcoal/55 text-sm">Monday – Friday</span>
+              <span class="font-oswald font-600 text-charcoal text-sm uppercase">4:30 PM – 3:00 AM</span>
+            </div>
+            <div class="hours-row">
+              <span class="font-inter text-charcoal/55 text-sm">Saturday</span>
+              <div class="text-right">
+                <span class="font-oswald font-600 text-charcoal text-sm uppercase block">4:30 PM – 3:00 AM</span>
+                <span class="section-label text-orange" style="font-size:.55rem;">Odd Sat specials from 6 PM</span>
+              </div>
+            </div>
+            <div class="hours-row">
+              <span class="font-inter text-charcoal/55 text-sm">Sunday</span>
+              <div class="text-right">
+                <span class="font-oswald font-600 text-charcoal text-sm uppercase block">4:30 PM – 3:00 AM</span>
+                <span class="section-label text-orange" style="font-size:.55rem;">Oyster Day every Sunday</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-charcoal/10 flex items-center gap-3">
+            <span class="w-2.5 h-2.5 bg-green-500 rounded-full flex-shrink-0"></span>
+            <span class="font-inter text-sm text-charcoal/60">Open <strong class="text-charcoal">every single day</strong> — no exceptions.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-10 h-px bg-orange"></div>
+          <span class="section-label text-orange">Say Hello</span>
+        </div>
+        <div data-reveal data-reveal-stagger="0.07">
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">Drop us a</div></div>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">message.</div></div>
+        </div>
+        <p class="font-inter text-charcoal/55 leading-relaxed mt-6 mb-10 text-sm max-w-sm">Events, collabs, feedback, or just to say you loved the Aristocrat — we read everything.</p>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+          <div class="flex flex-col gap-8">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 form-row">
+              <div class="form-field">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input id="firstName" name="firstName" type="text" class="form-input" placeholder="Your first name" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" type="text" class="form-input" placeholder="Your last name" />
+              </div>
+            </div>
+
+            <div class="form-field form-row">
+              <label class="form-label" for="email">Email Address *</label>
+              <input id="email" name="email" type="email" class="form-input" placeholder="you@email.com" required />
+            </div>
+
+            <div class="form-field form-row">
+              <label class="form-label" for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" class="form-input" placeholder="+91 00000 00000" />
+            </div>
+
+            <div class="form-field form-row">
+              <label class="form-label" for="subject">What's this about? *</label>
+              <select id="subject" name="subject" class="form-input" required>
+                <option value="" disabled selected>Select a topic</option>
+                <option value="reservation">Table / Reservation Inquiry</option>
+                <option value="events">Events & Happenings</option>
+                <option value="collab">Collaboration or Partnership</option>
+                <option value="feedback">Feedback</option>
+                <option value="media">Press / Media</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-field form-row">
+              <label class="form-label" for="message">Your Message *</label>
+              <textarea id="message" name="message" rows="5" class="form-input" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+
+            <!-- Error -->
+            <div id="form-error" class="hidden p-4 border-2 border-orange bg-orange/8">
+              <p id="form-error-msg" class="font-inter text-sm text-charcoal">Please fill in all required fields.</p>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-row">
+              <button type="submit" class="btn-primary w-full sm:w-auto justify-center" data-magnetic="0.25">
+                <span class="btn-inner">
+                  Send Message
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success state -->
+        <div id="form-success" class="show flex-col items-start gap-5 p-8 rough-border bg-warm-gray" style="display:none;">
+          <div class="w-14 h-14 bg-orange flex items-center justify-center">
+            <svg class="w-7 h-7 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div>
+            <h3 class="font-oswald font-700 uppercase text-charcoal text-2xl mb-2">Message Received.</h3>
+            <p class="font-inter text-charcoal/65 leading-relaxed">Thanks for reaching out. We'll get back to you shortly. In the meantime — come visit us tonight.</p>
+          </div>
+          <a href="menu.html" class="font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-1 hover:text-orange-dark transition-colors">
+            Browse the Menu →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ PROMO STRIP ═══ -->
+  <div class="bg-charcoal py-20 px-6 md:px-16 border-t-2 border-orange">
+    <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div>
+        <span class="section-label text-orange mb-3 block">No Reservations Needed</span>
+        <div data-reveal data-reveal-stagger="0.06">
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">Just show up.</div></div>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2rem,4.5vw,4rem); line-height:.9;">We'll handle the rest.</div></div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 min-w-fit">
+        <div class="flex items-center gap-4"><div class="w-8 h-px bg-orange/40"></div><p class="font-inter text-white/50 text-sm">Walk-ins always welcome</p></div>
+        <div class="flex items-center gap-4"><div class="w-8 h-px bg-orange/40"></div><p class="font-inter text-white/50 text-sm">Open 4:30 PM to 3:00 AM daily</p></div>
+        <div class="flex items-center gap-4"><div class="w-8 h-px bg-orange/40"></div><p class="font-inter text-white/50 text-sm">Right on Kozhikode Beach</p></div>
+        <a href="menu.html" class="btn-primary mt-2" data-magnetic="0.25"><span class="btn-inner">See Tonight's Menu →</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+            <div><span class="font-oswald font-700 text-lg uppercase tracking-tight">Lost in Burg</span><div class="section-label text-orange" style="font-size:.6rem;">Kozhikode Beach</div></div>
+          </div>
+          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
+            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
+            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
+            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
+            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
+        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="premium-effects.js"></script>
+  <script>
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+    // ── Form rows reveal on scroll ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.form-row').forEach(row => observer.observe(row));
+
+    // ── Form submit ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const errorEl  = document.getElementById('form-error');
+      const errorMsg = document.getElementById('form-error-msg');
+      const firstName = document.getElementById('firstName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const subject   = document.getElementById('subject').value;
+      const message   = document.getElementById('message').value.trim();
+
+      if (!firstName || !email || !subject || !message) {
+        errorEl.classList.remove('hidden'); errorMsg.textContent = 'Please fill in all required fields.'; return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.classList.remove('hidden'); errorMsg.textContent = 'Please enter a valid email address.'; return;
+      }
+      errorEl.classList.add('hidden');
+
+      // GSAP exit form, entrance success
+      gsap.to('#contactForm', {
+        y: -20, opacity: 0, duration: 0.4, ease: 'power2.in',
+        onComplete: () => {
+          document.getElementById('contactForm').style.display = 'none';
+          const success = document.getElementById('form-success');
+          success.style.display = 'flex';
+          gsap.fromTo(success, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' });
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
+    initPremiumEffects();
+
+    window.addEventListener('load', () => {
+      // Info cards
+      gsap.from('.info-card', {
+        scrollTrigger: { trigger: '.info-card', start: 'top 85%' },
+        y: 30, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out'
+      });
+      // Map reveal
+      gsap.from('.map-wrap', {
+        scrollTrigger: { trigger: '.map-wrap', start: 'top 85%' },
+        x: -40, opacity: 0, duration: 0.9, ease: 'power3.out'
+      });
+    });
+  </script>
+</body>
+</html>

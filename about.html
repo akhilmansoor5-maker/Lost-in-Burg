@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — Lost in Burg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cream: '#FEF5ED', orange: '#FF5722', 'orange-dark': '#E64A19', charcoal: '#1A1A1A', 'warm-gray': '#F5EDE3' },
+          fontFamily: { anton: ['Anton', 'sans-serif'], oswald: ['Oswald', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
+    html { overflow-x: hidden; }
+    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
+    .rough-border  { border: 3px solid var(--charcoal); }
+    .mobile-menu   { display: none; }
+    .mobile-menu.open { display: flex; }
+    .reveal-wrap   { overflow: hidden; }
+    .reveal-line   { display: block; will-change: transform; }
+
+    /* ── Hero: editorial full-bleed ── */
+    .about-hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
+    .about-hero-img { position: absolute; inset: 0; }
+    .about-hero-img img {
+      width: 100%; height: 120%; object-fit: cover;
+      filter: brightness(0.4) contrast(1.2) saturate(0.7);
+      transform: translateY(-8%);
+      will-change: transform;
+    }
+    .about-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,26,26,1) 0%, rgba(26,26,26,0.2) 55%, transparent 100%);
+    }
+    .about-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vw, 6rem);
+    }
+
+    /* ── Story images: clip-path hover ── */
+    .story-img-wrap { position: relative; overflow: hidden; }
+    .story-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(0.55) contrast(1.1);
+      transform: scale(1.07);
+      transition: filter .75s ease, transform .85s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: block;
+    }
+    .story-img-wrap:hover img { filter: grayscale(0) contrast(1); transform: scale(1.0); }
+    .story-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--orange);
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path .6s cubic-bezier(0.77,0,0.175,1);
+      mix-blend-mode: soft-light; opacity: 0.4; pointer-events: none;
+    }
+    .story-img-wrap:hover::after { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+    /* ── Pull quote block ── */
+    .pull-quote { position: relative; overflow: hidden; }
+    .pull-quote-ghost {
+      font-family: 'Anton', sans-serif;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(7rem, 18vw, 16rem);
+      color: rgba(255,87,34,0.06);
+      text-transform: uppercase; line-height: 1;
+      pointer-events: none; user-select: none;
+      white-space: nowrap;
+    }
+
+    /* ── Scrolling horizontal rule ── */
+    .h-rule { height: 2px; background: var(--charcoal); transform-origin: left; }
+
+    /* ── Three pillars ── */
+    .pillar-num { font-family: 'Anton', sans-serif; }
+
+    /* ── Button styles ── */
+    .btn-primary {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--orange); color: var(--cream);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em;
+      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
+    }
+    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
+    .btn-outline {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      border: 2px solid var(--charcoal); color: var(--charcoal);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em;
+      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
+    }
+    .btn-outline::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-outline:hover { color: var(--cream); }
+    .btn-outline:hover::before { transform: translateX(0); }
+    .btn-outline .btn-inner { position: relative; z-index: 1; }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal" style="transition: background .4s, border-color .4s;">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="nav-logo-box w-10 h-10 bg-orange flex items-center justify-center">
+          <span class="font-anton text-cream text-xl leading-none">LB</span>
+        </div>
+        <div>
+          <span class="nav-logo-text font-oswald font-700 text-lg uppercase tracking-tight text-charcoal">Lost in Burg</span>
+          <div class="section-label text-orange" style="font-size:.6rem; letter-spacing:.15em;">Kozhikode Beach</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
+        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Our Story</a>
+        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Menu</a>
+        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Events</a>
+        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Find Us</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4">
+        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
+        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Explore Menu</span></a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-4 h-0.5 bg-charcoal block"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
+      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
+      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Our Story</a>
+      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
+      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
+      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Find Us</a>
+      <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
+    </div>
+  </nav>
+
+  <!-- ═══ FULL-BLEED HERO ═══ -->
+  <section class="about-hero hero-dark">
+    <div class="about-hero-img" data-parallax-wrap>
+      <img
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85"
+        alt="Kozhikode Beach at night"
+        fetchpriority="high"
+        data-parallax="0.18"
+      />
+    </div>
+    <div class="about-hero-overlay"></div>
+
+    <!-- Huge ghost text top-right -->
+    <div class="absolute top-24 right-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+      <span class="font-anton hero-ghost text-white/[0.035]" style="font-size: clamp(8rem, 22vw, 20rem); line-height:1; display:block;">STORY</span>
+    </div>
+
+    <!-- Vertical label -->
+    <div class="absolute right-8 bottom-40 hidden lg:block" style="writing-mode:vertical-rl; transform:rotate(180deg);">
+      <span class="section-label text-white/40" style="letter-spacing:.3em;">Est. 2023 · Kozhikode</span>
+    </div>
+
+    <div class="about-hero-content">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-10 h-px bg-orange"></div>
+        <span class="section-label text-orange">Who We Are</span>
+      </div>
+      <div data-reveal data-reveal-stagger="0.07">
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">Born on</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">the <span class="text-orange">Beach.</span></div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">Built for</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">the Night.</div></div>
+      </div>
+      <!-- Scroll cue -->
+      <div class="flex items-center gap-4 mt-10">
+        <div style="width:1px; height:50px; background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.4));"></div>
+        <span class="section-label text-white/30" style="font-size:.6rem; letter-spacing:.3em;">Scroll to read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STORY BLOCK 1: Editorial side-by-side ═══ -->
+  <section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 items-center">
+
+      <!-- Image: takes 7 columns, bleeds with offset -->
+      <div class="lg:col-span-7 relative" style="min-height:520px;">
+        <div class="rough-border overflow-hidden story-img-wrap h-full" style="min-height:480px;" data-parallax-wrap data-cursor="View">
+          <img
+            src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=1000&q=85"
+            alt="The origin — kitchen prep"
+            loading="lazy" decoding="async"
+            data-parallax="0.15"
+          />
+        </div>
+        <!-- Year badge overlapping bottom-right -->
+        <div class="absolute -bottom-5 -right-3 md:-right-8 bg-orange rough-border px-6 py-4 z-10">
+          <div class="font-anton text-cream text-4xl leading-none">2023</div>
+          <div class="section-label text-cream opacity-80 mt-1">Founded</div>
+        </div>
+        <!-- Decorative corner square -->
+        <div class="absolute -top-4 -left-4 w-16 h-16 border-2 border-orange pointer-events-none z-10"></div>
+      </div>
+
+      <!-- Text: overlaps slightly onto image on lg -->
+      <div class="lg:col-span-5 lg:-ml-6 relative z-10">
+        <div class="lg:bg-cream/95 lg:backdrop-blur-sm lg:p-10">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-orange">Chapter One</span>
+          </div>
+          <div data-reveal data-reveal-stagger="0.08">
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">It started</div></div>
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">with one</div></div>
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">perfect bite.</div></div>
+          </div>
+          <p class="font-inter text-charcoal/75 text-base leading-relaxed mt-8 mb-5">Lost in Burg didn't come from a business plan or a focus group. It came from a craving — the kind that hits you at 1 AM when every other place has pulled down its shutters.</p>
+          <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-5">We found our spot right on Kozhikode Beach, Kerala's most storied stretch of sand, and we set up a grill. The idea was simple: serve the best damn burger on the Malabar Coast, every single night, until 3 in the morning.</p>
+          <p class="font-inter text-charcoal/75 text-base leading-relaxed">No frills. No fluff. Just fire, meat, and people who showed up hungry and left with a story.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PULL QUOTE — FULL WIDTH ORANGE ═══ -->
+  <section class="pull-quote bg-orange py-24 md:py-36 px-6 md:px-16 border-y-2 border-charcoal overflow-hidden">
+    <div class="pull-quote-ghost" aria-hidden="true">VIBES</div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div data-reveal data-reveal-stagger="0.06">
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">"The sea doesn't</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">care what time it is.</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">Neither do we."</div></div>
+      </div>
+      <div class="flex items-center justify-center gap-4 mt-10">
+        <div class="w-12 h-px bg-cream opacity-50"></div>
+        <span class="section-label text-cream opacity-70">Lost in Burg, Kozhikode</span>
+        <div class="w-12 h-px bg-cream opacity-50"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STORY BLOCK 2: Reversed layout ═══ -->
+  <section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+      <!-- Text first on desktop -->
+      <div class="lg:col-span-5 order-2 lg:order-1">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-10 h-px bg-orange"></div>
+          <span class="section-label text-orange">The Food</span>
+        </div>
+        <div data-reveal data-reveal-stagger="0.08">
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">Premium cuts.</div></div>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">Zero</div></div>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">compromise.</div></div>
+        </div>
+        <p class="font-inter text-charcoal/75 text-base leading-relaxed mt-8 mb-5">Every item on our menu is built around one principle: if it doesn't make you close your eyes on the first bite, it doesn't make the cut.</p>
+        <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-5">Our burgers use double-ground beef patties — seasoned simply, cooked hot. Our steaks are prime cuts sourced with the same obsession you'd expect from a proper steakhouse, not a beach shack.</p>
+        <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-10">And then there are the Naked Oysters — fresh, briny, served raw with pickled shallots and green apple. Because some nights call for something primal.</p>
+        <a href="menu.html" class="btn-primary" data-magnetic="0.3"><span class="btn-inner">Explore the Full Menu →</span></a>
+      </div>
+
+      <!-- Image: large, second on mobile -->
+      <div class="lg:col-span-7 relative order-1 lg:order-2" style="min-height:520px;">
+        <div class="rough-border overflow-hidden story-img-wrap h-full" style="min-height:480px;" data-parallax-wrap data-cursor="View">
+          <img
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=85"
+            alt="The grill at Lost in Burg"
+            loading="lazy" decoding="async"
+            data-parallax="0.15"
+          />
+        </div>
+        <div class="absolute -top-5 -left-4 w-20 h-20 border-2 border-orange pointer-events-none z-10"></div>
+        <!-- Small inset photo -->
+        <div class="absolute -bottom-8 -left-4 md:-left-10 w-40 rough-border overflow-hidden story-img-wrap hidden md:block z-20" style="height:140px;">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=300&q=80" alt="Crowd at Lost in Burg" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THREE PILLARS ═══ -->
+  <section class="bg-warm-gray border-y-2 border-charcoal py-20 md:py-32">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
+      <div class="text-center mb-16">
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="w-12 h-px bg-orange"></div>
+          <span class="section-label text-orange">What Drives Us</span>
+          <div class="w-12 h-px bg-orange"></div>
+        </div>
+        <div data-reveal>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,5vw,4.5rem); line-height:.9;">Our three rules.</div></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 rough-border">
+        <div class="p-10 md:border-r-2 border-charcoal group hover:bg-charcoal transition-colors duration-300">
+          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">01</div>
+          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">Quality Over Everything</h3>
+          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">Every ingredient is chosen deliberately. Every cook time is obsessed over. You can taste the difference between rushed and reverent — we choose reverent, every time.</p>
+        </div>
+        <div class="p-10 md:border-r-2 border-charcoal border-t-2 md:border-t-0 group hover:bg-charcoal transition-colors duration-300">
+          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">02</div>
+          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">The Night is Ours</h3>
+          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">We open when the sun goes down. We close when the last plate goes out. Late nights have their own energy — we built this place to match it.</p>
+        </div>
+        <div class="p-10 border-t-2 md:border-t-0 group hover:bg-charcoal transition-colors duration-300">
+          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">03</div>
+          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">Beach, Always</h3>
+          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">Kozhikode Beach isn't our backdrop — it's our identity. The sound of the waves, the salt in the air, the crowd that only the coast attracts. We wouldn't want it any other way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY STRIP — offset stagger ═══ -->
+  <section class="py-24 md:py-36 px-6 md:px-16 max-w-screen-2xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <div>
+        <div class="flex items-center gap-4 mb-4"><div class="w-10 h-px bg-orange"></div><span class="section-label text-orange">Behind the Grill</span></div>
+        <div data-reveal>
+          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4vw,3.5rem); line-height:.9;">The faces <span class="text-orange">behind it.</span></div></div>
+        </div>
+      </div>
+      <p class="font-inter text-charcoal/60 max-w-xs leading-relaxed text-sm">A small team with a big obsession. Every night, the same crew shows up to make sure you leave happier than when you arrived.</p>
+    </div>
+
+    <!-- Staggered row — each image offset vertically -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="rough-border overflow-hidden story-img-wrap" style="height:300px;" data-cursor="View">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Team — dark restaurant" loading="lazy" decoding="async" />
+      </div>
+      <div class="rough-border overflow-hidden story-img-wrap mt-10" style="height:300px;" data-cursor="View">
+        <img src="https://images.unsplash.com/photo-1476224203421-74177f19a8cc?auto=format&fit=crop&w=500&q=80" alt="Night food market" loading="lazy" decoding="async" />
+      </div>
+      <div class="rough-border overflow-hidden story-img-wrap" style="height:300px;" data-cursor="View">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="Grill fire" loading="lazy" decoding="async" />
+      </div>
+      <div class="rough-border overflow-hidden story-img-wrap mt-10" style="height:300px;" data-cursor="View">
+        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=500&q=80" alt="Late night crowd" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═══ -->
+  <div class="bg-charcoal py-20 px-6 text-center border-t-2 border-orange">
+    <div data-reveal data-reveal-stagger="0.06">
+      <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">Come find out</div></div>
+      <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">for yourself.</div></div>
+    </div>
+    <p class="font-inter text-white/50 text-base mt-6 mb-10">Kozhikode Beach. Every night from 4:30 PM.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="menu.html"    class="btn-primary" data-magnetic="0.3"><span class="btn-inner">See the Menu</span></a>
+      <a href="contact.html" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:#fff;" data-magnetic="0.25"><span class="btn-inner">Find Us</span></a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+            <div><span class="font-oswald font-700 text-lg uppercase tracking-tight">Lost in Burg</span><div class="section-label text-orange" style="font-size:.6rem;">Kozhikode Beach</div></div>
+          </div>
+          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
+            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
+            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
+            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
+            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
+        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="premium-effects.js"></script>
+  <script>
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    initPremiumEffects();
+
+    window.addEventListener('load', () => {
+      // Gallery images stagger in on scroll
+      gsap.from('.grid .story-img-wrap', {
+        scrollTrigger: { trigger: '.grid .story-img-wrap', start: 'top 85%' },
+        y: 60, opacity: 0, stagger: 0.1, duration: 0.9, ease: 'power3.out'
+      });
+      // Pillar cards
+      gsap.from('.pillar-num', {
+        scrollTrigger: { trigger: '.pillar-num', start: 'top 85%' },
+        x: -30, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out'
+      });
+      // Hero parallax for ghost text
+      gsap.to('.about-hero .hero-ghost', {
+        y: '-15%',
+        scrollTrigger: { trigger: '.about-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+      });
+    });
+  </script>
+</body>
+</html>

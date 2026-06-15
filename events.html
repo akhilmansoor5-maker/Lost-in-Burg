@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — Lost in Burg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cream: '#FEF5ED', orange: '#FF5722', 'orange-dark': '#E64A19', charcoal: '#1A1A1A', 'warm-gray': '#F5EDE3' },
+          fontFamily: { anton: ['Anton', 'sans-serif'], oswald: ['Oswald', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
+    html { overflow-x: hidden; }
+    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
+    .rough-border  { border: 3px solid var(--charcoal); }
+    .mobile-menu   { display: none; }
+    .mobile-menu.open { display: flex; }
+    .reveal-wrap   { overflow: hidden; }
+    .reveal-line   { display: block; will-change: transform; }
+
+    /* ── Page header: dark full-bleed ── */
+    .events-hero { position: relative; min-height: 70vh; overflow: hidden; display: flex; align-items: flex-end; }
+    .events-hero-bg { position: absolute; inset: 0; }
+    .events-hero-bg img {
+      width: 100%; height: 115%; object-fit: cover;
+      filter: brightness(0.35) contrast(1.2) saturate(0.6);
+      transform: translateY(-8%);
+      will-change: transform;
+    }
+    .events-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,26,26,0.98) 0%, rgba(26,26,26,0.4) 60%, transparent 100%);
+    }
+
+    /* ── Marquee ── */
+    .marquee-outer { overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; will-change: transform; }
+
+    /* ── Event card: dark premium ── */
+    .event-card {
+      background: #1e1e1e;
+      transition: transform .3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow .3s ease;
+      will-change: transform;
+      position: relative; overflow: hidden;
+    }
+    .event-card:hover { transform: translateY(-8px); box-shadow: 10px 10px 0 var(--orange); }
+    .event-card-img { position: relative; overflow: hidden; }
+    .event-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(0.6) contrast(1.15) brightness(0.85);
+      transform: scale(1.07);
+      transition: filter .7s ease, transform .85s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: block;
+    }
+    .event-card:hover .event-card-img img { filter: grayscale(0) contrast(1) brightness(1); transform: scale(1.0); }
+    /* Clip reveal on card hover */
+    .event-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--orange);
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path .6s cubic-bezier(0.77,0,0.175,1);
+      mix-blend-mode: soft-light; opacity: 0.35; pointer-events: none;
+    }
+    .event-card:hover .event-card-img::after { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+    /* Pulsing live dot */
+    @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.5; transform:scale(1.4); } }
+    .live-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+    /* ── Timeline ── */
+    .timeline-line {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--orange), rgba(255,87,34,0.1));
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -8px; top: 14px;
+      width: 18px; height: 18px;
+      background: var(--orange);
+      border: 3px solid var(--charcoal);
+    }
+
+    /* ── Button styles ── */
+    .btn-primary {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--orange); color: var(--cream);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
+    }
+    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
+    .btn-outline-light {
+      position: relative; display: inline-flex; align-items: center; gap: .75rem;
+      border: 2px solid rgba(255,255,255,0.3); color: #fff;
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
+    }
+    .btn-outline-light::before { content: ''; position: absolute; inset: 0; background: var(--orange); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
+    .btn-outline-light:hover { border-color: var(--orange); }
+    .btn-outline-light:hover::before { transform: translateX(0); }
+    .btn-outline-light .btn-inner { position: relative; z-index: 1; }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+        <div>
+          <span class="font-oswald font-700 text-lg uppercase tracking-tight text-charcoal">Lost in Burg</span>
+          <div class="section-label text-orange" style="font-size:.6rem; letter-spacing:.15em;">Kozhikode Beach</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
+        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Our Story</a>
+        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Menu</a>
+        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Events</a>
+        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Find Us</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4">
+        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
+        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Order Now</span></a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-6 h-0.5 bg-charcoal block"></span>
+        <span class="w-4 h-0.5 bg-charcoal block"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
+      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
+      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Our Story</a>
+      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
+      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Events</a>
+      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Find Us</a>
+      <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="events-hero hero-dark pt-16">
+    <div class="events-hero-bg" data-parallax-wrap>
+      <img
+        src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1920&q=85"
+        alt="Events atmosphere at Lost in Burg"
+        fetchpriority="high"
+        data-parallax="0.2"
+      />
+    </div>
+    <div class="events-hero-overlay"></div>
+
+    <!-- Ghost background text -->
+    <div class="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none" aria-hidden="true">
+      <span class="font-anton hero-ghost text-white/[0.03]" style="font-size:clamp(9rem,24vw,22rem); line-height:1; white-space:nowrap; padding-left:clamp(1rem,3vw,4rem);">HAPPENINGS</span>
+    </div>
+
+    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 pb-20 md:pb-28 w-full">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-10 h-px bg-orange"></div>
+        <span class="section-label text-orange">What's On</span>
+      </div>
+      <div data-reveal data-reveal-stagger="0.07">
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">Nights worth</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">showing up</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">for.</div></div>
+      </div>
+      <p class="font-inter text-white/50 text-base mt-8 max-w-md leading-relaxed">Whether it's Steak Night, Oyster Day, or one of our legendary Odd Saturdays — there's always a reason to come down to the beach.</p>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="bg-orange border-y-2 border-charcoal overflow-hidden py-4">
+    <div class="marquee-outer">
+      <div class="marquee-track">
+        <div class="flex gap-10 pr-10 items-center">
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Steak Nights</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Oyster Days</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Odd Saturdays</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Live on the Beach</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Late Night Only</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Mystery Drops</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+        </div>
+        <div class="flex gap-10 pr-10 items-center" aria-hidden="true">
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Steak Nights</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Oyster Days</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Odd Saturdays</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Live on the Beach</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Late Night Only</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+          <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Mystery Drops</span>
+          <span class="font-anton text-charcoal text-xl">✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RECURRING EVENTS — DARK GRID ═══ -->
+  <section class="py-20 md:py-32 px-6 md:px-16 bg-charcoal">
+    <div class="max-w-screen-2xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-orange">Weekly Regulars</span>
+          </div>
+          <div data-reveal data-reveal-stagger="0.07">
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">Put these in</div></div>
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">your calendar.</div></div>
+          </div>
+        </div>
+        <p class="font-inter text-white/40 max-w-xs leading-relaxed text-sm">Every week, every time. These aren't specials — they're rituals.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Steak Night -->
+        <div class="event-card rough-border" data-cursor="View">
+          <div class="event-card-img" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80" alt="Steak Night" loading="lazy" decoding="async" />
+            <div class="absolute top-4 left-4 bg-orange px-4 py-2 z-10">
+              <div class="font-anton text-cream text-lg leading-none">EVERY</div>
+              <div class="font-oswald font-700 text-cream text-sm uppercase tracking-wider">Thursday</div>
+            </div>
+            <div class="absolute top-4 right-4 flex items-center gap-2 bg-charcoal/80 px-3 py-1.5 z-10">
+              <span class="live-dot w-2 h-2 bg-orange rounded-full block flex-shrink-0"></span>
+              <span class="section-label text-cream" style="font-size:.6rem;">Recurring</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-anton text-cream uppercase text-3xl mb-2">Steak Night</h3>
+            <div class="w-10 h-0.5 bg-orange mb-4"></div>
+            <p class="font-inter text-white/50 text-sm leading-relaxed mb-5">Every Thursday the grill runs hot and the steaks run deep. Special cuts, special prices — sometimes a secret menu item that doesn't make it to any other night.</p>
+            <div class="flex items-center justify-between">
+              <span class="font-inter text-white/40 text-xs flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                From 4:30 PM
+              </span>
+              <span class="section-label text-orange" style="font-size:.6rem;">Weekly</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oyster Day -->
+        <div class="event-card rough-border" data-cursor="View">
+          <div class="event-card-img" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Oyster Day" loading="lazy" decoding="async" />
+            <div class="absolute top-4 left-4 bg-orange px-4 py-2 z-10">
+              <div class="font-anton text-cream text-lg leading-none">EVERY</div>
+              <div class="font-oswald font-700 text-cream text-sm uppercase tracking-wider">Sunday</div>
+            </div>
+            <div class="absolute top-4 right-4 flex items-center gap-2 bg-charcoal/80 px-3 py-1.5 z-10">
+              <span class="live-dot w-2 h-2 bg-orange rounded-full block flex-shrink-0"></span>
+              <span class="section-label text-cream" style="font-size:.6rem;">Recurring</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-anton text-cream uppercase text-3xl mb-2">Oyster Day</h3>
+            <div class="w-10 h-0.5 bg-orange mb-4"></div>
+            <p class="font-inter text-white/50 text-sm leading-relaxed mb-5">Sundays are for the Naked Oysters. Fresh catch all evening long — raw, clean, as close to the sea as you can get without getting wet.</p>
+            <div class="flex items-center justify-between">
+              <span class="font-inter text-white/40 text-xs flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                From 4:30 PM
+              </span>
+              <span class="section-label text-orange" style="font-size:.6rem;">Weekly</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Odd Saturdays -->
+        <div class="event-card rough-border" data-cursor="View">
+          <div class="event-card-img" style="height:280px;">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80" alt="Odd Saturdays" loading="lazy" decoding="async" />
+            <div class="absolute top-4 left-4 border-2 border-orange bg-charcoal px-4 py-2 z-10">
+              <div class="font-anton text-orange text-lg leading-none">ODD</div>
+              <div class="font-oswald font-700 text-orange text-sm uppercase tracking-wider">Saturdays</div>
+            </div>
+            <div class="absolute top-4 right-4 flex items-center gap-2 bg-charcoal/80 px-3 py-1.5 z-10">
+              <span class="live-dot w-2 h-2 bg-orange rounded-full block flex-shrink-0"></span>
+              <span class="section-label text-cream" style="font-size:.6rem;">Bi-weekly</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-anton text-cream uppercase text-3xl mb-2">Odd Saturdays</h3>
+            <div class="w-10 h-0.5 bg-orange mb-4"></div>
+            <p class="font-inter text-white/50 text-sm leading-relaxed mb-5">Every other Saturday, we do something different. Live cook-off, a new item drop, a collab, or just a reason to stay later than usual. Follow Instagram for the reveal.</p>
+            <div class="flex items-center justify-between">
+              <span class="font-inter text-white/40 text-xs flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                From 6:00 PM
+              </span>
+              <span class="section-label text-orange" style="font-size:.6rem;">Odd weeks</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ UPCOMING TIMELINE ═══ -->
+  <section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Left sticky heading -->
+      <div class="lg:col-span-1">
+        <div class="lg:sticky" style="top: 6rem;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-orange">What's Next</span>
+          </div>
+          <div data-reveal data-reveal-stagger="0.08">
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.2rem,4vw,3.5rem); line-height:.9;">Upcoming</div></div>
+            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.2rem,4vw,3.5rem); line-height:.9;">Nights.</div></div>
+          </div>
+          <p class="font-inter text-charcoal/60 leading-relaxed mt-6 mb-8 text-sm">Dates shift, surprises happen. Follow us on Instagram for real-time updates and last-minute specials.</p>
+          <a href="#" class="btn-primary" data-magnetic="0.28">
+            <span class="btn-inner">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Follow on Instagram
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right timeline -->
+      <div class="lg:col-span-2 relative pl-10 border-l-2 border-charcoal/15">
+        <div class="timeline-line"></div>
+        <div class="flex flex-col gap-14">
+
+          <!-- Entry 1 -->
+          <div class="relative">
+            <div class="timeline-dot"></div>
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <div class="rough-border overflow-hidden flex-shrink-0 event-card-img w-full sm:w-36" style="height:90px;">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80" alt="June 19 event" loading="lazy" decoding="async" />
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="font-anton text-orange text-xl">Jun 19</span>
+                  <span class="bg-orange text-cream font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Thursday</span>
+                  <span class="border border-charcoal/30 text-charcoal font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Steak Night</span>
+                </div>
+                <h3 class="font-oswald font-700 uppercase text-xl text-charcoal mb-2">The Big Cut Night</h3>
+                <p class="font-inter text-sm text-charcoal/60 leading-relaxed">Special off-menu rib eye cuts available only this evening. Limited quantity. First come, best fed.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 2 -->
+          <div class="relative">
+            <div class="timeline-dot"></div>
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <div class="rough-border overflow-hidden flex-shrink-0 event-card-img w-full sm:w-36" style="height:90px;">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=300&q=80" alt="June 21 event" loading="lazy" decoding="async" />
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="font-anton text-orange text-xl">Jun 21</span>
+                  <span class="bg-charcoal text-cream font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Saturday</span>
+                  <span class="border border-orange text-orange font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Odd Saturday</span>
+                </div>
+                <h3 class="font-oswald font-700 uppercase text-xl text-charcoal mb-2">Mystery Drop Night</h3>
+                <p class="font-inter text-sm text-charcoal/60 leading-relaxed">Something new is dropping. We're not saying what. Instagram story at 8 PM that evening. Be there.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 3 -->
+          <div class="relative">
+            <div class="timeline-dot"></div>
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <div class="rough-border overflow-hidden flex-shrink-0 event-card-img w-full sm:w-36" style="height:90px;">
+                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=300&q=80" alt="June 22 event" loading="lazy" decoding="async" />
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="font-anton text-orange text-xl">Jun 22</span>
+                  <span class="bg-orange text-cream font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Sunday</span>
+                  <span class="border border-charcoal/30 text-charcoal font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Oyster Day</span>
+                </div>
+                <h3 class="font-oswald font-700 uppercase text-xl text-charcoal mb-2">Fresh Catch Sunday</h3>
+                <p class="font-inter text-sm text-charcoal/60 leading-relaxed">Naked Oysters all evening. Bring someone who thinks they don't like oysters. They'll leave converted.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 4 -->
+          <div class="relative">
+            <div class="timeline-dot"></div>
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <div class="rough-border overflow-hidden flex-shrink-0 event-card-img w-full sm:w-36" style="height:90px;">
+                <img src="https://images.unsplash.com/photo-1476224203421-74177f19a8cc?auto=format&fit=crop&w=300&q=80" alt="July 5 event" loading="lazy" decoding="async" />
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="font-anton text-orange text-xl">Jul 5</span>
+                  <span class="bg-charcoal text-cream font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Saturday</span>
+                  <span class="border border-orange text-orange font-oswald font-600 uppercase tracking-widest text-xs px-3 py-1">Odd Saturday</span>
+                </div>
+                <h3 class="font-oswald font-700 uppercase text-xl text-charcoal mb-2">The Malabar Collab</h3>
+                <p class="font-inter text-sm text-charcoal/60 leading-relaxed">A special menu collab featuring hyper-local Malabar ingredients. Thalassery spices meets double beef patties. One night only.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FULL-WIDTH ATMOSPHERIC CTA ═══ -->
+  <section class="relative overflow-hidden border-y-2 border-charcoal" style="height:500px;">
+    <div data-parallax-wrap class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+        alt="Kozhikode Beach at night"
+        data-parallax="0.18"
+        style="position:absolute; inset:0; width:100%; height:120%; object-fit:cover; filter:brightness(0.3) contrast(1.3) saturate(0.5); object-position: center 60%;"
+      />
+    </div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
+      <span class="section-label text-orange mb-5">Don't Miss Out</span>
+      <div data-reveal data-reveal-stagger="0.07">
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase text-center" style="font-size:clamp(2.5rem,6.5vw,6.5rem); line-height:.88;">Every night is</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase text-center" style="font-size:clamp(2.5rem,6.5vw,6.5rem); line-height:.88;">different.</div></div>
+      </div>
+      <p class="font-inter text-white/50 text-base mt-8 mb-10 max-w-md">Walk in on a random Tuesday and something unexpected might be on. That's just the kind of place we are.</p>
+      <a href="contact.html" class="btn-outline-light" data-magnetic="0.3">
+        <span class="btn-inner">Find Us on the Beach →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-orange flex items-center justify-center"><span class="font-anton text-cream text-xl leading-none">LB</span></div>
+            <div><span class="font-oswald font-700 text-lg uppercase tracking-tight">Lost in Burg</span><div class="section-label text-orange" style="font-size:.6rem;">Kozhikode Beach</div></div>
+          </div>
+          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
+            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
+            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
+            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
+            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
+            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
+        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="premium-effects.js"></script>
+  <script>
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    initPremiumEffects();
+
+    window.addEventListener('load', () => {
+      // Event cards stagger in
+      gsap.from('.event-card', {
+        scrollTrigger: { trigger: '.event-card', start: 'top 85%' },
+        y: 60, opacity: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out'
+      });
+      // Timeline entries
+      gsap.from('.timeline-dot', {
+        scrollTrigger: { trigger: '.timeline-dot', start: 'top 88%' },
+        scale: 0, stagger: 0.2, duration: 0.5, ease: 'back.out(2)'
+      });
+      // Hero ghost text drift
+      gsap.to('.events-hero .hero-ghost', {
+        x: '-5%',
+        scrollTrigger: { trigger: '.events-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+      });
+    });
+  </script>
+</body>
+</html>
