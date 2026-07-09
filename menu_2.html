@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Menu — Lost in Burg | Kozhikode Beach</title>
+  <meta name="description" content="Explore the Lost in Burg menu — late-night burgers, coastal plates, and cult bites on Kozhikode Beach." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "name": "Lost in Burg Menu",
+    "description": "Late-night editorial menu — Kozhikode Beach",
+    "url": "https://akhilmansoor5-maker.github.io/Lost-in-Burg/menu_2.html",
+    "hasMenuSection": [{
+      "@type": "MenuSection",
+      "name": "Signatures",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "The Aristocrat", "description": "Double-smash patty, aged cheddar, black garlic aioli, brioche crown.", "offers": { "@type": "Offer", "price": "349", "priceCurrency": "INR" }},
+        { "@type": "MenuItem", "name": "The God's Plan", "description": "Bone marrow butter-basted wagyu smash, caramelised onion jam, truffle dust.", "offers": { "@type": "Offer", "price": "499", "priceCurrency": "INR" }},
+        { "@type": "MenuItem", "name": "Seven Wonders", "description": "Crispy oyster tower, yuzu kosho, pickled shallots, sesame leaf.", "offers": { "@type": "Offer", "price": "999", "priceCurrency": "INR" }},
+        { "@type": "MenuItem", "name": "Fisherman's Rope", "description": "Beer-battered fish, dill remoulade, cabbage slaw, seaweed salt fries.", "offers": { "@type": "Offer", "price": "439", "priceCurrency": "INR" }},
+        { "@type": "MenuItem", "name": "Lost in Wings", "description": "12-hour dry-rubbed wings, ghost-pepper glaze, blue cheese dip.", "offers": { "@type": "Offer", "price": "299", "priceCurrency": "INR" }},
+        { "@type": "MenuItem", "name": "Musa Bos", "description": "Smoked brisket flatbread, chimichurri, roasted peppers, whipped feta.", "offers": { "@type": "Offer", "price": "299", "priceCurrency": "INR" }}
+      ]
+    }]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cream: '#FEF5ED', orange: '#FF5722', 'orange-dark': '#E64A19', charcoal: '#1A1A1A', 'warm-gray': '#F5EDE3' },
+          fontFamily: { anton: ['Anton','sans-serif'], oswald: ['Oswald','sans-serif'], inter: ['Inter','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    html{overflow-x:hidden;scroll-behavior:auto;}
+    body{background:#0d0d0d;color:#FEF5ED;font-family:'Inter',sans-serif;overflow-x:hidden;margin:0;}
+
+    /* Nav */
+    .nav-link{position:relative;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#FF5722;transition:width .3s;}
+    .nav-link:hover::after,.nav-link.active::after{width:100%;}
+    .nav-link:hover{color:#FF5722;}
+    .nav-link.active{color:#FF5722;}
+    #mainNav{border-bottom:1px solid transparent;transition:background .35s,border-color .35s;}
+    #mainNav.nav-scrolled{background:rgba(13,13,13,.97)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,87,34,.18)!important;}
+
+    .section-label{font-family:'Oswald',sans-serif;letter-spacing:.24em;font-size:.7rem;text-transform:uppercase;}
+
+    /* ── MENU GRID ── */
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2px;
+    }
+    @media(max-width:860px){.menu-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:540px){.menu-grid{grid-template-columns:1fr;}}
+
+    /* Card */
+    .menu-card{
+      position:relative;overflow:hidden;cursor:pointer;
+      aspect-ratio:3/4;
+      background:#111;
+    }
+    .menu-card-media{
+      width:100%;height:100%;object-fit:cover;display:block;
+      filter:grayscale(.6) brightness(.75) contrast(1.1);
+      transform:scale(1.06);
+      transition:filter .7s ease,transform .9s cubic-bezier(.25,.46,.45,.94);
+    }
+    .menu-card-video{
+      width:100%;height:100%;object-fit:cover;display:block;
+      filter:grayscale(.6) brightness(.75) contrast(1.1);
+      transform:scale(1.06);
+      transition:filter .7s ease,transform .9s cubic-bezier(.25,.46,.45,.94);
+    }
+    .menu-card:hover .menu-card-media,
+    .menu-card:hover .menu-card-video{
+      filter:grayscale(0) brightness(.9) contrast(1);
+      transform:scale(1);
+    }
+
+    /* Orange reveal line at card bottom */
+    .card-reveal-line{
+      position:absolute;bottom:0;left:0;
+      width:0;height:3px;background:#FF5722;
+      transition:width .55s cubic-bezier(.77,0,.175,1);
+    }
+    .menu-card:hover .card-reveal-line{width:100%;}
+
+    /* Card info overlay */
+    .card-info{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:2rem 1.5rem 1.75rem;
+      background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.5) 55%,transparent 100%);
+      transform:translateY(0);
+    }
+    .card-price{
+      font-family:'Anton',sans-serif;font-size:1.45rem;
+      color:#FF5722;letter-spacing:.04em;
+    }
+    .card-name{
+      font-family:'Oswald',sans-serif;font-weight:600;
+      font-size:1.35rem;text-transform:uppercase;letter-spacing:.06em;
+      color:#FEF5ED;line-height:1.1;margin-bottom:.35rem;
+    }
+    .card-tag{
+      font-family:'Inter',sans-serif;font-size:.7rem;
+      color:rgba(254,245,237,.45);letter-spacing:.12em;text-transform:uppercase;
+      margin-bottom:.5rem;
+    }
+    .card-cta{
+      font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.2em;
+      text-transform:uppercase;color:rgba(255,87,34,.7);
+      margin-top:.6rem;display:flex;align-items:center;gap:.4rem;
+      opacity:0;transform:translateY(6px);
+      transition:opacity .35s .1s,transform .35s .1s;
+    }
+    .menu-card:hover .card-cta{opacity:1;transform:translateY(0);}
+
+    /* ── MODAL ── */
+    #menuModal{
+      position:fixed;inset:0;z-index:200;
+      display:flex;align-items:stretch;
+      pointer-events:none;
+    }
+    #menuModal.open{pointer-events:all;}
+    #modalBackdrop{
+      position:absolute;inset:0;
+      background:rgba(0,0,0,.78);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      opacity:0;transition:opacity .4s;
+    }
+    #menuModal.open #modalBackdrop{opacity:1;}
+    #modalPanel{
+      position:absolute;right:0;top:0;bottom:0;
+      width:min(96vw,920px);
+      background:#0d0d0d;
+      border-left:1px solid rgba(255,87,34,.18);
+      display:grid;grid-template-columns:1fr 1fr;
+      transform:translateX(100%);
+      transition:transform .55s cubic-bezier(.77,0,.175,1);
+      overflow:hidden;
+    }
+    #menuModal.open #modalPanel{transform:translateX(0);}
+    @media(max-width:640px){
+      #modalPanel{grid-template-columns:1fr;width:100vw;grid-template-rows:45vh 1fr;}
+    }
+
+    #modalMedia{position:relative;overflow:hidden;background:#111;}
+    #modalImg{width:100%;height:100%;object-fit:cover;display:block;}
+    #modalVideo{width:100%;height:100%;object-fit:cover;display:block;}
+
+    #modalContent{
+      padding:3rem 2.5rem;
+      overflow-y:auto;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    @media(max-width:640px){#modalContent{padding:2rem 1.5rem;}}
+
+    .modal-label{
+      font-family:'Oswald',sans-serif;letter-spacing:.32em;font-size:.6rem;
+      text-transform:uppercase;color:rgba(255,87,34,.6);margin-bottom:1.2rem;
+    }
+    .modal-name{
+      font-family:'Anton',sans-serif;font-size:clamp(2rem,5vw,3.2rem);
+      line-height:.9;text-transform:uppercase;color:#FEF5ED;
+      margin-bottom:.6rem;
+    }
+    .modal-price{
+      font-family:'Oswald',sans-serif;font-size:1.1rem;
+      color:#FF5722;letter-spacing:.08em;margin-bottom:1.8rem;
+    }
+    .modal-divider{
+      width:40px;height:2px;background:#FF5722;margin-bottom:1.8rem;
+    }
+    .modal-note-label{
+      font-family:'Oswald',sans-serif;letter-spacing:.24em;font-size:.65rem;
+      text-transform:uppercase;color:rgba(254,245,237,.35);margin-bottom:.7rem;
+    }
+    .modal-desc{
+      font-family:'Inter',sans-serif;font-size:.95rem;line-height:1.85;
+      color:rgba(254,245,237,.72);
+    }
+    .modal-close{
+      position:absolute;top:1.5rem;right:1.5rem;
+      width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+      border:1px solid rgba(255,87,34,.3);cursor:pointer;
+      color:#FF5722;font-size:1.2rem;z-index:10;
+      background:rgba(13,13,13,.8);
+      transition:background .25s,border-color .25s;
+    }
+    .modal-close:hover{background:#FF5722;border-color:#FF5722;color:#FEF5ED;}
+
+    /* Grain */
+    .grain{pointer-events:none;position:fixed;inset:0;z-index:999;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size:220px 220px;opacity:.028;}
+
+    /* Page header */
+    .page-header{
+      min-height:38vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:flex-end;
+      padding:7rem 2rem 3.5rem;
+      text-align:center;
+      border-bottom:2px solid rgba(255,87,34,.15);
+      position:relative;overflow:hidden;
+    }
+    .page-header-bg{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse at 50% 120%,rgba(255,87,34,.08) 0%,transparent 70%);
+    }
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,87,34,.12);}
+
+    /* Mobile menu */
+    .mobile-menu{display:none;}
+    .mobile-menu.open{display:flex;}
+    .ham-bar{background:#FEF5ED;transition:background .35s;}
+  </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="mainNav" class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,13,13,0);">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between" style="height:72px;">
+    <!-- Logo -->
+    <a href="index.html" class="flex flex-col leading-none text-decoration-none">
+      <span class="nav-logo-text" style="font-family:'Anton',sans-serif;font-size:1.25rem;letter-spacing:.06em;color:#FEF5ED;line-height:1;">LOST IN BURG</span>
+      <span class="nav-hours-label" style="font-family:'Oswald',sans-serif;font-size:.58rem;letter-spacing:.28em;color:rgba(254,245,237,.4);margin-top:1px;">KOZHIKODE BEACH · OPEN TILL 3 AM</span>
+    </a>
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link nav-lh" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;">Home</a>
+      <a href="menu_2.html" class="nav-link nav-lh active" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;color:#FF5722;text-decoration:none;">Menu</a>
+      <a href="about.html" class="nav-link nav-lh" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;">Story</a>
+      <a href="events.html" class="nav-link nav-lh" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;">Events</a>
+      <a href="contact.html" class="nav-link nav-lh" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;">Find Us</a>
+      <a href="tel:+919999999999" class="btn-p" style="font-size:.75rem;padding:.65rem 1.5rem;">Reserve</a>
+    </div>
+    <!-- Hamburger -->
+    <button id="hamBtn" class="md:hidden flex flex-col gap-[5px] p-2" aria-label="Open menu">
+      <span class="ham-bar block w-6 h-[2px]"></span>
+      <span class="ham-bar block w-6 h-[2px]"></span>
+      <span class="ham-bar block w-4 h-[2px]"></span>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="mobile-menu md:hidden flex-col" style="background:rgba(13,13,13,.98);border-top:1px solid rgba(255,87,34,.15);padding:1.5rem 1.5rem 2rem;">
+    <a href="index.html" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:1rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);">Home</a>
+    <a href="menu_2.html" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:1rem;text-transform:uppercase;color:#FF5722;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);">Menu</a>
+    <a href="about.html" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:1rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);">Story</a>
+    <a href="events.html" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:1rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);">Events</a>
+    <a href="contact.html" style="font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;font-size:1rem;text-transform:uppercase;color:#FEF5ED;text-decoration:none;padding:.75rem 0;">Find Us</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-bg"></div>
+  <span class="section-label" style="color:rgba(255,87,34,.5);margin-bottom:1rem;position:relative;">Scene 03 · The Menu</span>
+  <h1 style="font-family:'Anton',sans-serif;font-size:clamp(3.5rem,9vw,8rem);line-height:.86;text-transform:uppercase;color:#FEF5ED;position:relative;margin-bottom:.75rem;">
+    What We <span style="color:#FF5722;">Cook</span>
+  </h1>
+  <p style="font-family:'Inter',sans-serif;font-size:.9rem;color:rgba(254,245,237,.45);letter-spacing:.08em;max-width:380px;line-height:1.7;position:relative;">
+    Click any plate for the Chef's Notes.
+  </p>
+</header>
+
+<!-- MENU GRID -->
+<main>
+  <div class="menu-grid" id="menuGrid">
+
+    <!-- 1. The Aristocrat -->
+    <div class="menu-card"
+      data-name="The Aristocrat"
+      data-price="₹349"
+      data-tag="Signature Smash"
+      data-img="Gallery/ARISTROCRAT BURGER.jpeg"
+      data-desc="Double-smash patty pressed hard on a screaming-hot iron, aged cheddar melted in a steam dome, black garlic aioli that took two days to coax, brioche crown toasted in wagyu tallow. It's the one people come back for. Every time."
+    >
+      <img class="menu-card-media" src="Gallery/ARISTROCRAT BURGER.jpeg" alt="The Aristocrat — double-smash burger with aged cheddar and black garlic aioli" loading="eager" fetchpriority="high" />
+      <div class="card-info">
+        <div class="card-tag">Signature Smash</div>
+        <div class="card-name">The Aristocrat</div>
+        <div class="card-price">₹349</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+    <!-- 2. The God's Plan (video) -->
+    <div class="menu-card"
+      data-name="The God's Plan"
+      data-price="₹499"
+      data-tag="Chef's Obsession"
+      data-video="Gallery/BONEMARROW BURGER.mp4"
+      data-desc="We roast the bone marrow for three hours, whip it into butter, then baste the wagyu smash patty as it rests. Caramelised onion jam slow-cooked for four hours. Truffle dust on the finish — not for show, because nothing else closes that flavour loop."
+    >
+      <video class="menu-card-video" autoplay muted loop playsinline>
+        <source src="Gallery/BONEMARROW BURGER.mp4" type="video/mp4" />
+      </video>
+      <div class="card-info">
+        <div class="card-tag">Chef's Obsession</div>
+        <div class="card-name">The God's Plan</div>
+        <div class="card-price">₹499</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+    <!-- 3. Seven Wonders (video) -->
+    <div class="menu-card"
+      data-name="Seven Wonders"
+      data-price="₹999"
+      data-tag="Coastal Plate"
+      data-video="Gallery/NAKED OYSTERS.MOV"
+      data-video-type="video/quicktime"
+      data-desc="Oysters from the morning catch, battered light, flash-fried to order. Yuzu kosho cuts through the richness. Pickled shallots bring acidity. Sesame leaf on top — raw, because this one shouldn't be overthought. Coastal. Direct. Honest."
+    >
+      <video class="menu-card-video" autoplay muted loop playsinline>
+        <source src="Gallery/NAKED OYSTERS.MOV" type="video/quicktime" />
+        <source src="Gallery/NAKED OYSTERS.MOV" type="video/mp4" />
+      </video>
+      <div class="card-info">
+        <div class="card-tag">Coastal Plate</div>
+        <div class="card-name">Seven Wonders</div>
+        <div class="card-price">₹999</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+    <!-- 4. Fisherman's Rope -->
+    <div class="menu-card"
+      data-name="Fisherman's Rope"
+      data-price="₹439"
+      data-tag="Beach Classic"
+      data-img="Gallery/CUSTOMER PICTURE 2.jpg"
+      data-desc="Beer batter made with the cheapest local ale we could find — turns out that's the right move. Fish from the morning market. Dill remoulade from scratch. Cabbage slaw with the kind of crunch that matters. Seaweed salt on the fries because the beach is right outside."
+    >
+      <img class="menu-card-media" src="Gallery/CUSTOMER PICTURE 2.jpg" alt="Fisherman's Rope — beer-battered fish with dill remoulade and seaweed salt fries" loading="lazy" decoding="async" />
+      <div class="card-info">
+        <div class="card-tag">Beach Classic</div>
+        <div class="card-name">Fisherman's Rope</div>
+        <div class="card-price">₹439</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+    <!-- 5. Lost in Wings -->
+    <div class="menu-card"
+      data-name="Lost in Wings"
+      data-price="₹299"
+      data-tag="Night Fuel"
+      data-img="Gallery/CUSTOMER PICTURE 1.jpg"
+      data-desc="Dry-rubbed for 12 hours — smoked paprika, cumin, dried lime peel, sea salt. The ghost-pepper glaze goes on in the last 90 seconds. Blue cheese dip on the side because heat without cool is incomplete. Order two portions. You'll want to."
+    >
+      <img class="menu-card-media" src="Gallery/CUSTOMER PICTURE 1.jpg" alt="Lost in Wings — dry-rubbed wings with ghost-pepper glaze and blue cheese dip" loading="lazy" decoding="async" />
+      <div class="card-info">
+        <div class="card-tag">Night Fuel</div>
+        <div class="card-name">Lost in Wings</div>
+        <div class="card-price">₹299</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+    <!-- 6. Musa Bos -->
+    <div class="menu-card"
+      data-name="Musa Bos"
+      data-price="₹299"
+      data-tag="Late Night Special"
+      data-img="Gallery/CUSTOMER PICTURE 9.jpg"
+      data-desc="Brisket smoked low and slow, sliced thin, piled onto flatbread straight from the stone. Chimichurri with more herbs than is reasonable. Roasted peppers for sweetness. Whipped feta to hold it all together. One of those plates where the components shouldn't work, but they do."
+    >
+      <img class="menu-card-media" src="Gallery/CUSTOMER PICTURE 9.jpg" alt="Musa Bos — smoked brisket flatbread with chimichurri and whipped feta" loading="lazy" decoding="async" />
+      <div class="card-info">
+        <div class="card-tag">Late Night Special</div>
+        <div class="card-name">Musa Bos</div>
+        <div class="card-price">₹299</div>
+        <div class="card-cta">
+          <span>Chef's Notes</span>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M0 4h13M9.5 1l3.5 3-3.5 3" stroke="#FF5722" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="card-reveal-line"></div>
+    </div>
+
+  </div><!-- /menu-grid -->
+</main>
+
+<!-- EDITORIAL MODAL -->
+<div id="menuModal" role="dialog" aria-modal="true" aria-label="Dish detail">
+  <div id="modalBackdrop"></div>
+  <div id="modalPanel">
+    <!-- Left: media -->
+    <div id="modalMedia">
+      <img id="modalImg" src="" alt="" style="display:none;" />
+      <video id="modalVideo" autoplay muted loop playsinline style="display:none;">
+        <source id="modalVideoSrc" src="" type="video/mp4" />
+      </video>
+    </div>
+    <!-- Close -->
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <!-- Right: content -->
+    <div id="modalContent">
+      <div class="modal-label">Chef's Notes</div>
+      <h2 class="modal-name" id="modalName">—</h2>
+      <div class="modal-price" id="modalPrice">₹—</div>
+      <div class="modal-divider"></div>
+      <div class="modal-note-label">On the plate</div>
+      <p class="modal-desc" id="modalDesc">—</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#080808;padding:3rem 2rem 2.5rem;">
+  <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div>
+      <div style="font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:#FEF5ED;">LOST IN BURG</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:.58rem;letter-spacing:.28em;color:rgba(254,245,237,.3);margin-top:2px;">KOZHIKODE BEACH · OPEN TILL 3 AM</div>
+    </div>
+    <div class="flex gap-6 flex-wrap">
+      <a href="index.html" style="font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(254,245,237,.4);text-decoration:none;">Home</a>
+      <a href="menu_2.html" style="font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#FF5722;text-decoration:none;">Menu</a>
+      <a href="about.html" style="font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(254,245,237,.4);text-decoration:none;">Story</a>
+      <a href="events.html" style="font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(254,245,237,.4);text-decoration:none;">Events</a>
+      <a href="contact.html" style="font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(254,245,237,.4);text-decoration:none;">Find Us</a>
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:.7rem;color:rgba(254,245,237,.2);letter-spacing:.06em;">
+      Scene 05 · The Destination
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<script>
+  // ── Lenis smooth scroll ──
+  const lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // ── Nav scroll ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  document.getElementById('hamBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  // ── Page header entrance ──
+  gsap.from('header h1', { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', delay: .2 });
+  gsap.from('header .section-label', { y: 20, opacity: 0, duration: .8, ease: 'power2.out', delay: .1 });
+  gsap.from('header p', { y: 20, opacity: 0, duration: .8, ease: 'power2.out', delay: .35 });
+
+  // ── Card entrance stagger ──
+  gsap.from('.menu-card', {
+    y: 60, opacity: 0, duration: .85, stagger: .1, ease: 'power3.out', delay: .5,
+  });
+
+  // ── Modal ──
+  const modal      = document.getElementById('menuModal');
+  const modalImg   = document.getElementById('modalImg');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalVSrc  = document.getElementById('modalVideoSrc');
+  const modalName  = document.getElementById('modalName');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalDesc  = document.getElementById('modalDesc');
+  const modalPanel = document.getElementById('modalPanel');
+  let modalOpen = false;
+
+  function openModal(card) {
+    const isVideo = !!card.dataset.video;
+
+    modalName.textContent  = card.dataset.name;
+    modalPrice.textContent = card.dataset.price;
+    modalDesc.textContent  = card.dataset.desc;
+    document.querySelector('.modal-label').textContent = 'Chef\'s Notes — ' + (card.dataset.tag || '');
+
+    if (isVideo) {
+      modalImg.style.display   = 'none';
+      modalVideo.style.display = 'block';
+      modalVSrc.src  = card.dataset.video;
+      modalVSrc.type = card.dataset.videoType || 'video/mp4';
+      modalVideo.load();
+      modalVideo.play().catch(()=>{});
+    } else {
+      modalVideo.pause();
+      modalVideo.style.display = 'none';
+      modalImg.style.display   = 'block';
+      modalImg.src = card.dataset.img;
+      modalImg.alt = card.dataset.name;
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lenis.stop();
+    modalOpen = true;
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    lenis.start();
+    modalOpen = false;
+    setTimeout(() => {
+      modalVideo.pause();
+      modalVSrc.src = '';
+      modalImg.src  = '';
+    }, 560);
+  }
+
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalOpen) closeModal();
+  });
+</script>
+</body>
+</html>
