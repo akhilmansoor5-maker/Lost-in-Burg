@@ -1,0 +1,254 @@
+/**
+ * Lost in Burg — Nights page (events.html)
+ * Recurring rituals + atmosphere. No calendar.
+ */
+
+.reveal-wrap { overflow: hidden; }
+.reveal-line { display: block; will-change: transform; }
+
+/* ── Hero ── */
+.nights-hero {
+  position: relative;
+  min-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: #080808;
+}
+.nights-hero__media { position: absolute; inset: 0; background: #080808; }
+.nights-hero__media img,
+.nights-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.38) contrast(1.2) saturate(0.65);
+}
+.nights-hero__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.35) 55%, rgba(8, 8, 8, 0.55) 100%),
+    radial-gradient(ellipse at 70% 40%, rgba(255, 87, 34, 0.12) 0%, transparent 50%);
+}
+.nights-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 6.5rem 1.5rem 4.5rem;
+}
+@media (min-width: 768px) {
+  .nights-hero__content { padding: 7.5rem 4rem 5.5rem; }
+}
+.nights-hero__ghost {
+  position: absolute;
+  top: 22%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 16vw, 13rem);
+  line-height: 0.85;
+  color: rgba(254, 245, 237, 0.035);
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Marquee ── */
+.marquee-outer { overflow: hidden; }
+.marquee-track { display: flex; width: max-content; will-change: transform; }
+
+/* ── Ritual cards ── */
+.ritual-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .ritual-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+.ritual-card {
+  background: #141414;
+  border: 3px solid rgba(254, 245, 237, 0.12);
+  overflow: hidden;
+  transition: transform 0.35s var(--ease-soft), box-shadow 0.35s ease;
+}
+.ritual-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 8px 8px 0 var(--orange);
+}
+.ritual-card__media {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+.ritual-card__media img,
+.ritual-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.06);
+  transition: transform 0.85s var(--ease-soft);
+}
+.ritual-card:hover .ritual-card__media img,
+.ritual-card:hover .ritual-card__media video { transform: scale(1); }
+.ritual-card__badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  background: var(--orange);
+  padding: 0.55rem 0.85rem;
+}
+.ritual-card__badge--outline {
+  background: var(--charcoal);
+  border: 2px solid var(--orange);
+}
+
+/* ── Atmosphere mosaic ── */
+.atmosphere {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+@media (min-width: 768px) {
+  .atmosphere {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 0.75rem;
+  }
+  .atmosphere__cell--hero {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
+}
+.atmosphere__cell {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--charcoal);
+  min-height: 220px;
+}
+.atmosphere__cell img,
+.atmosphere__cell video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.88) contrast(1.05);
+  transition: transform 0.8s var(--ease-soft), filter 0.5s ease;
+}
+.atmosphere__cell:hover img,
+.atmosphere__cell:hover video {
+  transform: scale(1.04);
+  filter: brightness(1) contrast(1.08);
+}
+
+/* ── What happens ── */
+.happens-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 3px solid var(--charcoal);
+}
+@media (min-width: 640px) {
+  .happens-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .happens-grid { grid-template-columns: repeat(5, 1fr); }
+}
+.happens-cell {
+  padding: 2rem 1.5rem;
+  border-bottom: 2px solid var(--charcoal);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+@media (min-width: 640px) {
+  .happens-cell:nth-child(odd) { border-right: 2px solid var(--charcoal); }
+}
+@media (min-width: 1024px) {
+  .happens-cell {
+    border-bottom: 0;
+    border-right: 2px solid var(--charcoal);
+  }
+  .happens-cell:nth-child(odd) { border-right: 2px solid var(--charcoal); }
+  .happens-cell:last-child { border-right: 0; }
+}
+.happens-cell:last-child { border-bottom: 0; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .happens-cell:nth-last-child(-n+1) { border-bottom: 0; }
+  .happens-cell:nth-child(4) { border-bottom: 0; }
+}
+.happens-cell:hover {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+.happens-cell:hover p { color: rgba(254, 245, 237, 0.55); }
+.happens-cell__n {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 0.85rem;
+}
+.happens-cell:hover .happens-cell__n { color: var(--cream); }
+
+/* ── Instagram band ── */
+.ig-band {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .ig-band { grid-template-columns: 1fr 1.1fr; gap: 3rem; }
+}
+.ig-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.ig-strip a {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid var(--charcoal);
+  display: block;
+}
+.ig-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease-soft);
+}
+.ig-strip a:hover img { transform: scale(1.06); }
+
+/* ── Find us close ── */
+.nights-close {
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid var(--orange);
+}
+.nights-close__media {
+  position: absolute;
+  inset: 0;
+}
+.nights-close__media video,
+.nights-close__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.28) contrast(1.25) saturate(0.55);
+}
+.nights-close__content {
+  position: relative;
+  z-index: 2;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 5.5rem 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .nights-close__content { padding: 7rem 4rem; }
+}

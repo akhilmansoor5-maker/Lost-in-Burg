@@ -4,13 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lost in Burg — Kozhikode Beach</title>
-
+  <meta name="description" content="Lost in Burg — The Craver's Loop. Premium late-night burgers on Kozhikode Beach. Open daily 4:30 PM–3:00 AM." />
+  <link rel="icon" href="Gallery/LOGO%20FAVICON.jpeg" type="image/jpeg" />
   <link rel="preload" as="image" href="Gallery/ARISTROCRAT BURGER.jpeg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/brand.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <script src="js/brand-meta.js" defer></script>
 
   <script>
     tailwind.config = {
@@ -22,240 +26,17 @@
       },
     }
   </script>
-
-  <style>
-    *,*::before,*::after{box-sizing:border-box;}
-    html{overflow-x:hidden;scroll-behavior:auto;}
-    body{background:#FEF5ED;color:#1A1A1A;font-family:'Inter',sans-serif;overflow-x:hidden;margin:0;}
-
-    /* Nav */
-    nav{transition:background .35s,border-color .35s;}
-    .nav-link{position:relative;}
-    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#FF5722;transition:width .3s;}
-    .nav-link:hover::after{width:100%;}
-    .nav-link:hover{color:#FF5722;}
-
-    /* Mobile menu */
-    .mobile-menu{display:none;}
-    .mobile-menu.open{display:flex;}
-
-    /* Utility */
-    .section-label{font-family:'Oswald',sans-serif;letter-spacing:.24em;font-size:.7rem;text-transform:uppercase;}
-    .rough-border{border:3px solid #1A1A1A;}
-    .reveal-wrap{overflow:hidden;}
-    .reveal-line{display:block;will-change:transform;}
-
-    /* Hero */
-    .hero-dark{position:relative;height:100vh;min-height:600px;overflow:hidden;}
-    .hero-bg{position:absolute;inset:0;}
-    .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.42) contrast(1.1) saturate(.75);}
-    .hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 55%,transparent 25%,rgba(0,0,0,.7) 100%);}
-    .hero-content{position:absolute;bottom:0;left:0;right:0;}
-    .scroll-bar{width:1px;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.45));animation:sb 2s ease-in-out infinite;}
-    @keyframes sb{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(.6);}}
-
-    /* Marquee */
-    .marquee-outer{overflow:hidden;}
-    .marquee-track{display:flex;width:max-content;will-change:transform;}
-
-    /* Editorial grid */
-    .edit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:0;}
-    .edit-a{grid-column:1/3;grid-row:1/3;}
-    .edit-b{grid-column:3;grid-row:1;border-bottom:0;}
-    .edit-c{grid-column:3;grid-row:2;}
-    @media(max-width:860px){
-      .edit-grid{grid-template-columns:1fr;}
-      .edit-a,.edit-b,.edit-c{grid-column:1;grid-row:auto;}
-      .edit-b{border-bottom:3px solid #1A1A1A;}
-    }
-
-    /* Image hover */
-    .img-hover{position:relative;overflow:hidden;}
-    .img-hover img{
-      width:100%;height:100%;object-fit:cover;display:block;
-      filter:none;
-      transform:scale(1.07);
-      transition:transform .8s cubic-bezier(.25,.46,.45,.94);
-    }
-    .img-hover:hover img{transform:scale(1);}
-    .img-hover::after{
-      content:'';position:absolute;inset:0;
-      background:#FF5722;
-      clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
-      transition:clip-path .55s cubic-bezier(.77,0,.175,1);
-      mix-blend-mode:soft-light;opacity:.4;pointer-events:none;
-    }
-    .img-hover:hover::after{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);}
-
-    /* Card overlay */
-    .card-overlay{
-      position:absolute;bottom:0;left:0;right:0;padding:1.5rem;
-      background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%);
-      color:#fff;
-    }
-
-    /* Buttons */
-    .btn-p{
-      position:relative;display:inline-flex;align-items:center;gap:.65rem;
-      background:#FF5722;color:#FEF5ED;
-      font-family:'Oswald',sans-serif;font-weight:600;
-      text-transform:uppercase;letter-spacing:.18em;font-size:.875rem;
-      padding:.9rem 2.2rem;overflow:hidden;text-decoration:none;
-      transition:color .3s;
-    }
-    .btn-p::before{content:'';position:absolute;inset:0;background:#1A1A1A;transform:translateX(-101%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
-    .btn-p:hover::before{transform:translateX(0);}
-    .btn-p .bi{position:relative;z-index:1;display:flex;align-items:center;gap:.65rem;}
-    .btn-o{
-      position:relative;display:inline-flex;align-items:center;gap:.65rem;
-      border:2px solid #1A1A1A;color:#1A1A1A;
-      font-family:'Oswald',sans-serif;font-weight:600;
-      text-transform:uppercase;letter-spacing:.18em;font-size:.875rem;
-      padding:.9rem 2.2rem;overflow:hidden;text-decoration:none;
-      transition:color .3s;
-    }
-    .btn-o::before{content:'';position:absolute;inset:0;background:#1A1A1A;transform:translateX(-101%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
-    .btn-o:hover{color:#FEF5ED;}
-    .btn-o:hover::before{transform:translateX(0);}
-    .btn-o .bi{position:relative;z-index:1;display:flex;align-items:center;gap:.65rem;}
-    .btn-o-light{border-color:rgba(255,255,255,.35);color:#fff;}
-    .btn-o-light::before{background:#FF5722;}
-
-    /* ─── EDITORIAL HERO ─── */
-
-    /* Nav: transparent → scrolled */
-    #mainNav{border-bottom:1px solid transparent;}
-    #mainNav.nav-scrolled{background:rgba(254,245,237,.97)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:2px solid #1A1A1A!important;}
-    #mainNav.nav-scrolled .nav-lh{color:#1A1A1A!important;}
-    #mainNav.nav-scrolled .nav-lh:hover{color:#FF5722!important;}
-    #mainNav.nav-scrolled .nav-logo-text{color:#1A1A1A!important;}
-    #mainNav.nav-scrolled .nav-hours-label{color:rgba(26,26,26,.5)!important;}
-    #mainNav.nav-scrolled .ham-bar{background:#1A1A1A!important;}
-    .nav-link::after{background:#FF5722;}
-    /* Logo image: white on dark nav, black on scrolled cream nav */
-    .nav-logo-img{height:64px;width:auto;filter:invert(1);transition:filter .35s;}
-    #mainNav.nav-scrolled .nav-logo-img{filter:none;}
-
-    /* Grain overlay */
-    .h-grain{position:absolute;inset:0;z-index:16;pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23g)'/%3E%3C/svg%3E");
-      background-size:220px 220px;opacity:.042;}
-
-    /* Rotating badge */
-    @keyframes badge-spin{to{transform:rotate(360deg);}}
-    .hero-badge-svg{animation:badge-spin 22s linear infinite;}
-
-    /* Ember particles */
-    @keyframes ember-rise{
-      0%{transform:translateY(0) translateX(0) scale(1);opacity:.85;}
-      80%{opacity:.4;}
-      100%{transform:translateY(var(--ey,-150px)) translateX(var(--ex,20px)) scale(0);opacity:0;}
-    }
-    .ember{
-      position:absolute;border-radius:50%;
-      background:radial-gradient(circle,#FFA040 0%,#FF5722 60%,transparent 100%);
-      box-shadow:0 0 6px 1px rgba(255,87,34,.55);
-      animation:ember-rise var(--dur,3s) ease-out var(--del,0s) infinite;
-    }
-
-    /* Hero headline depth */
-    .hero-hl1{
-      text-shadow:3px 4px 0 rgba(0,0,0,.55),-1px 0 0 rgba(255,87,34,.07);
-      filter:url(#roughen);
-    }
-    .hero-hl2{
-      text-shadow:5px 6px 0 rgba(0,0,0,.6),-2px 0 0 rgba(255,87,34,.12);
-      filter:url(#roughen);
-    }
-
-    /* Hero CTA buttons */
-    .btn-hp{
-      position:relative;display:inline-flex;align-items:center;gap:.6rem;
-      background:#FF5722;color:#FEF5ED;
-      font-family:'Oswald',sans-serif;font-weight:600;
-      text-transform:uppercase;letter-spacing:.18em;font-size:.875rem;
-      padding:.9rem 2.2rem;overflow:hidden;text-decoration:none;transition:color .3s;
-    }
-    .btn-hp::before{content:'';position:absolute;inset:0;background:#FEF5ED;transform:translateX(-101%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
-    .btn-hp:hover{color:#1A1A1A;}
-    .btn-hp:hover::before{transform:translateX(0);}
-    .btn-hp .bhi{position:relative;z-index:1;display:flex;align-items:center;gap:.6rem;}
-
-    .btn-hg{
-      position:relative;display:inline-flex;align-items:center;gap:.6rem;
-      border:1.5px solid rgba(255,255,255,.22);color:rgba(255,255,255,.72);
-      font-family:'Oswald',sans-serif;font-weight:600;
-      text-transform:uppercase;letter-spacing:.18em;font-size:.875rem;
-      padding:.9rem 2.2rem;overflow:hidden;text-decoration:none;transition:color .3s,border-color .3s;
-    }
-    .btn-hg::before{content:'';position:absolute;inset:0;background:#FF5722;transform:translateX(-101%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
-    .btn-hg:hover{color:#FEF5ED;border-color:#FF5722;}
-    .btn-hg:hover::before{transform:translateX(0);}
-    .btn-hg .bhi{position:relative;z-index:1;display:flex;align-items:center;gap:.6rem;}
-
-    /* Mobile hero */
-    @media(max-width:860px){
-      .hero-left-col{width:100%!important;padding:clamp(6rem,20vw,8rem) 1.75rem 2rem!important;justify-content:flex-start!important;}
-      .hero-right-col{opacity:.12!important;}
-      .hero-badge-wrap{display:none!important;}
-      .hero-hours-strip{display:none!important;}
-      .hero-hl1{font-size:clamp(2.8rem,11vw,4.5rem)!important;}
-      .hero-hl2{font-size:clamp(4.8rem,17vw,7.5rem)!important;}
-    }
-  </style>
 </head>
 <body>
 
-<!-- ══════════ NAV: Transparent Editorial ══════════ -->
-<nav id="mainNav" class="fixed top-0 left-0 right-0 z-50" style="transition:background .45s ease,border-color .45s ease,backdrop-filter .45s ease;">
-  <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center">
-      <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg — The Craver's Loop" class="nav-logo-img" />
-    </a>
+<div id="site-nav" data-variant="hero" data-cta="Explore Menu" data-cta-href="menu.html"></div>
 
-    <div class="hidden md:flex items-center gap-9">
-      <a href="index.html"   class="nav-lh nav-link font-oswald font-600 uppercase tracking-widest text-sm text-white/75 hover:text-orange transition-colors">Home</a>
-      <a href="about.html"   class="nav-lh nav-link font-oswald font-600 uppercase tracking-widest text-sm text-white/75 hover:text-orange transition-colors">Our Story</a>
-      <a href="menu.html"    class="nav-lh nav-link font-oswald font-600 uppercase tracking-widest text-sm text-white/75 hover:text-orange transition-colors">Menu</a>
-      <a href="events.html"  class="nav-lh nav-link font-oswald font-600 uppercase tracking-widest text-sm text-white/75 hover:text-orange transition-colors">Events</a>
-      <a href="contact.html" class="nav-lh nav-link font-oswald font-600 uppercase tracking-widest text-sm text-white/75 hover:text-orange transition-colors">Find Us</a>
-    </div>
-
-    <div class="hidden md:flex items-center gap-4">
-      <span class="nav-hours-label section-label text-white/35" style="transition:color .35s;">4:30 PM – 3:00 AM</span>
-      <a href="menu.html" class="btn-p" data-magnetic="0.28"><span class="bi">Explore Menu</span></a>
-    </div>
-
-    <button onclick="toggleMobileMenu()" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Open menu">
-      <span class="ham-bar w-6 h-0.5 bg-white block" style="transition:background .35s;"></span>
-      <span class="ham-bar w-6 h-0.5 bg-white block" style="transition:background .35s;"></span>
-      <span class="ham-bar w-4 h-0.5 bg-white block" style="transition:background .35s;"></span>
-    </button>
-  </div>
-
-  <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
-    <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
-    <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Our Story</a>
-    <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
-    <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
-    <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Find Us</a>
-    <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily · 4:30 PM – 3:00 AM</p></div>
-  </div>
-</nav>
-
-<!-- ══════════ EDITORIAL HERO ══════════ -->
+<!-- ══════════ HERO — original video treatment ══════════ -->
 <section style="position:relative;height:100vh;min-height:640px;background:#080808;overflow:hidden;display:flex;flex-direction:column;">
-
-  <!-- Grain -->
   <div class="h-grain" aria-hidden="true"></div>
-
-  <!-- Top darkening band: separates nav from content -->
   <div style="position:absolute;top:0;left:0;right:0;height:160px;z-index:12;pointer-events:none;background:linear-gradient(to bottom,rgba(4,4,4,.78) 0%,rgba(4,4,4,.28) 55%,transparent 100%);" aria-hidden="true"></div>
-
-  <!-- Left-column text backdrop -->
   <div style="position:absolute;top:0;left:0;bottom:0;width:52%;z-index:1;pointer-events:none;background:linear-gradient(to right,#080808 0%,#080808 58%,rgba(8,8,8,.72) 80%,transparent 100%);" aria-hidden="true"></div>
 
-  <!-- SVG distress filter -->
   <svg style="position:absolute;width:0;height:0;pointer-events:none;" aria-hidden="true">
     <defs>
       <filter id="roughen" x="-8%" y="-8%" width="116%" height="116%">
@@ -265,237 +46,123 @@
     </defs>
   </svg>
 
-  <!-- ── Main body: left + right ── -->
   <div style="flex:1;display:flex;min-height:0;position:relative;">
-
-    <!-- RIGHT: Cinematic burger image -->
     <div class="hero-right-col" style="position:absolute;right:0;top:0;bottom:0;width:66%;overflow:hidden;">
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,.65) 22%,rgba(8,8,8,.14) 54%,transparent 78%);pointer-events:none;"></div>
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,8,8,.62) 0%,transparent 22%,transparent 65%,rgba(8,8,8,.72) 100%);pointer-events:none;"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:60%;z-index:3;background:radial-gradient(ellipse at 55% 115%,rgba(255,87,34,.15) 0%,transparent 65%);pointer-events:none;"></div>
-
-      <video autoplay muted loop playsinline fetchpriority="high"
+      <video autoplay muted loop playsinline poster="Gallery/ARISTROCRAT BURGER.jpeg"
         style="width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(.84) contrast(1.24) saturate(1.08);">
         <source src="Gallery/LOST IN BURG MAIN VIDEO.mp4" type="video/mp4" />
-        <img src="Gallery/ARISTROCRAT BURGER.jpeg" alt="The Aristocrat — Lost in Burg signature burger" />
+        <img src="Gallery/ARISTROCRAT BURGER.jpeg" alt="Lost in Burg — late night on Kozhikode Beach" />
       </video>
-
       <div id="embersWrap" style="position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;"></div>
-
       <div class="hero-hours-strip" style="position:absolute;right:1.6rem;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.55rem;">
         <span class="section-label" style="writing-mode:vertical-rl;transform:rotate(180deg);color:rgba(255,255,255,.18);letter-spacing:.32em;font-size:.5rem;">Open Daily</span>
         <div style="width:1px;height:28px;background:linear-gradient(to bottom,transparent,rgba(255,87,34,.42));"></div>
         <span class="font-anton" style="writing-mode:vertical-rl;transform:rotate(180deg);color:rgba(255,87,34,.72);font-size:.88rem;letter-spacing:.06em;">4:30 PM</span>
         <div style="width:1px;height:16px;background:rgba(255,87,34,.16);"></div>
         <span class="font-anton" style="writing-mode:vertical-rl;transform:rotate(180deg);color:rgba(255,255,255,.28);font-size:.88rem;letter-spacing:.06em;">3:00 AM</span>
-        <div style="width:1px;height:28px;background:linear-gradient(to top,transparent,rgba(255,87,34,.42));"></div>
       </div>
     </div>
 
-    <!-- LEFT: Content — eyebrow 60px below nav -->
-    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(7.75rem,14vh,10rem) 2.5vw 2rem 6vw;">
-
-      <!-- Eyebrow -->
-      <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;">
-        <div style="width:38px;height:1px;background:#FF5722;flex-shrink:0;"></div>
-        <span class="section-label text-orange" style="letter-spacing:.28em;">Kozhikode Beach</span>
-        <div style="width:14px;height:1px;background:rgba(255,87,34,.35);flex-shrink:0;"></div>
-      </div>
-
-      <!-- Headline -->
-      <div style="position:relative;">
+    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,8rem) 2.5vw 3rem 6vw;">
+      <div class="hero-left-inner" style="transform:translateY(4vh);">
+        <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;">
+          <div style="width:38px;height:1px;background:#FF5722;flex-shrink:0;"></div>
+          <span class="section-label text-orange" style="letter-spacing:.28em;">Kozhikode Beach</span>
+        </div>
         <h1 aria-label="Lost in Burg" style="margin:0;">
           <div class="font-anton text-cream hero-hl1 uppercase" style="font-size:clamp(3.5rem,7vw,7.5rem);line-height:.86;letter-spacing:-.02em;">LOST IN</div>
           <div class="font-anton text-orange hero-hl2 uppercase" style="font-size:clamp(5rem,11vw,11.5rem);line-height:.82;letter-spacing:-.03em;margin-top:-.05em;">BURG</div>
         </h1>
-
-        <!-- Rotating circular badge — anchored beside BURG baseline -->
-        <div class="hero-badge-wrap" style="position:absolute;bottom:-8px;right:-52px;width:96px;height:96px;">
-          <svg class="hero-badge-svg" viewBox="0 0 96 96" style="width:100%;height:100%;" aria-hidden="true">
-            <defs>
-              <path id="bcp" d="M48,48 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/>
-            </defs>
-            <circle cx="48" cy="48" r="45" fill="none" stroke="rgba(255,87,34,.2)" stroke-width="1"/>
-            <circle cx="48" cy="48" r="39" fill="none" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-            <text font-family="Oswald,sans-serif" font-size="7" fill="rgba(255,255,255,.42)" letter-spacing="2.6">
-              <textPath href="#bcp">LOST IN BURG · BURGERS · EST. 2023 · </textPath>
-            </text>
-          </svg>
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-            <div style="width:26px;height:26px;background:#FF5722;display:flex;align-items:center;justify-content:center;">
-              <span class="font-anton text-cream" style="font-size:10px;line-height:1;">LB</span>
-            </div>
+        <div class="hero-tagline" style="display:flex;gap:1.2rem;align-items:stretch;margin-top:1.75rem;margin-bottom:2rem;">
+          <div style="width:2px;flex-shrink:0;background:linear-gradient(to bottom,#FF5722,rgba(255,87,34,.08));"></div>
+          <div class="font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:2.1;">
+            The Craver's Loop.<br>Open until 3 AM.
           </div>
         </div>
-      </div>
-
-      <!-- Tagline with left bar -->
-      <div class="hero-tagline" style="display:flex;gap:1.2rem;align-items:stretch;margin-top:1.5rem;">
-        <div style="width:2px;flex-shrink:0;background:linear-gradient(to bottom,#FF5722,rgba(255,87,34,.08));border-radius:1px;"></div>
-        <div class="font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:2.2;">
-          Bold Flavours.<br>Beach Vibes.<br>Endless Nights.
+        <div class="hero-ctas" style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;">
+          <a href="menu.html" class="btn-hp" data-magnetic="0.3"><span class="bhi">Explore Menu
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </span></a>
+          <a href="about.html" class="btn-hg" data-magnetic="0.25"><span class="bhi">Our Story</span></a>
         </div>
       </div>
-
-      <!-- Sub-copy -->
-      <p class="hero-copy font-inter leading-relaxed" style="color:rgba(255,255,255,.68);font-size:.83rem;max-width:285px;margin-top:1.1rem;margin-bottom:1.75rem;">Premium late-night burgers on Kozhikode Beach. Open until 3AM — because hunger doesn't keep business hours.</p>
-
-      <!-- CTAs -->
-      <div class="hero-ctas" style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;">
-        <a href="menu.html" class="btn-hp" data-magnetic="0.3">
-          <span class="bhi">
-            Explore Menu
-            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
-        <a href="about.html" class="btn-hg" data-magnetic="0.25">
-          <span class="bhi">Our Story</span>
-        </a>
-      </div>
     </div>
-
-  </div><!-- /flex body -->
-
+  </div>
 </section>
 
-<!-- Dark bridge: hero → marquee. Prevents the orange from colliding with the hero bottom. -->
-<div style="background:#080808;padding:2.5rem 0;display:flex;align-items:center;justify-content:center;gap:2rem;border-bottom:2px solid #1A1A1A;">
-  <div style="width:40px;height:1px;background:rgba(255,87,34,.22);"></div>
-  <span class="section-label" style="color:rgba(255,87,34,.3);letter-spacing:.36em;font-size:.52rem;">On the Menu Tonight</span>
-  <div style="width:40px;height:1px;background:rgba(255,87,34,.22);"></div>
-</div>
-
-<!-- ══════════ MARQUEE ══════════ -->
-<div class="bg-orange border-b-2 border-charcoal py-4 marquee-outer">
+<!-- Marquee bridge -->
+<div class="bg-orange border-b-2 border-charcoal py-3 marquee-outer">
   <div class="marquee-track">
     <div class="flex items-center gap-12 pr-12 flex-shrink-0">
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">The Aristocrat</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">God's Plan</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Fillet Mignon</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Naked Oysters</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Rib Eye Steak</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Crowded Fries</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Malabar Reserve</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">The Aristocrat</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">God's Plan</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Rib Eye</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Naked Oysters</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Malabar Reserve</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
     </div>
     <div class="flex items-center gap-12 pr-12 flex-shrink-0" aria-hidden="true">
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">The Aristocrat</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">God's Plan</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Fillet Mignon</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Naked Oysters</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Rib Eye Steak</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Crowded Fries</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
-      <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Malabar Reserve</span>
-      <span class="font-anton text-charcoal/60 text-xl">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">The Aristocrat</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">God's Plan</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Rib Eye</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Naked Oysters</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
+      <span class="font-anton text-cream text-xl uppercase whitespace-nowrap">Malabar Reserve</span><span class="font-anton text-charcoal/50 text-lg">✦</span>
     </div>
   </div>
 </div>
 
-<!-- ══════════ SCENE 02 — THE CULTURE ══════════ -->
-<section class="py-24 md:py-40 overflow-hidden relative">
-  <!-- Faint ghost letter -->
-  <div class="absolute right-0 inset-y-0 flex items-center overflow-hidden pointer-events-none select-none" aria-hidden="true">
-    <span class="vibe-ghost font-anton" style="font-size:clamp(14rem,30vw,28rem);line-height:.8;color:rgba(255,87,34,.05);">B</span>
-  </div>
-
-  <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-      <!-- Image block -->
-      <div class="lg:col-span-7 relative" style="min-height:480px;">
-        <div class="rough-border img-hover h-full" style="min-height:460px;" data-parallax-wrap>
-          <img src="Gallery/BURGERS.jpeg"
-               alt="Lost in Burg — burger and steak spread"
-               loading="lazy" decoding="async"
-               data-parallax="0.14" />
-        </div>
-        <!-- Inset photo -->
-        <div class="absolute -bottom-8 -right-4 md:-right-8 w-48 rough-border img-hover hidden md:block z-20" style="height:148px;">
-          <img src="Gallery/BEEF PATTY.jpeg"
-               alt="Lost in Burg — fresh beef patty" loading="lazy" decoding="async" />
-        </div>
-        <div class="absolute -top-4 -left-4 w-16 h-16 border-2 border-orange pointer-events-none z-10"></div>
-      </div>
-
-      <!-- Text block -->
-      <div class="lg:col-span-5 lg:-ml-6 relative z-10">
-        <div class="lg:bg-cream/93 lg:backdrop-blur-sm lg:p-10">
-          <div class="flex items-center gap-4 mb-6"><div class="w-10 h-px bg-orange"></div><span class="section-label text-orange">Scene 02 · The Culture</span></div>
-
-          <div data-reveal data-reveal-stagger="0.08">
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.8rem,5.5vw,5rem);line-height:.9;">Where the</div></div>
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.8rem,5.5vw,5rem);line-height:.9;">Beach Meets</div></div>
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.8rem,5.5vw,5rem);line-height:.9;">the Grill.</div></div>
-          </div>
-
-          <p class="font-inter text-charcoal/75 text-base leading-relaxed mt-8 mb-4 max-w-sm">Tucked right on the edge of Kozhikode Beach — Lost in Burg is the place you end up when the city finally quiets down. Salt air, sea breeze, and the smell of a sizzling double patty at midnight.</p>
-          <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-10 max-w-sm">No pretension. No reservations. Just premium cuts, bold flavours, and a crowd that knows good food doesn't need a fancy room.</p>
-
-          <a href="about.html" class="inline-flex items-center gap-3 font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5 hover:text-orange-dark hover:border-orange-dark transition-colors">
-            Read Our Story
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- ══════════ CULTURE — pull-quote + watermark marks ══════════ -->
+<section class="culture-band">
+  <div class="culture-band__glow" aria-hidden="true"></div>
+  <img src="Gallery/logo-footer.png" alt="" class="culture-band__mark culture-band__mark--left" aria-hidden="true" />
+  <img src="Gallery/logo-footer.png" alt="" class="culture-band__mark culture-band__mark--right" aria-hidden="true" />
+  <div class="culture-band__inner">
+    <div class="flex items-center justify-center gap-4 mb-8">
+      <div class="w-10 h-px bg-orange"></div>
+      <span class="section-label text-orange">The Culture</span>
+      <div class="w-10 h-px bg-orange"></div>
+    </div>
+    <h2 class="font-anton text-charcoal uppercase text-center" style="font-size:clamp(2.4rem,6.5vw,5.2rem);line-height:.9;max-width:16ch;margin:0 auto;">
+      Where the beach<br />meets <span class="text-orange">the grill.</span>
+    </h2>
+    <p class="font-inter text-charcoal/60 text-center text-base md:text-lg leading-relaxed mt-8 max-w-xl mx-auto">
+      Kozhikode Beach. Late hours. Salt air and a sizzling double patty after midnight — no pretension, no reservations.
+    </p>
+    <div class="text-center mt-10">
+      <a href="about.html" class="inline-flex items-center gap-3 font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Read Our Story →</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ SCENE 03 — THE MENU ══════════ -->
-<section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
-  <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-6">
+<!-- ══════════ SIGNATURES — magazine mosaic ══════════ -->
+<section class="hits-section px-6 md:px-16 max-w-screen-2xl mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 md:mb-14">
     <div>
-      <div class="flex items-center gap-4 mb-4"><div class="w-10 h-px bg-orange"></div><span class="section-label text-orange">Scene 03 · The Menu</span></div>
-      <div data-reveal data-reveal-stagger="0.07">
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:.9;">Featured</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:.9;">Hits.</div></div>
-      </div>
+      <span class="section-label text-orange mb-3 block">Signatures</span>
+      <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.4rem,5vw,4rem);line-height:.9;">Featured hits.</h2>
     </div>
-    <a href="menu.html" class="font-oswald font-600 uppercase tracking-widest text-sm text-charcoal border-b-2 border-charcoal pb-0.5 hover:text-orange hover:border-orange transition-colors self-start md:self-auto">Full Menu →</a>
+    <a href="menu.html" class="font-oswald font-600 uppercase tracking-widest text-sm text-charcoal border-b-2 border-charcoal pb-0.5 hover:text-orange hover:border-orange transition-colors">Full Menu →</a>
   </div>
 
   <div class="edit-grid">
-    <!-- Large card A -->
-    <a href="menu.html" class="edit-a rough-border block relative img-hover" style="min-height:540px;">
-      <img src="Gallery/ARISTROCRAT BURGER.jpeg"
-           alt="The Aristocrat — double smash patty, aged cheddar, black garlic aioli" loading="lazy" decoding="async"
-           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    <a href="menu.html" class="edit-a rough-border block relative img-hover" style="min-height:520px;">
+      <img src="Gallery/editorial/aristocrat.jpg" alt="The Aristocrat" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
       <div class="card-overlay">
         <div class="section-label text-orange/80 mb-2">Burgers · ₹349</div>
-        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.8rem,3.5vw,3rem);line-height:.9;">The Aristocrat</h3>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:.9;">The Aristocrat</h3>
         <p class="font-inter text-white/60 text-sm mt-2 max-w-xs">Double patty, beef bacon &amp; raw onion rings.</p>
       </div>
-      <div class="absolute top-0 right-0 bg-orange px-4 py-2 z-10"><span class="font-oswald font-700 text-cream text-sm uppercase tracking-widest">Champion</span></div>
     </a>
-
-    <!-- Card B -->
-    <a href="menu.html" class="edit-b rough-border border-l-0 block relative img-hover" style="min-height:270px;">
-      <img src="Gallery/BURGERS.jpeg"
-           alt="Lost in Burg burger and dessert spread" loading="lazy" decoding="async"
-           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    <a href="menu.html" class="edit-b rough-border border-l-0 block relative img-hover" style="min-height:260px;">
+      <img src="Gallery/editorial/rib-eye.jpg" alt="Rib Eye Steak" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
       <div class="card-overlay">
-        <div class="section-label text-orange/80 mb-1">Steaks · ₹450/100G</div>
-        <h3 class="font-oswald font-700 text-white uppercase text-lg">Fillet Mignon</h3>
+        <div class="section-label text-orange/80 mb-1">Steaks · ₹480/100G</div>
+        <h3 class="font-oswald font-700 text-white uppercase text-lg">Rib Eye Steak</h3>
       </div>
     </a>
-
-    <!-- Card C -->
-    <a href="menu.html" class="edit-c rough-border border-l-0 border-t-0 block relative img-hover" style="min-height:270px;">
-      <img src="Gallery/IMG_3901.JPG.jpeg"
-           alt="Lost in Burg loaded fried chicken burger" loading="lazy" decoding="async"
-           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    <a href="menu.html" class="edit-c rough-border border-l-0 border-t-0 block relative img-hover" style="min-height:260px;">
+      <img src="Gallery/editorial/gods-plan.jpg" alt="The God's Plan" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
       <div class="card-overlay">
         <div class="section-label text-orange/80 mb-1">Burgers · ₹499</div>
         <h3 class="font-oswald font-700 text-white uppercase text-lg">The God's Plan</h3>
@@ -503,172 +170,216 @@
     </a>
   </div>
 
-  <!-- Full-width strip -->
-  <a href="menu.html" class="block rough-border border-t-0 relative img-hover group" style="height:210px;">
-      <video autoplay muted loop playsinline
-         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;filter:brightness(.55) contrast(1.2);">
-        <source src="Gallery/BONEMARROW BURGER.mp4" type="video/mp4" />
-        <img src="Gallery/CUSTOMER PICTURE 3.jpg" alt="Lost in Burg kitchen" />
-      </video>
-    <div class="absolute inset-0 flex items-center px-8 md:px-12" style="background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,transparent 65%);">
-      <div>
+  <div class="hits-row">
+    <a href="menu.html" class="hits-row__cell rough-border relative group overflow-hidden">
+      <img src="Gallery/editorial/naked-oysters.jpg" alt="Naked Oysters" loading="lazy" decoding="async" />
+      <div class="hits-row__veil">
         <div class="section-label text-orange/80 mb-2">Starters · ₹399</div>
-        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.6rem,3.5vw,2.8rem);">Naked Oysters — Fresh. Raw. Unforgiving.</h3>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Naked Oysters</h3>
       </div>
-      <div class="ml-auto hidden md:flex items-center gap-3 text-white font-oswald font-600 uppercase tracking-widest text-sm opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0">View Item <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
-    </div>
-  </a>
-</section>
-
-<!-- ══════════ SCENE 04 — THE NIGHT ══════════ -->
-<section class="relative overflow-hidden border-y-2 border-charcoal" style="height:500px;" data-parallax-wrap>
-  <video autoplay muted loop playsinline
-       data-parallax="0.18"
-       style="position:absolute;inset:0;width:100%;height:120%;object-fit:cover;object-position:center 70%;filter:brightness(.28) contrast(1.3) saturate(.55);">
-    <source src="Gallery/LOST IN BURG MAIN VIDEO.mp4" type="video/mp4" />
-    <img src="Gallery/CUSTOMER PICTURE 3.jpg" alt="Lost in Burg at night" />
-  </video>
-  <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
-    <div class="flex items-center gap-4 mb-5">
-      <div class="w-10 h-px bg-orange opacity-70"></div>
-      <span class="section-label text-orange">Scene 04 · The Night</span>
-      <div class="w-10 h-px bg-orange opacity-70"></div>
-    </div>
-    <div data-reveal data-reveal-stagger="0.08">
-      <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase text-center" style="font-size:clamp(2.5rem,6.5vw,6rem);line-height:.88;">Every night is</div></div>
-      <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase text-center" style="font-size:clamp(2.5rem,6.5vw,6rem);line-height:.88;">an event.</div></div>
-    </div>
-    <a href="events.html" class="btn-o btn-o-light mt-10" data-magnetic="0.3"><span class="bi">See What's Happening</span></a>
+    </a>
+    <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
+      <img src="Gallery/editorial/fishermans-rope.jpg" alt="Fisherman's Rope" loading="lazy" decoding="async" />
+      <div class="hits-row__veil">
+        <div class="section-label text-orange/80 mb-2">Pastas · ₹439</div>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Fisherman's Rope</h3>
+      </div>
+    </a>
+    <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
+      <img src="Gallery/editorial/seven-wonders.jpg" alt="Seven Wonders" loading="lazy" decoding="async" />
+      <div class="hits-row__veil">
+        <div class="section-label text-orange/80 mb-2">Starters · ₹999</div>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Seven Wonders</h3>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer class="bg-charcoal text-cream pt-20 pb-10">
-  <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
-    <div class="border-b border-white/10 pb-16 mb-16">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-        <div>
-          <div class="section-label text-orange mb-3">Scene 05 · The Destination</div>
-          <div data-reveal data-reveal-stagger="0.07">
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2.8rem,6.5vw,6.5rem);line-height:.88;">Open every</div></div>
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.8rem,6.5vw,6.5rem);line-height:.88;">damn night.</div></div>
+<!-- ══════════ THE FIRE — asymmetrical split ══════════ -->
+<section class="fire-section bg-charcoal text-cream border-y-2 border-charcoal">
+  <div class="max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="relative overflow-hidden fire-section__media">
+        <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.75) contrast(1.1);" />
+      </div>
+      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center">
+        <span class="section-label text-orange mb-5 block">The Fire</span>
+        <h2 class="font-anton uppercase" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.9;">Cooked for<br /><span class="text-orange">the night.</span></h2>
+        <p class="font-inter text-white/50 text-base leading-relaxed mt-7 max-w-md">Hot iron. Double-ground beef. Bone marrow when the craving goes deeper. Late-night craft — not a lunch rush.</p>
+        <a href="menu.html" class="btn-primary mt-8 self-start" data-magnetic="0.22"><span class="btn-inner">See What We Cook</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RITUALS — cream + logo marks (no photo field) ══════════ -->
+<section class="rituals-band rituals-band--marks">
+  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--left" aria-hidden="true" />
+  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--right" aria-hidden="true" />
+  <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 py-24 md:py-32">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <div>
+        <span class="section-label text-orange mb-3 block">Weekly Rituals</span>
+        <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:.9;">Reasons to return.</h2>
+      </div>
+      <a href="events.html" class="font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">All Nights →</a>
+    </div>
+    <div class="ritual-strip">
+      <article class="ritual-float">
+        <div class="ritual-float__day">Thu</div>
+        <h3 class="font-anton uppercase text-2xl mb-2">Steak Night</h3>
+        <p class="font-inter text-charcoal/55 text-sm leading-relaxed">Special prices on the cuts. Grill from 4:30 PM.</p>
+      </article>
+      <article class="ritual-float">
+        <div class="ritual-float__day">Sun</div>
+        <h3 class="font-anton uppercase text-2xl mb-2">Oyster Day</h3>
+        <p class="font-inter text-charcoal/55 text-sm leading-relaxed">Naked Oysters all evening — raw, clean, coastal.</p>
+      </article>
+      <article class="ritual-float ritual-float--accent">
+        <div class="ritual-float__day">Odd Sat</div>
+        <h3 class="font-anton uppercase text-2xl mb-2">Odd Saturdays</h3>
+        <p class="font-inter text-charcoal/55 text-sm leading-relaxed">Surprise nights. Details drop on Instagram.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY — one photo field (alternates after logo section) ══════════ -->
+<section class="why-band border-y-2 border-charcoal">
+  <div class="why-band__media" aria-hidden="true">
+    <img src="Gallery/CUSTOMER PICTURE 7.jpg" alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="why-band__veil" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 py-24 md:py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6">
+      <div class="lg:col-span-4">
+        <span class="section-label text-orange mb-4 block">The Loop</span>
+        <h2 class="font-anton text-charcoal uppercase sticky top-28" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">Why people<br />come back.</h2>
+      </div>
+      <div class="lg:col-span-8 space-y-0">
+        <div class="why-line">
+          <span class="why-line__n">01</span>
+          <div>
+            <h3 class="font-oswald font-700 uppercase text-xl mb-2">The food hits</h3>
+            <p class="font-inter text-charcoal/60 text-sm leading-relaxed max-w-lg">If it doesn’t earn the first bite, it doesn’t stay on the menu.</p>
           </div>
         </div>
-        <div class="flex flex-col gap-4 lg:text-right">
-          <p class="font-inter text-white/45 text-sm">Kozhikode Beach, Kerala</p>
-          <p class="font-oswald font-600 text-cream text-xl uppercase">4:30 PM – 3:00 AM</p>
-          <a href="contact.html" class="btn-o self-start lg:self-end" style="border-color:rgba(255,255,255,.25);color:#fff;" data-magnetic="0.2"><span class="bi">Get Directions</span></a>
+        <div class="why-line">
+          <span class="why-line__n">02</span>
+          <div>
+            <h3 class="font-oswald font-700 uppercase text-xl mb-2">The hour is ours</h3>
+            <p class="font-inter text-charcoal/60 text-sm leading-relaxed max-w-lg">4:30 PM to 3:00 AM — every day. When the city shuts down, we open up.</p>
+          </div>
+        </div>
+        <div class="why-line" style="border-bottom:0;">
+          <span class="why-line__n">03</span>
+          <div>
+            <h3 class="font-oswald font-700 uppercase text-xl mb-2">Beach, always</h3>
+            <p class="font-inter text-charcoal/60 text-sm leading-relaxed max-w-lg">Kozhikode Beach isn’t a backdrop. It’s the condition the food was built under.</p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14 border-b border-white/10 pb-14">
-      <div>
-        <div class="mb-5">
-          <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg" style="height:52px;width:auto;filter:invert(1);" />
-        </div>
-        <p class="font-inter text-sm text-white/45 leading-relaxed mb-5">Premium late-night burgers and steaks on Kozhikode Beach. Open when the rest are closed.</p>
-        <div class="flex gap-3">
-          <a href="#" class="w-9 h-9 border border-white/20 flex items-center justify-center hover:border-orange hover:text-orange transition-colors text-white/50" aria-label="Instagram"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-5">Navigation</h4>
-        <ul class="flex flex-col gap-2.5">
-          <li><a href="index.html"   class="font-inter text-sm text-white/45 hover:text-orange transition-colors">Home</a></li>
-          <li><a href="about.html"   class="font-inter text-sm text-white/45 hover:text-orange transition-colors">Our Story</a></li>
-          <li><a href="menu.html"    class="font-inter text-sm text-white/45 hover:text-orange transition-colors">Menu</a></li>
-          <li><a href="events.html"  class="font-inter text-sm text-white/45 hover:text-orange transition-colors">Events</a></li>
-          <li><a href="contact.html" class="font-inter text-sm text-white/45 hover:text-orange transition-colors">Find Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-5">Hours &amp; Location</h4>
-        <div class="flex flex-col gap-3">
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/45">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/45">Kozhikode Beach, Kerala</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-      <p class="font-inter text-xs text-white/25">© 2024 Lost in Burg. All rights reserved.</p>
-      <p class="font-inter text-xs text-white/25">Built for the late-night crowd.</p>
     </div>
   </div>
-</footer>
+</section>
 
-<!-- ══════════ SCRIPTS ══════════ -->
+<!-- ══════════ FIND US — destination ══════════ -->
+<section class="dest-section bg-charcoal text-cream border-b border-white/10">
+  <div class="max-w-screen-2xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+    <div>
+      <div class="section-label text-orange mb-4">The Destination</div>
+      <h2 class="font-anton uppercase" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:.88;">Open every<br /><span class="text-orange">damn night.</span></h2>
+    </div>
+    <div class="flex flex-col gap-4 lg:text-right">
+      <p class="font-inter text-white/45 text-sm">Kozhikode Beach, Kerala</p>
+      <p class="font-oswald font-600 text-cream text-xl uppercase">4:30 PM – 3:00 AM</p>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="contact.html" class="btn-outline-light" data-magnetic="0.2"><span class="btn-inner">Get Directions</span></a>
+        <a href="menu.html" class="btn-primary" data-magnetic="0.2"><span class="btn-inner">See Menu</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INSTAGRAM — 4 images only ══════════ -->
+<section class="py-24 md:py-28 px-6 md:px-16 max-w-screen-2xl mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <div>
+      <span class="section-label text-orange mb-3 block">On Instagram</span>
+      <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4vw,3.2rem);line-height:.9;">Nights from the feed.</h2>
+    </div>
+    <a href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic="0.22">
+      <span class="btn-inner">Follow @lostinburg_</span>
+    </a>
+  </div>
+  <div class="ig-grid ig-grid--four">
+    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
+      <img src="Gallery/editorial/aristocrat.jpg" alt="Aristocrat" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
+    </a>
+    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
+      <img src="Gallery/editorial/naked-oysters.jpg" alt="Oysters" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
+    </a>
+    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
+      <img src="Gallery/CUSTOMER PICTURE 4.jpg" alt="Night guests" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
+    </a>
+    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
+      <img src="Gallery/editorial/rib-eye.jpg" alt="Rib eye" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
+    </a>
+  </div>
+</section>
+
+<!-- Center end-card CTA — same energy as Our Story close -->
+<section class="home-endcard border-t-2 border-charcoal">
+  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--center" aria-hidden="true" />
+  <div class="home-endcard__inner">
+    <p class="section-label text-orange mb-4">The loop is open tonight</p>
+    <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,3.2rem);line-height:.9;">Come find out<br />for yourself.</h2>
+    <p class="font-inter text-charcoal/55 text-sm mt-4 mb-8">Kozhikode Beach · 4:30 PM – 3:00 AM</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Menu</span></a>
+      <a href="contact.html" class="btn-outline" data-magnetic="0.2"><span class="btn-inner">Find Us Tonight</span></a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/site-chrome.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="premium-effects.js"></script>
 <script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-
-  // Nav: transparent → solid on scroll past hero
-  const mainNav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    mainNav.classList.toggle('nav-scrolled', window.scrollY > window.innerHeight * 0.82);
-  }, { passive: true });
-
   initPremiumEffects();
-
   window.addEventListener('load', () => {
-
-    // Hero entrance animation
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
-      .from('.hero-eyebrow',   { y: 22, opacity: 0, duration: 0.65 }, 0.1)
-      .from('.hero-hl1',       { y: 55, opacity: 0, duration: 0.85 }, 0.25)
-      .from('.hero-hl2',       { y: 70, opacity: 0, duration: 0.95 }, 0.38)
-      .from('.hero-badge-wrap',{ scale: 0, opacity: 0, duration: 0.6, ease: 'back.out(2.2)' }, 0.55)
-      .from('.hero-tagline',   { x: -22, opacity: 0, duration: 0.6 }, 0.6)
-      .from('.hero-copy',      { y: 14, opacity: 0, duration: 0.5 }, 0.74)
-      .from('.hero-ctas',      { y: 18, opacity: 0, duration: 0.5 }, 0.84);
+      .from('.hero-eyebrow', { y: 22, opacity: 0, duration: 0.6 }, 0.1)
+      .from('.hero-hl1', { y: 50, opacity: 0, duration: 0.8 }, 0.2)
+      .from('.hero-hl2', { y: 60, opacity: 0, duration: 0.9 }, 0.32)
+      .from('.hero-tagline', { x: -18, opacity: 0, duration: 0.55 }, 0.5)
+      .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.5 }, 0.65);
 
     gsap.from('.hero-right-col', { opacity: 0, duration: 1.4, ease: 'power2.out' });
 
-    // Ember particles
     const wrap = document.getElementById('embersWrap');
-    if (wrap) {
-      for (let i = 0; i < 24; i++) {
-        const e  = document.createElement('div');
-        const sz = Math.random() * 4 + 1.5;
+    if (wrap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      for (let i = 0; i < 18; i++) {
+        const e = document.createElement('div');
+        const sz = Math.random() * 3.5 + 1.5;
         e.className = 'ember';
-        e.style.cssText = [
-          `width:${sz}px`,
-          `height:${sz}px`,
-          `left:${18 + Math.random() * 62}%`,
-          `bottom:${Math.random() * 42}%`,
-          `--ey:${-(Math.random() * 170 + 55)}px`,
-          `--ex:${((Math.random() - 0.5) * 65).toFixed(1)}px`,
-          `--dur:${(Math.random() * 2.8 + 2.4).toFixed(2)}s`,
-          `--del:${(Math.random() * 5.5).toFixed(2)}s`,
-          `opacity:${(Math.random() * 0.55 + 0.2).toFixed(2)}`,
-        ].join(';');
+        e.style.cssText = `width:${sz}px;height:${sz}px;left:${20+Math.random()*60}%;bottom:${Math.random()*40}%;--ey:${-(Math.random()*140+40)}px;--ex:${((Math.random()-0.5)*50).toFixed(1)}px;--dur:${(Math.random()*2.5+2.2).toFixed(2)}s;--del:${(Math.random()*5).toFixed(2)}s;opacity:${(Math.random()*0.5+0.2).toFixed(2)}`;
         wrap.appendChild(e);
       }
     }
 
-    // Vibe ghost letter parallax
-    gsap.to('.vibe-ghost', {
-      x: '-6%',
-      scrollTrigger: { trigger: '.vibe-ghost', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
-    });
-
-    // Editorial cards stagger
     gsap.from('.edit-a, .edit-b, .edit-c', {
       scrollTrigger: { trigger: '.edit-grid', start: 'top 82%', once: true },
-      y: 50, opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power3.out'
+      y: 40, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out'
     });
-
-    // Stats strip
-    gsap.from('.bg-charcoal .font-anton', {
-      scrollTrigger: { trigger: '.bg-charcoal', start: 'top 85%', once: true },
-      y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out'
+    gsap.from('.ritual-float', {
+      scrollTrigger: { trigger: '.ritual-strip', start: 'top 85%', once: true },
+      y: 28, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out'
     });
   });
 </script>

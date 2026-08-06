@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Story — Lost in Burg</title>
+  <meta name="description" content="A short documentary of Lost in Burg — late nights, Kozhikode Beach, the grill, the people, and The Craver's Loop. Open daily 4:30 PM–3:00 AM." />
+  <link rel="icon" href="Gallery/LOGO%20FAVICON.jpeg" type="image/jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/brand.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <script src="js/brand-meta.js" defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -18,410 +23,245 @@
       },
     }
   </script>
-  <style>
-    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
-    html { overflow-x: hidden; }
-    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
-    .nav-link:hover::after { width: 100%; }
-    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
-    .rough-border  { border: 3px solid var(--charcoal); }
-    .mobile-menu   { display: none; }
-    .mobile-menu.open { display: flex; }
-    .reveal-wrap   { overflow: hidden; }
-    .reveal-line   { display: block; will-change: transform; }
-
-    /* ── Hero: editorial full-bleed ── */
-    .about-hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
-    .about-hero-img { position: absolute; inset: 0; }
-    .about-hero-img img {
-      width: 100%; height: 120%; object-fit: cover;
-      filter: brightness(0.4) contrast(1.2) saturate(0.7);
-      transform: translateY(-8%);
-      will-change: transform;
-    }
-    .about-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,26,26,1) 0%, rgba(26,26,26,0.2) 55%, transparent 100%);
-    }
-    .about-hero-content {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vw, 6rem);
-    }
-
-    /* ── Story images: clip-path hover ── */
-    .story-img-wrap { position: relative; overflow: hidden; }
-    .story-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: none;
-      transform: scale(1.07);
-      transition: transform .85s cubic-bezier(0.25,0.46,0.45,0.94);
-      display: block;
-    }
-    .story-img-wrap:hover img { transform: scale(1.0); }
-    .story-img-wrap::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--orange);
-      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-      transition: clip-path .6s cubic-bezier(0.77,0,0.175,1);
-      mix-blend-mode: soft-light; opacity: 0.4; pointer-events: none;
-    }
-    .story-img-wrap:hover::after { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-
-    /* ── Pull quote block ── */
-    .pull-quote { position: relative; overflow: hidden; }
-    .pull-quote-ghost {
-      font-family: 'Anton', sans-serif;
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: clamp(7rem, 18vw, 16rem);
-      color: rgba(255,87,34,0.06);
-      text-transform: uppercase; line-height: 1;
-      pointer-events: none; user-select: none;
-      white-space: nowrap;
-    }
-
-    /* ── Scrolling horizontal rule ── */
-    .h-rule { height: 2px; background: var(--charcoal); transform-origin: left; }
-
-    /* ── Three pillars ── */
-    .pillar-num { font-family: 'Anton', sans-serif; }
-
-    /* ── Button styles ── */
-    .btn-primary {
-      position: relative; display: inline-flex; align-items: center; gap: .75rem;
-      background: var(--orange); color: var(--cream);
-      font-family: 'Oswald', sans-serif; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .18em;
-      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
-    }
-    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
-    .btn-outline {
-      position: relative; display: inline-flex; align-items: center; gap: .75rem;
-      border: 2px solid var(--charcoal); color: var(--charcoal);
-      font-family: 'Oswald', sans-serif; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .18em;
-      font-size: .875rem; padding: 1rem 2.5rem; overflow: hidden;
-    }
-    .btn-outline::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
-    .btn-outline:hover { color: var(--cream); }
-    .btn-outline:hover::before { transform: translateX(0); }
-    .btn-outline .btn-inner { position: relative; z-index: 1; }
-  </style>
 </head>
 <body class="overflow-x-hidden">
 
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal" style="transition: background .4s, border-color .4s;">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center">
-        <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg" style="height:64px;width:auto;" />
-      </a>
-      <div class="hidden md:flex items-center gap-10">
-        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
-        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Our Story</a>
-        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Menu</a>
-        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Events</a>
-        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Find Us</a>
-      </div>
-      <div class="hidden md:flex items-center gap-4">
-        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
-        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Explore Menu</span></a>
-      </div>
-      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
-        <span class="w-6 h-0.5 bg-charcoal block"></span>
-        <span class="w-6 h-0.5 bg-charcoal block"></span>
-        <span class="w-4 h-0.5 bg-charcoal block"></span>
-      </button>
+  <div id="site-nav" data-variant="hero" data-cta="Explore Menu" data-cta-href="menu.html"></div>
+
+  <!-- Opening — compact cinematic -->
+  <section class="about-hero about-hero--compact hero-dark" aria-label="Opening">
+    <div class="about-hero-img">
+      <img src="Gallery/editorial/aristocrat.jpg" alt="Lost in Burg — editorial plate" fetchpriority="high" />
     </div>
-    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
-      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
-      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Our Story</a>
-      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
-      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
-      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Find Us</a>
-      <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-10 h-px bg-orange"></div>
+        <span class="section-label text-orange">A Short Documentary</span>
+      </div>
+      <h1 class="font-anton text-white uppercase" style="font-size:clamp(2.8rem,7vw,5.5rem);line-height:.88;margin:0;">
+        Born on the <span class="text-orange">Beach.</span><br />Built for the Night.
+      </h1>
+      <p class="font-inter text-white/50 text-sm mt-5 max-w-md leading-relaxed">Six chapters. One loop. Kozhikode Beach · 4:30 PM – 3:00 AM.</p>
+    </div>
+  </section>
+
+  <nav class="chapter-rail" aria-label="Documentary chapters">
+    <div class="chapter-rail__inner" id="chapterRail">
+      <a href="#ch-01" data-chapter="ch-01">01 Why</a>
+      <a href="#ch-02" data-chapter="ch-02">02 Night</a>
+      <a href="#ch-03" data-chapter="ch-03">03 Beach</a>
+      <a href="#ch-04" data-chapter="ch-04">04 Grill</a>
+      <a href="#ch-05" data-chapter="ch-05">05 People</a>
+      <a href="#ch-06" data-chapter="ch-06">06 Food</a>
     </div>
   </nav>
 
-  <!-- ═══ FULL-BLEED HERO ═══ -->
-  <section class="about-hero hero-dark">
-    <div class="about-hero-img" data-parallax-wrap>
-      <img
-        src="Gallery/IMG_3901.JPG.jpeg"
-        alt="Lost in Burg — signature loaded burger on branded paper"
-        fetchpriority="high"
-        data-parallax="0.18"
-      />
-    </div>
-    <div class="about-hero-overlay"></div>
-
-    <!-- Huge ghost text top-right -->
-    <div class="absolute top-24 right-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-      <span class="font-anton hero-ghost text-white/[0.035]" style="font-size: clamp(8rem, 22vw, 20rem); line-height:1; display:block;">STORY</span>
-    </div>
-
-    <!-- Vertical label -->
-    <div class="absolute right-8 bottom-40 hidden lg:block" style="writing-mode:vertical-rl; transform:rotate(180deg);">
-      <span class="section-label text-white/40" style="letter-spacing:.3em;">Est. 2023 · Kozhikode</span>
-    </div>
-
-    <div class="about-hero-content">
-      <div class="flex items-center gap-4 mb-5">
-        <div class="w-10 h-px bg-orange"></div>
-        <span class="section-label text-orange">Who We Are</span>
-      </div>
-      <div data-reveal data-reveal-stagger="0.07">
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">Born on</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">the <span class="text-orange">Beach.</span></div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">Built for</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.86;">the Night.</div></div>
-      </div>
-      <!-- Scroll cue -->
-      <div class="flex items-center gap-4 mt-10">
-        <div style="width:1px; height:50px; background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.4));"></div>
-        <span class="section-label text-white/30" style="font-size:.6rem; letter-spacing:.3em;">Scroll to read</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ STORY BLOCK 1: Editorial side-by-side ═══ -->
-  <section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 items-center">
-
-      <!-- Image: takes 7 columns, bleeds with offset -->
-      <div class="lg:col-span-7 relative" style="min-height:520px;">
-        <div class="rough-border overflow-hidden story-img-wrap h-full" style="min-height:480px;" data-parallax-wrap data-cursor="View">
-          <img
-            src="Gallery/BEEF PATTY IN COOKING.jpeg"
-            alt="Lost in Burg — smash patty on the iron"
-            loading="lazy" decoding="async"
-            data-parallax="0.15"
-          />
-        </div>
-        <!-- Year badge overlapping bottom-right -->
-        <div class="absolute -bottom-5 -right-3 md:-right-8 bg-orange rough-border px-6 py-4 z-10">
-          <div class="font-anton text-cream text-4xl leading-none">2023</div>
-          <div class="section-label text-cream opacity-80 mt-1">Founded</div>
-        </div>
-        <!-- Decorative corner square -->
-        <div class="absolute -top-4 -left-4 w-16 h-16 border-2 border-orange pointer-events-none z-10"></div>
-      </div>
-
-      <!-- Text: overlaps slightly onto image on lg -->
-      <div class="lg:col-span-5 lg:-ml-6 relative z-10">
-        <div class="lg:bg-cream/95 lg:backdrop-blur-sm lg:p-10">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-10 h-px bg-orange"></div>
-            <span class="section-label text-orange">Chapter One</span>
-          </div>
-          <div data-reveal data-reveal-stagger="0.08">
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">It started</div></div>
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">with one</div></div>
-            <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">perfect bite.</div></div>
-          </div>
-          <p class="font-inter text-charcoal/75 text-base leading-relaxed mt-8 mb-5">Lost in Burg didn't come from a business plan or a focus group. It came from a craving — the kind that hits you at 1 AM when every other place has pulled down its shutters.</p>
-          <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-5">We found our spot right on Kozhikode Beach, Kerala's most storied stretch of sand, and we set up a grill. The idea was simple: serve the best damn burger on the Malabar Coast, every single night, until 3 in the morning.</p>
-          <p class="font-inter text-charcoal/75 text-base leading-relaxed">No frills. No fluff. Just fire, meat, and people who showed up hungry and left with a story.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ PULL QUOTE — FULL WIDTH ORANGE ═══ -->
-  <section class="pull-quote bg-orange py-24 md:py-36 px-6 md:px-16 border-y-2 border-charcoal overflow-hidden">
-    <div class="pull-quote-ghost" aria-hidden="true">VIBES</div>
-    <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <div data-reveal data-reveal-stagger="0.06">
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">"The sea doesn't</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">care what time it is.</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2rem,5vw,4.5rem); line-height:.9;">Neither do we."</div></div>
-      </div>
-      <div class="flex items-center justify-center gap-4 mt-10">
-        <div class="w-12 h-px bg-cream opacity-50"></div>
-        <span class="section-label text-cream opacity-70">Lost in Burg, Kozhikode</span>
-        <div class="w-12 h-px bg-cream opacity-50"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ STORY BLOCK 2: Reversed layout ═══ -->
-  <section class="py-24 md:py-40 px-6 md:px-16 max-w-screen-2xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-      <!-- Text first on desktop -->
-      <div class="lg:col-span-5 order-2 lg:order-1">
-        <div class="flex items-center gap-4 mb-6">
+  <!-- 01 Why — text + image share one eye-line -->
+  <section class="chapter py-16 md:py-24 px-6 md:px-16 max-w-screen-2xl mx-auto" id="ch-01">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div class="lg:col-span-6">
+        <div class="chapter-label">
+          <span class="chapter-num">Chapter 01</span>
           <div class="w-10 h-px bg-orange"></div>
-          <span class="section-label text-orange">The Food</span>
+          <span class="section-label text-charcoal/40">Why We Exist</span>
         </div>
-        <div data-reveal data-reveal-stagger="0.08">
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">Premium cuts.</div></div>
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">Zero</div></div>
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,4.5vw,4rem); line-height:.9;">compromise.</div></div>
-        </div>
-        <p class="font-inter text-charcoal/75 text-base leading-relaxed mt-8 mb-5">Every item on our menu is built around one principle: if it doesn't make you close your eyes on the first bite, it doesn't make the cut.</p>
-        <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-5">Our burgers use double-ground beef patties — seasoned simply, cooked hot. Our steaks are prime cuts sourced with the same obsession you'd expect from a proper steakhouse, not a beach shack.</p>
-        <p class="font-inter text-charcoal/75 text-base leading-relaxed mb-10">And then there are the Naked Oysters — fresh, briny, served raw with pickled shallots and green apple. Because some nights call for something primal.</p>
-        <a href="menu.html" class="btn-primary" data-magnetic="0.3"><span class="btn-inner">Explore the Full Menu →</span></a>
+        <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:.9;">
+          Because the craving<br /><span class="text-orange">doesn't keep office hours.</span>
+        </h2>
+        <p class="font-inter text-charcoal/70 text-base leading-relaxed mt-6 max-w-md">
+          Lost in Burg exists for the hour when most kitchens go quiet — when the city thins out and the hunger gets honest.
+        </p>
+        <p class="font-inter text-charcoal/55 text-base leading-relaxed mt-4 max-w-md">
+          We set up on Kozhikode Beach to serve that hour properly. No reservations. Just show up.
+        </p>
       </div>
-
-      <!-- Image: large, second on mobile -->
-      <div class="lg:col-span-7 relative order-1 lg:order-2" style="min-height:520px;">
-        <div class="rough-border overflow-hidden story-img-wrap h-full" style="min-height:480px;" data-parallax-wrap data-cursor="View">
-          <img
-            src="Gallery/CUSTOMER PICTURE.jpg"
-            alt="Lost in Burg — guest holding the Aristocrat smash burger"
-            loading="lazy" decoding="async"
-            data-parallax="0.15"
-          />
-        </div>
-        <div class="absolute -top-5 -left-4 w-20 h-20 border-2 border-orange pointer-events-none z-10"></div>
-        <!-- Small inset photo -->
-        <div class="absolute -bottom-8 -left-4 md:-left-10 w-40 rough-border overflow-hidden story-img-wrap hidden md:block z-20" style="height:140px;">
-          <img src="Gallery/CUSTOMER PICTURE 9.jpg" alt="Lost in Burg — late night customers" loading="lazy" decoding="async" />
+      <div class="lg:col-span-6">
+        <div class="rough-border overflow-hidden ch01-photo">
+          <img src="Gallery/editorial/classic-ruler.jpg" alt="Smash burger craft" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ THREE PILLARS ═══ -->
-  <section class="bg-warm-gray border-y-2 border-charcoal py-20 md:py-32">
+  <!-- 02 Night — taller split band + main grill video -->
+  <section class="chapter chapter-band bg-charcoal text-cream" id="ch-02">
+    <div class="grid grid-cols-1 lg:grid-cols-2 chapter-band__grid">
+      <div class="relative overflow-hidden chapter-band__media">
+        <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 7.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.7);">
+          <source src="Gallery/LOST%20IN%20BURG%20MAIN%20VIDEO.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center">
+        <div class="chapter-label">
+          <span class="chapter-num">Chapter 02</span>
+          <div class="w-10 h-px bg-orange"></div>
+          <span class="section-label text-white/35">The Late Night</span>
+        </div>
+        <h2 class="font-anton uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">Open when<br /><span class="text-orange">the city winds down.</span></h2>
+        <p class="font-inter text-white/50 text-base leading-relaxed mt-6 max-w-md">
+          Doors from <strong class="text-cream font-medium">4:30 PM</strong> to <strong class="text-cream font-medium">3:00 AM</strong> — every day. Late night has its own tempo. We cook for that tempo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Beach — magazine quote + mosaic -->
+  <section class="chapter py-16 md:py-24 px-6 md:px-16 max-w-screen-2xl mx-auto" id="ch-03">
+    <div class="chapter-label mb-6">
+      <span class="chapter-num">Chapter 03</span>
+      <div class="w-10 h-px bg-orange"></div>
+      <span class="section-label text-orange">The Beach</span>
+    </div>
+    <h2 class="font-anton text-charcoal uppercase max-w-3xl" style="font-size:clamp(2.2rem,5vw,3.8rem);line-height:.9;">
+      Kozhikode Beach isn't a backdrop.
+    </h2>
+    <div class="grid grid-cols-12 gap-4 mt-10">
+      <div class="col-span-12 md:col-span-8 rough-border overflow-hidden" style="aspect-ratio:16/10;">
+        <img src="Gallery/CUSTOMER PICTURE 5.jpg" alt="Beach night atmosphere" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="col-span-12 md:col-span-4 flex flex-col justify-between gap-4">
+        <div class="rough-border overflow-hidden flex-1" style="min-height:160px;">
+          <img src="Gallery/CUSTOMER PICTURE 6.jpg" alt="Guests at Lost in Burg" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <p class="font-inter text-charcoal/60 text-sm leading-relaxed">
+          Salt air. Late crowds. A grill that belongs exactly here — not in a mall, on the beach where the night still moves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intertitle — customer night video (former Ch.02 clip) -->
+  <section class="intertitle">
+    <div class="intertitle__media" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 3.jpg">
+        <source src="Gallery/CUSTOMER%20EATING%20VIDEO.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="intertitle__veil" aria-hidden="true"></div>
+    <div class="intertitle__ghost" aria-hidden="true">FIRE</div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
+      <p class="font-anton text-cream uppercase" style="font-size:clamp(1.8rem,4.5vw,3.2rem);line-height:.95;">Hot iron. Honest plates. No fluff.</p>
+    </div>
+  </section>
+
+  <!-- 04 Grill — same tall split rhythm as Ch.02 -->
+  <section class="chapter chapter-band bg-charcoal text-cream border-y-2 border-charcoal" id="ch-04">
+    <div class="grid grid-cols-1 lg:grid-cols-2 chapter-band__grid">
+      <div class="relative overflow-hidden chapter-band__media order-1 lg:order-2">
+        <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+      </div>
+      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center order-2 lg:order-1">
+        <div class="chapter-label">
+          <span class="chapter-num">Chapter 04</span>
+          <div class="w-10 h-px bg-orange"></div>
+          <span class="section-label text-white/35">The Grill</span>
+        </div>
+        <h2 class="font-anton uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">
+          Cooked for the night,<br /><span class="text-orange">not the rush.</span>
+        </h2>
+        <p class="font-inter text-white/50 text-base leading-relaxed mt-6 max-w-md">
+          Smash patties on hot iron. Bone marrow when the craving goes deeper. Steaks by the cut. Late-night craft.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 People -->
+  <section class="chapter bg-cream border-b-2 border-charcoal py-16 md:py-24" id="ch-05">
     <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
-      <div class="text-center mb-16">
-        <div class="flex items-center justify-center gap-4 mb-4">
-          <div class="w-12 h-px bg-orange"></div>
-          <span class="section-label text-orange">What Drives Us</span>
-          <div class="w-12 h-px bg-orange"></div>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="chapter-label">
+            <span class="chapter-num">Chapter 05</span>
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-orange">The People</span>
+          </div>
+          <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">The faces of <span class="text-orange">the loop.</span></h2>
         </div>
-        <div data-reveal>
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.5rem,5vw,4.5rem); line-height:.9;">Our three rules.</div></div>
-        </div>
+        <a href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer" class="font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">@lostinburg_</a>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 rough-border">
-        <div class="p-10 md:border-r-2 border-charcoal group hover:bg-charcoal transition-colors duration-300">
-          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">01</div>
-          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">Quality Over Everything</h3>
-          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">Every ingredient is chosen deliberately. Every cook time is obsessed over. You can taste the difference between rushed and reverent — we choose reverent, every time.</p>
-        </div>
-        <div class="p-10 md:border-r-2 border-charcoal border-t-2 md:border-t-0 group hover:bg-charcoal transition-colors duration-300">
-          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">02</div>
-          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">The Night is Ours</h3>
-          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">We open when the sun goes down. We close when the last plate goes out. Late nights have their own energy — we built this place to match it.</p>
-        </div>
-        <div class="p-10 border-t-2 md:border-t-0 group hover:bg-charcoal transition-colors duration-300">
-          <div class="pillar-num text-orange text-7xl mb-6 group-hover:text-cream transition-colors">03</div>
-          <h3 class="font-oswald font-700 uppercase text-2xl text-charcoal mb-4 group-hover:text-cream transition-colors">Beach, Always</h3>
-          <p class="font-inter text-charcoal/70 leading-relaxed group-hover:text-white/70 transition-colors">Kozhikode Beach isn't our backdrop — it's our identity. The sound of the waves, the salt in the air, the crowd that only the coast attracts. We wouldn't want it any other way.</p>
-        </div>
+      <div class="people-grid">
+        <div class="rough-border story-img-wrap"><img src="Gallery/CUSTOMER PICTURE.jpg" alt="Guest with smash burger" loading="lazy" decoding="async" /></div>
+        <div class="rough-border story-img-wrap"><img src="Gallery/CUSTOMER PICTURE 4.jpg" alt="Late-night guests" loading="lazy" decoding="async" /></div>
+        <div class="rough-border story-img-wrap"><img src="Gallery/CUSTOMER PICTURE 8.jpg" alt="Table vibes" loading="lazy" decoding="async" /></div>
+        <div class="rough-border story-img-wrap"><img src="Gallery/CUSTOMER PICTURE 2.jpg" alt="Friends sharing plates" loading="lazy" decoding="async" /></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ GALLERY STRIP — offset stagger ═══ -->
-  <section class="py-24 md:py-36 px-6 md:px-16 max-w-screen-2xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-      <div>
-        <div class="flex items-center gap-4 mb-4"><div class="w-10 h-px bg-orange"></div><span class="section-label text-orange">Behind the Grill</span></div>
-        <div data-reveal>
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4vw,3.5rem); line-height:.9;">The faces <span class="text-orange">behind it.</span></div></div>
-        </div>
-      </div>
-      <p class="font-inter text-charcoal/60 max-w-xs leading-relaxed text-sm">A small team with a big obsession. Every night, the same crew shows up to make sure you leave happier than when you arrived.</p>
-    </div>
-
-    <!-- Staggered row — each image offset vertically -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="rough-border overflow-hidden story-img-wrap" style="height:300px;" data-cursor="View">
-        <img src="Gallery/BEEF PATTY.jpeg" alt="Lost in Burg — smash patty on the iron" loading="lazy" decoding="async" />
-      </div>
-      <div class="rough-border overflow-hidden story-img-wrap mt-10" style="height:300px;" data-cursor="View">
-        <img src="Gallery/CUSTOMER PICTURE 4.jpg" alt="Lost in Burg — guests enjoying food" loading="lazy" decoding="async" />
-      </div>
-      <div class="rough-border overflow-hidden story-img-wrap" style="height:300px;" data-cursor="View">
-        <img src="Gallery/CUSTOMER PICTURE 5.jpg" alt="Lost in Burg — late night vibes" loading="lazy" decoding="async" />
-      </div>
-      <div class="rough-border overflow-hidden story-img-wrap mt-10" style="height:300px;" data-cursor="View">
-        <img src="Gallery/CUSTOMER PICTURE 6.jpg" alt="Lost in Burg — crowd at the beach" loading="lazy" decoding="async" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CTA BANNER ═══ -->
-  <div class="bg-charcoal py-20 px-6 text-center border-t-2 border-orange">
-    <div data-reveal data-reveal-stagger="0.06">
-      <div class="reveal-wrap"><div class="reveal-line font-anton text-cream uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">Come find out</div></div>
-      <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.5rem,5.5vw,5rem); line-height:.9;">for yourself.</div></div>
-    </div>
-    <p class="font-inter text-white/50 text-base mt-6 mb-10">Kozhikode Beach. Every night from 4:30 PM.</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="menu.html"    class="btn-primary" data-magnetic="0.3"><span class="btn-inner">See the Menu</span></a>
-      <a href="contact.html" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:#fff;" data-magnetic="0.25"><span class="btn-inner">Find Us</span></a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
+  <!-- 06 Food — dark -->
+  <section class="chapter bg-charcoal text-cream border-y-2 border-charcoal py-16 md:py-24" id="ch-06">
     <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
-        <div>
-          <div class="mb-6">
-            <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg" style="height:52px;width:auto;filter:invert(1);" />
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5">
+          <div class="chapter-label">
+            <span class="chapter-num">Chapter 06</span>
+            <div class="w-10 h-px bg-orange"></div>
+            <span class="section-label text-white/35">The Food</span>
           </div>
-          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
+          <h2 class="font-anton uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">
+            If it doesn't earn<br />the bite,<br /><span class="text-orange">it doesn't stay.</span>
+          </h2>
+          <p class="font-inter text-white/50 text-base leading-relaxed mt-6 mb-8 max-w-md">
+            Burgers, steaks, coastal starters, pastas, drinks — from the 2026 card. No invented specials.
+          </p>
+          <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Full Menu</span></a>
         </div>
-        <div>
-          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
-          <ul class="flex flex-col gap-3">
-            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
-            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
-            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
-            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
-            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
-          <div class="flex flex-col gap-3">
-            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
-            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
+        <div class="lg:col-span-7">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="overflow-hidden" style="aspect-ratio:3/4;border:3px solid rgba(254,245,237,.18);">
+              <img src="Gallery/editorial/aristocrat.jpg" alt="The Aristocrat" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
+            </div>
+            <div class="overflow-hidden mt-8" style="aspect-ratio:3/4;border:3px solid rgba(254,245,237,.18);">
+              <img src="Gallery/editorial/naked-oysters.jpg" alt="Naked Oysters" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
-        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
       </div>
     </div>
-  </footer>
+  </section>
 
+  <!-- End card — loop folded in (no separate Ch.07) -->
+  <section class="story-endcard border-t-2 border-charcoal">
+    <div class="story-endcard__inner">
+      <p class="section-label text-orange mb-4">The loop is open tonight</p>
+      <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:.9;">Come hungry.<br /><span class="text-orange">Leave in the loop.</span></h2>
+      <div class="endcard-loop">
+        <div><span>01</span> Arrive</div>
+        <div><span>02</span> Eat</div>
+        <div><span>03</span> Return</div>
+      </div>
+      <p class="font-inter text-charcoal/55 text-sm mt-2 mb-8">Kozhikode Beach · 4:30 PM – 3:00 AM</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Menu</span></a>
+        <a href="contact.html" class="btn-outline" data-magnetic="0.2"><span class="btn-inner">Find Us Tonight</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site-chrome.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="premium-effects.js"></script>
   <script>
-    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
     initPremiumEffects();
-
     window.addEventListener('load', () => {
-      // Gallery images stagger in on scroll
-      gsap.from('.grid .story-img-wrap', {
-        scrollTrigger: { trigger: '.grid .story-img-wrap', start: 'top 85%' },
-        y: 60, opacity: 0, stagger: 0.1, duration: 0.9, ease: 'power3.out'
+      gsap.from('.people-grid .story-img-wrap', {
+        scrollTrigger: { trigger: '.people-grid', start: 'top 85%', once: true },
+        y: 40, opacity: 0, stagger: 0.08, duration: 0.75, ease: 'power3.out'
       });
-      // Pillar cards
-      gsap.from('.pillar-num', {
-        scrollTrigger: { trigger: '.pillar-num', start: 'top 85%' },
-        x: -30, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out'
-      });
-      // Hero parallax for ghost text
-      gsap.to('.about-hero .hero-ghost', {
-        y: '-15%',
-        scrollTrigger: { trigger: '.about-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
-      });
+      const links = [...document.querySelectorAll('#chapterRail a')];
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle('is-active', a.dataset.chapter === entry.target.id));
+        });
+      }, { rootMargin: '-35% 0px -50% 0px', threshold: 0 });
+      document.querySelectorAll('.chapter').forEach((ch) => observer.observe(ch));
     });
   </script>
 </body>

@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find Us — Lost in Burg</title>
+  <meta name="description" content="Find Lost in Burg on Kozhikode Beach, Kerala. Open daily 4:30 PM–3:00 AM. Walk-ins welcome — no reservations needed." />
+  <link rel="icon" href="Gallery/LOGO%20FAVICON.jpeg" type="image/jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/brand.css" />
+  <script src="js/brand-meta.js" defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -19,31 +23,22 @@
     }
   </script>
   <style>
-    :root { --orange: #FF5722; --cream: #FEF5ED; --charcoal: #1A1A1A; }
-    html { overflow-x: hidden; }
-    body { background-color: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width .3s ease; }
-    .nav-link:hover::after { width: 100%; }
-    .section-label { font-family: 'Oswald', sans-serif; letter-spacing: 0.25em; font-size: 0.7rem; text-transform: uppercase; }
-    .rough-border  { border: 3px solid var(--charcoal); }
-    .mobile-menu   { display: none; }
-    .mobile-menu.open { display: flex; }
-    .reveal-wrap   { overflow: hidden; }
+.reveal-wrap   { overflow: hidden; }
     .reveal-line   { display: block; will-change: transform; }
 
-    /* ── Header: orange full-bleed ── */
-    .contact-hero { position: relative; overflow: hidden; }
-    .contact-hero-bg { position: absolute; inset: 0; }
+    /* ── Header: charcoal cinematic (unified with other pages) ── */
+    .contact-hero { position: relative; overflow: hidden; background: #080808; }
+    .contact-hero-bg { position: absolute; inset: 0; background: #080808; }
     .contact-hero-bg img {
-      width: 100%; height: 115%; object-fit: cover;
-      filter: brightness(0.25) contrast(1.3) saturate(0.4);
-      transform: translateY(-5%);
+      width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
+      filter: brightness(0.4) contrast(1.2) saturate(0.7);
       will-change: transform;
     }
     .contact-hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,87,34,0.85) 0%, rgba(255,87,34,0.6) 50%, rgba(26,26,26,0.7) 100%);
+      background:
+        linear-gradient(to top, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.35) 55%, rgba(8,8,8,0.55) 100%),
+        radial-gradient(ellipse at 70% 35%, rgba(255,87,34,0.14) 0%, transparent 50%);
     }
 
     /* ── Info cards ── */
@@ -83,29 +78,6 @@
     .form-row { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
     .form-row.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── Submit btn ── */
-    .btn-primary {
-      position: relative; display: inline-flex; align-items: center; gap: .75rem;
-      background: var(--orange); color: var(--cream);
-      font-family: 'Oswald', sans-serif; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem;
-      padding: 1rem 2.5rem; overflow: hidden; border: none; cursor: pointer;
-    }
-    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: .75rem; }
-    .btn-outline {
-      position: relative; display: inline-flex; align-items: center; gap: .75rem;
-      border: 2px solid var(--charcoal); color: var(--charcoal);
-      font-family: 'Oswald', sans-serif; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .18em; font-size: .875rem;
-      padding: 1rem 2.5rem; overflow: hidden;
-    }
-    .btn-outline::before { content: ''; position: absolute; inset: 0; background: var(--charcoal); transform: translateX(-101%); transition: transform .4s cubic-bezier(0.77,0,0.175,1); }
-    .btn-outline:hover { color: var(--cream); }
-    .btn-outline:hover::before { transform: translateX(0); }
-    .btn-outline .btn-inner { position: relative; z-index: 1; }
-
     /* ── Hours table ── */
     .hours-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; }
     .hours-row + .hours-row { border-top: 1px solid rgba(26,26,26,0.08); padding-top: .75rem; margin-top: .75rem; }
@@ -130,41 +102,10 @@
 </head>
 <body class="overflow-x-hidden">
 
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b-2 border-charcoal">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center">
-        <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg" style="height:64px;width:auto;" />
-      </a>
-      <div class="hidden md:flex items-center gap-10">
-        <a href="index.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Home</a>
-        <a href="about.html"   class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Our Story</a>
-        <a href="menu.html"    class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Menu</a>
-        <a href="events.html"  class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-charcoal hover:text-orange transition-colors">Events</a>
-        <a href="contact.html" class="nav-link font-oswald font-600 uppercase tracking-widest text-sm text-orange border-b-2 border-orange pb-0.5">Find Us</a>
-      </div>
-      <div class="hidden md:flex items-center gap-4">
-        <span class="section-label text-charcoal opacity-60">4:30 PM – 3:00 AM</span>
-        <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">Order Now</span></a>
-      </div>
-      <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
-        <span class="w-6 h-0.5 bg-charcoal block"></span>
-        <span class="w-6 h-0.5 bg-charcoal block"></span>
-        <span class="w-4 h-0.5 bg-charcoal block"></span>
-      </button>
-    </div>
-    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-charcoal border-t-2 border-orange px-6 py-6 gap-4">
-      <a href="index.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Home</a>
-      <a href="about.html"   class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Our Story</a>
-      <a href="menu.html"    class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Menu</a>
-      <a href="events.html"  class="font-oswald font-600 uppercase tracking-widest text-lg text-cream hover:text-orange transition-colors">Events</a>
-      <a href="contact.html" class="font-oswald font-600 uppercase tracking-widest text-lg text-orange">Find Us</a>
-      <div class="border-t border-orange/30 pt-4"><p class="section-label text-orange">Open Daily: 4:30 PM – 3:00 AM</p></div>
-    </div>
-  </nav>
+  <div id="site-nav" data-variant="hero" data-cta="See Menu" data-cta-href="menu.html"></div>
 
-  <!-- ═══ HERO HEADER ═══ -->
-  <section class="contact-hero pt-16" style="min-height: 55vh; display:flex; align-items:flex-end;">
+  <!-- ═══ HERO HEADER — charcoal cinematic (matches brand system) ═══ -->
+  <section class="contact-hero" style="min-height: 58vh; display:flex; align-items:flex-end;">
     <div class="contact-hero-bg" data-parallax-wrap>
       <img
         src="Gallery/CUSTOMER PICTURE 3.jpg"
@@ -180,15 +121,15 @@
       <span class="font-anton text-white/[0.04]" style="font-size:clamp(7rem,20vw,18rem); line-height:1; white-space:nowrap; padding-left:clamp(1rem,4vw,5rem);">FIND US</span>
     </div>
 
-    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 pb-16 md:pb-24 w-full">
+    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 pb-16 md:pb-24 w-full" style="padding-top:6.5rem;">
       <div class="flex items-center gap-4 mb-5">
-        <div class="w-10 h-px bg-cream opacity-60"></div>
-        <span class="section-label text-cream opacity-70">Get Here</span>
+        <div class="w-10 h-px bg-orange"></div>
+        <span class="section-label text-orange">Get Here</span>
       </div>
       <div data-reveal data-reveal-stagger="0.07">
         <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">Come find</div></div>
         <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">us on the</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">beach.</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(3rem,7.5vw,7.5rem); line-height:.86;">beach.</div></div>
       </div>
     </div>
   </section>
@@ -217,15 +158,15 @@
         </div>
       </div>
 
-      <div class="info-card flex items-start gap-4 p-6 rough-border bg-cream" data-cursor="Follow">
+      <a href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer" class="info-card flex items-start gap-4 p-6 rough-border bg-cream no-underline" data-cursor="Follow">
         <div class="w-12 h-12 bg-orange flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5 text-cream" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </div>
         <div>
           <div class="section-label text-orange mb-1">Connect</div>
-          <p class="font-oswald font-600 text-charcoal text-lg uppercase leading-tight">@lostinburg<br /><span class="text-sm font-inter font-400 normal-case text-charcoal/50">Instagram & Facebook</span></p>
+          <p class="font-oswald font-600 text-charcoal text-lg uppercase leading-tight">@lostinburg_<br /><span class="text-sm font-inter font-400 normal-case text-charcoal/50">Instagram</span></p>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -335,7 +276,7 @@
               <label class="form-label" for="subject">What's this about? *</label>
               <select id="subject" name="subject" class="form-input" required>
                 <option value="" disabled selected>Select a topic</option>
-                <option value="reservation">Table / Reservation Inquiry</option>
+                <option value="visit">Visit / Walk-in Inquiry</option>
                 <option value="events">Events & Happenings</option>
                 <option value="collab">Collaboration or Partnership</option>
                 <option value="feedback">Feedback</option>
@@ -403,48 +344,14 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-charcoal text-cream pt-20 pb-10 border-t border-white/10">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 border-b border-white/10 pb-16">
-        <div>
-          <div class="mb-6">
-            <img src="Gallery/LOGO B&W.jpeg" alt="Lost in Burg" style="height:52px;width:auto;filter:invert(1);" />
-          </div>
-          <p class="font-inter text-sm text-white/50 leading-relaxed">Premium late-night burgers and steaks on Kozhikode Beach.</p>
-        </div>
-        <div>
-          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Navigation</h4>
-          <ul class="flex flex-col gap-3">
-            <li><a href="index.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Home</a></li>
-            <li><a href="about.html"   class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Our Story</a></li>
-            <li><a href="menu.html"    class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Menu</a></li>
-            <li><a href="events.html"  class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Events</a></li>
-            <li><a href="contact.html" class="font-inter text-sm text-white/50 hover:text-orange transition-colors">Find Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-oswald font-600 uppercase tracking-widest text-sm text-orange mb-6">Hours & Location</h4>
-          <div class="flex flex-col gap-3">
-            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-inter text-sm text-white/50">Open Daily: <strong class="text-cream">4:30 PM – 3:00 AM</strong></span></div>
-            <div class="flex items-start gap-3"><svg class="w-4 h-4 text-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg><span class="font-inter text-sm text-white/50">Kozhikode Beach, Kerala</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="font-inter text-xs text-white/30">© 2024 Lost in Burg. All rights reserved.</p>
-        <p class="font-inter text-xs text-white/30">Built for the late-night crowd.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
+  <script src="js/site-chrome.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="premium-effects.js"></script>
   <script>
-    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-
     // ── Form rows reveal on scroll ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
