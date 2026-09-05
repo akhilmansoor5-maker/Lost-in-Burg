@@ -24,14 +24,14 @@
     }
   </script>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
   <div id="site-nav" data-variant="hero" data-cta="Explore Menu" data-cta-href="menu.html"></div>
 
   <!-- Opening — compact cinematic -->
   <section class="about-hero about-hero--compact hero-dark" aria-label="Opening">
     <div class="about-hero-img">
-      <img src="Gallery/editorial/aristocrat.jpg" alt="Lost in Burg — editorial plate" fetchpriority="high" />
+      <img src="Gallery/menu/aristocrat.jpg" alt="Lost in Burg — The Aristocrat" fetchpriority="high" />
     </div>
     <div class="about-hero-overlay"></div>
     <div class="about-hero-content">
@@ -39,10 +39,10 @@
         <div class="w-10 h-px bg-orange"></div>
         <span class="section-label text-orange">A Short Documentary</span>
       </div>
-      <h1 class="font-anton text-white uppercase" style="font-size:clamp(2.8rem,7vw,5.5rem);line-height:.88;margin:0;">
+      <h1 class="font-anton text-white uppercase" style="font-size:var(--inner-hero-title);line-height:1.05;margin:0;text-shadow:0 2px 24px rgba(0,0,0,.45);">
         Born on the <span class="text-orange">Beach.</span><br />Built for the Night.
       </h1>
-      <p class="font-inter text-white/50 text-sm mt-5 max-w-md leading-relaxed">Six chapters. One loop. Kozhikode Beach · 4:30 PM – 3:00 AM.</p>
+      <p class="font-inter text-white/75 text-sm mt-5 max-w-md leading-relaxed" style="text-shadow:0 1px 12px rgba(0,0,0,.5);">Six chapters. One loop. Kozhikode Beach · 4:30 PM – 3:00 AM.</p>
     </div>
   </section>
 
@@ -57,7 +57,7 @@
     </div>
   </nav>
 
-  <!-- 01 Why — text + image share one eye-line -->
+  <!-- 01 Why — video -->
   <section class="chapter py-16 md:py-24 px-6 md:px-16 max-w-screen-2xl mx-auto" id="ch-01">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       <div class="lg:col-span-6">
@@ -78,18 +78,20 @@
       </div>
       <div class="lg:col-span-6">
         <div class="rough-border overflow-hidden ch01-photo">
-          <img src="Gallery/editorial/classic-ruler.jpg" alt="Smash burger craft" loading="lazy" decoding="async" />
+          <video autoplay muted loop playsinline poster="Gallery/menu/smash-burgers.png" data-lib-video="aboutCh1" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="Gallery/videos/delicious.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 Night — taller split band + main grill video -->
+  <!-- 02 Night — owner cooking video -->
   <section class="chapter chapter-band bg-charcoal text-cream" id="ch-02">
     <div class="grid grid-cols-1 lg:grid-cols-2 chapter-band__grid">
       <div class="relative overflow-hidden chapter-band__media">
-        <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 7.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.7);">
-          <source src="Gallery/LOST%20IN%20BURG%20MAIN%20VIDEO.mp4" type="video/mp4" />
+        <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 5.jpg" data-lib-video="aboutNight" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.7);">
+          <source src="Gallery/videos/ambience.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center">
@@ -118,7 +120,9 @@
     </h2>
     <div class="grid grid-cols-12 gap-4 mt-10">
       <div class="col-span-12 md:col-span-8 rough-border overflow-hidden" style="aspect-ratio:16/10;">
-        <img src="Gallery/CUSTOMER PICTURE 5.jpg" alt="Beach night atmosphere" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
+        <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 7.jpg" data-lib-video="aboutBeach" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <source src="Gallery/videos/owner-cooking.mp4" type="video/mp4" />
+        </video>
       </div>
       <div class="col-span-12 md:col-span-4 flex flex-col justify-between gap-4">
         <div class="rough-border overflow-hidden flex-1" style="min-height:160px;">
@@ -131,12 +135,10 @@
     </div>
   </section>
 
-  <!-- Intertitle — customer night video (former Ch.02 clip) -->
+  <!-- Intertitle — image only (no video) -->
   <section class="intertitle">
     <div class="intertitle__media" aria-hidden="true">
-      <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 3.jpg">
-        <source src="Gallery/CUSTOMER%20EATING%20VIDEO.mp4" type="video/mp4" />
-      </video>
+      <img src="Gallery/CUSTOMER PICTURE 3.jpg" alt="" loading="lazy" decoding="async" data-lib-image="aboutIntertitle" />
     </div>
     <div class="intertitle__veil" aria-hidden="true"></div>
     <div class="intertitle__ghost" aria-hidden="true">FIRE</div>
@@ -145,22 +147,24 @@
     </div>
   </section>
 
-  <!-- 04 Grill — same tall split rhythm as Ch.02 -->
-  <section class="chapter chapter-band bg-charcoal text-cream border-y-2 border-charcoal" id="ch-04">
+  <!-- 04 Grill — white field (separates from dark intertitle) -->
+  <section class="chapter chapter-band chapter-band--light border-y-2 border-charcoal" id="ch-04">
     <div class="grid grid-cols-1 lg:grid-cols-2 chapter-band__grid">
       <div class="relative overflow-hidden chapter-band__media order-1 lg:order-2">
-        <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+        <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 7.jpg" data-lib-video="aboutGrill" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+          <source src="Gallery/videos/haario.mp4" type="video/mp4" />
+        </video>
       </div>
-      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center order-2 lg:order-1">
+      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center order-2 lg:order-1 bg-white">
         <div class="chapter-label">
           <span class="chapter-num">Chapter 04</span>
           <div class="w-10 h-px bg-orange"></div>
-          <span class="section-label text-white/35">The Grill</span>
+          <span class="section-label">The Grill</span>
         </div>
-        <h2 class="font-anton uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">
+        <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.9;">
           Cooked for the night,<br /><span class="text-orange">not the rush.</span>
         </h2>
-        <p class="font-inter text-white/50 text-base leading-relaxed mt-6 max-w-md">
+        <p class="font-inter text-base leading-relaxed mt-6 max-w-md">
           Smash patties on hot iron. Bone marrow when the craving goes deeper. Steaks by the cut. Late-night craft.
         </p>
       </div>
@@ -209,13 +213,10 @@
           <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Full Menu</span></a>
         </div>
         <div class="lg:col-span-7">
-          <div class="grid grid-cols-2 gap-3">
-            <div class="overflow-hidden" style="aspect-ratio:3/4;border:3px solid rgba(254,245,237,.18);">
-              <img src="Gallery/editorial/aristocrat.jpg" alt="The Aristocrat" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
-            </div>
-            <div class="overflow-hidden mt-8" style="aspect-ratio:3/4;border:3px solid rgba(254,245,237,.18);">
-              <img src="Gallery/editorial/naked-oysters.jpg" alt="Naked Oysters" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />
-            </div>
+          <div class="overflow-hidden rough-border" style="aspect-ratio:16/10;">
+            <video autoplay muted loop playsinline poster="Gallery/menu/gods-plan.png" data-lib-video="aboutFood" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <source src="Gallery/videos/BONEMARROW%20BURGER.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>
@@ -235,13 +236,14 @@
       <p class="font-inter text-charcoal/55 text-sm mt-2 mb-8">Kozhikode Beach · 4:30 PM – 3:00 AM</p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Menu</span></a>
-        <a href="contact.html" class="btn-outline" data-magnetic="0.2"><span class="btn-inner">Find Us Tonight</span></a>
+        <a href="partner.html" class="btn-outline" data-magnetic="0.2"><span class="btn-inner">How to Be a Partner</span></a>
       </div>
     </div>
   </section>
 
   <div id="site-footer"></div>
 
+  <script src="js/media.js"></script>
   <script src="js/site-chrome.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

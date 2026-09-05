@@ -1,6 +1,6 @@
 /**
- * Lost in Burg — Interactive Menu
- * Split layout: catalog left · sticky stage right
+ * Lost in Burg ÔÇö Interactive Menu
+ * Split layout: catalog left ┬À sticky stage right
  */
 
 .grain {
@@ -13,23 +13,24 @@
   opacity: 0.028;
 }
 
-/* ── Hero — cinematic food + smoke ── */
+/* Hero - shared inner-page height */
 .menu-header {
   position: relative;
-  min-height: 58vh;
+  height: var(--inner-hero-h);
+  min-height: var(--inner-hero-min);
+  max-height: var(--inner-hero-max);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  padding: 7rem 1.5rem 3rem;
+  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
   overflow: hidden;
   background: #080808;
   border-bottom: 0;
 }
 @media (min-width: 768px) {
   .menu-header {
-    padding: 8rem 3rem 3.75rem;
-    min-height: 64vh;
+    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
   }
 }
 .menu-header__media {
@@ -123,7 +124,7 @@
   margin: 0 auto;
 }
 
-/* ── Split shell ── */
+/* ÔöÇÔöÇ Split shell ÔöÇÔöÇ */
 .menu-shell {
   max-width: 1400px;
   margin: 0 auto;
@@ -151,7 +152,7 @@
   .menu-stage {
     display: block;
     position: sticky;
-    top: calc(var(--nav-h, 64px) + 1.25rem);
+    top: calc(var(--nav-h, 80px) + 1.25rem);
   }
 }
 .menu-stage__card {
@@ -540,7 +541,7 @@
   margin-top: 1.25rem;
 }
 
-/* ── Cream catalog theme (hero + modal stay dark) ── */
+/* ÔöÇÔöÇ Cream catalog theme (hero + modal stay dark) ÔöÇÔöÇ */
 body.theme-menu {
   background: var(--cream);
   color: var(--charcoal);

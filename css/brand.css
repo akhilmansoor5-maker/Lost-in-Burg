@@ -32,10 +32,10 @@
 }
 
 /* ─── 2. BASE ─── */
-html { overflow-x: hidden; }
+html { overflow-x: clip; }
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   font-family: var(--font-body);
   color: var(--charcoal);
   background: var(--cream);
@@ -88,16 +88,137 @@ body.theme-dark {
 /* ─── 5. LOGO SYSTEM ─── */
 .logo-wordmark {
   display: block;
-  height: 58px;
+  height: 44px;
   width: auto;
-  max-width: 280px;
+  max-width: 200px;
   object-fit: contain;
   /* Tight-cropped orange script on transparent */
   transition: opacity 0.35s ease, filter 0.35s ease;
 }
 @media (min-width: 768px) {
-  .logo-wordmark { height: 72px; max-width: 340px; }
+  .logo-wordmark { height: 52px; max-width: 240px; }
 }
+
+/* Homepage hero — official BW lockup (invert → cream on dark) */
+.logo-hero {
+  display: block;
+  width: min(78vw, 380px);
+  height: auto;
+  max-height: min(48vh, 360px);
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+  margin: 0 0 0 -0.35rem;
+}
+@media (min-width: 768px) {
+  .logo-hero {
+    width: min(46vw, 440px);
+    max-height: min(52vh, 400px);
+    margin-left: -0.5rem;
+  }
+}
+@media (max-width: 860px) {
+  .logo-hero {
+    width: min(82vw, 320px);
+    max-height: min(40vh, 300px);
+    margin-left: auto;
+    margin-right: auto;
+    object-position: center;
+  }
+}
+
+/* Culture watermark — side placement only */
+.logo-watermark {
+  position: absolute;
+  top: 50%;
+  width: min(48vw, 360px);
+  height: auto;
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  filter: none;
+}
+.logo-watermark--right {
+  right: -4%;
+  left: auto;
+  transform: translateY(-50%);
+}
+.logo-watermark--left {
+  left: -4%;
+  right: auto;
+  transform: translateY(-50%);
+}
+@media (max-width: 767px) {
+  .logo-watermark {
+    width: min(56vw, 240px);
+    opacity: 0.12;
+  }
+  .logo-watermark--right { right: -8%; }
+  .logo-watermark--left { left: -8%; }
+}
+
+/* Shared inner-page hero system (homepage excluded) */
+:root {
+  --page-max: 1536px;
+  --page-pad-x: 1.5rem;
+  --inner-hero-h: 60vh;
+  --inner-hero-min: 440px;
+  --inner-hero-max: 660px;
+  --inner-hero-pad-top: calc(var(--nav-h, 80px) + 3.5rem);
+  --inner-hero-pad-bottom: 3.25rem;
+  --inner-hero-title: clamp(2.6rem, 6.5vw, 5.5rem);
+  --inner-hero-title-lh: 0.9;
+}
+@media (min-width: 768px) {
+  :root {
+    --page-pad-x: 4rem;
+    --inner-hero-h: 62vh;
+    --inner-hero-min: 500px;
+    --inner-hero-max: 700px;
+    --inner-hero-pad-top: calc(var(--nav-h, 80px) + 4.25rem);
+    --inner-hero-pad-bottom: 4rem;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --inner-hero-h: 56vh;
+    --inner-hero-min: 400px;
+    --inner-hero-max: 580px;
+    --inner-hero-pad-top: calc(var(--nav-h, 64px) + 3rem);
+    --inner-hero-pad-bottom: 2.75rem;
+  }
+}
+.inner-hero {
+  position: relative;
+  height: var(--inner-hero-h);
+  min-height: var(--inner-hero-min);
+  max-height: var(--inner-hero-max);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: #080808;
+}
+.inner-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--inner-hero-pad-top) var(--page-pad-x) var(--inner-hero-pad-bottom);
+}
+.inner-hero__title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--inner-hero-title);
+  line-height: var(--inner-hero-title-lh);
+  margin: 0;
+  color: #fff;
+}
+.inner-hero__title .accent { color: var(--orange); }
 
 .logo-mark {
   display: block;
@@ -319,7 +440,7 @@ body.theme-dark {
 .site-nav__links {
   display: none;
   align-items: center;
-  gap: 2.25rem;
+  gap: 1.5rem;
 }
 .site-nav__actions {
   display: none;

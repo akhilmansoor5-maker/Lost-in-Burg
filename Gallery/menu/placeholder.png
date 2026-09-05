@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-label="Lost in Burg  photo coming soon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#0D0D0D"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect x="48" y="48" width="704" height="904" fill="none" stroke="#FF5722" stroke-width="3" opacity="0.55"/>
+  <circle cx="400" cy="420" r="86" fill="none" stroke="#FF5722" stroke-width="3" opacity="0.7"/>
+  <path d="M355 420h90M400 375v90" stroke="#FF5722" stroke-width="3" stroke-linecap="square" opacity="0.7"/>
+  <text x="400" y="560" text-anchor="middle" fill="#FEF5ED" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="6" opacity="0.9">LOST IN BURG</text>
+  <text x="400" y="610" text-anchor="middle" fill="#FF5722" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="4" opacity="0.85">PHOTO COMING SOON</text>
+</svg>

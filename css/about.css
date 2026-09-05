@@ -6,20 +6,18 @@
 .reveal-wrap { overflow: hidden; }
 .reveal-line { display: block; will-change: transform; }
 
-/* ── Chapter film strip (sticky index) ── */
+/* ── Chapter film strip (orange band like other pages) ── */
 .chapter-rail {
   position: sticky;
   top: var(--nav-h, 64px);
   z-index: 30;
-  background: rgba(254, 245, 237, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--orange);
   border-bottom: 2px solid var(--charcoal);
 }
 .chapter-rail__inner {
   max-width: 1536px;
   margin: 0 auto;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   display: flex;
   gap: 0.35rem;
   overflow-x: auto;
@@ -32,51 +30,68 @@
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(26, 26, 26, 0.45);
+  color: rgba(254, 245, 237, 0.72);
   text-decoration: none;
   padding: 0.45rem 0.75rem;
   border: 1px solid transparent;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 .chapter-rail a:hover,
 .chapter-rail a.is-active {
-  color: var(--charcoal);
-  border-color: var(--orange);
+  color: var(--cream);
+  border-color: rgba(254, 245, 237, 0.55);
 }
 
-/* ── Hero ── */
+/* ── Hero (height from brand .inner-hero) ── */
 .about-hero {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
   overflow: hidden;
   background: #080808;
 }
 .about-hero--compact {
-  height: 68vh;
-  min-height: 420px;
-  max-height: 620px;
+  height: var(--inner-hero-h);
+  min-height: var(--inner-hero-min);
+  max-height: var(--inner-hero-max);
+  display: flex;
+  align-items: flex-end;
 }
 .about-hero-img { position: absolute; inset: 0; }
 .about-hero-img img {
   width: 100%;
-  height: 120%;
+  height: 100%;
   object-fit: cover;
-  filter: brightness(0.4) contrast(1.2) saturate(0.7);
-  transform: translateY(-8%);
+  object-position: center 42%;
+  filter: brightness(0.52) contrast(1.15) saturate(0.85);
   will-change: transform;
 }
 .about-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0.2) 55%, transparent 100%);
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(8, 8, 8, 0.72) 0%, rgba(8, 8, 8, 0.28) 42%, rgba(8, 8, 8, 0.2) 100%),
+    linear-gradient(to right, rgba(8, 8, 8, 0.35) 0%, transparent 45%);
 }
 .about-hero-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vw, 6rem);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--page-max, 1536px);
+  margin: 0 auto;
+  padding: 0 var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
+}
+
+/* Ch.04 — white field so it separates from the dark intertitle above */
+#ch-04.chapter-band--light {
+  background: #ffffff;
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+#ch-04.chapter-band--light .section-label {
+  color: rgba(26, 26, 26, 0.4);
+}
+#ch-04.chapter-band--light .font-inter {
+  color: rgba(26, 26, 26, 0.55);
 }
 
 /* ── Chapters ── */
@@ -250,15 +265,23 @@
   margin-bottom: 1rem;
 }
 
+/* Landscape / near-square editorial frame (match Ch.2 feel, not portrait) */
 .ch01-photo {
-  aspect-ratio: 4 / 5;
-  max-height: 440px;
+  aspect-ratio: 16 / 10;
+  max-height: none;
+  width: 100%;
 }
+.ch01-photo video,
 .ch01-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+@media (max-width: 767px) {
+  .ch01-photo {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 .chapter-loop-end {

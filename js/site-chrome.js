@@ -24,6 +24,7 @@
     { href: 'about.html', label: 'Our Story', id: 'about' },
     { href: 'menu.html', label: 'Menu', id: 'menu' },
     { href: 'events.html', label: 'Nights', id: 'events' },
+    { href: 'partner.html', label: 'Partner', id: 'partner' },
     { href: 'contact.html', label: 'Find Us', id: 'contact' },
   ];
 
@@ -33,6 +34,7 @@
     if (file.startsWith('about')) return 'about';
     if (file.startsWith('menu')) return 'menu';
     if (file.startsWith('events')) return 'events';
+    if (file.startsWith('partner')) return 'partner';
     if (file.startsWith('contact')) return 'contact';
     return 'home';
   }
@@ -62,7 +64,7 @@
 <nav id="${navId}" class="site-nav site-nav--${variant}" aria-label="Primary">
   <div class="site-nav__inner">
     <a href="index.html" class="site-nav__logo" aria-label="${BRAND.name} — ${BRAND.line}">
-      <img src="${BRAND.logoWord}" alt="${BRAND.name}" class="logo-wordmark" width="340" height="72" />
+      <img src="${BRAND.logoWord}" alt="${BRAND.name}" class="logo-wordmark" width="240" height="52" />
     </a>
     <div class="site-nav__links">${links}</div>
     <div class="site-nav__actions">
@@ -101,7 +103,7 @@
     };
 
     if (variant === 'hero') {
-      const heroEl = document.querySelector('.about-hero, .nights-hero, .contact-hero, .menu-header, body > section');
+      const heroEl = document.querySelector('.about-hero, .nights-hero, .contact-hero, .menu-header, .partner-hero, body > section');
       const onScroll = () => {
         const heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
         const threshold = Math.max(120, Math.min(heroH * 0.72, window.innerHeight * 0.82));

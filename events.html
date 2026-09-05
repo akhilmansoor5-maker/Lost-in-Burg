@@ -24,7 +24,7 @@
     }
   </script>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
   <div id="site-nav" data-variant="hero" data-cta="Get Directions" data-cta-href="contact.html"></div>
 
@@ -36,6 +36,7 @@
         alt="A night at Lost in Burg on Kozhikode Beach"
         fetchpriority="high"
         data-parallax="0.18"
+        data-lib-image="nightsHero"
       />
     </div>
     <div class="nights-hero__veil" aria-hidden="true"></div>
@@ -47,8 +48,8 @@
         <span class="section-label text-orange">Recurring · Not a Calendar</span>
       </div>
       <div data-reveal data-reveal-stagger="0.07">
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:clamp(3rem,8vw,7.5rem); line-height:.86;">Nights at</div></div>
-        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(3rem,8vw,7.5rem); line-height:.86;">Lost in Burg.</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:var(--inner-hero-title); line-height:var(--inner-hero-title-lh);">Nights at</div></div>
+        <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:var(--inner-hero-title); line-height:var(--inner-hero-title-lh);">Lost in Burg.</div></div>
       </div>
       <p class="font-inter text-white/50 text-base mt-8 max-w-lg leading-relaxed">Weekly rituals. Late hours. Beach air. Reasons to come back — not a dated schedule to chase.</p>
       <p class="font-oswald font-600 uppercase tracking-widest text-sm text-cream/70 mt-6">Open daily 4:30 PM – 3:00 AM</p>
@@ -56,21 +57,21 @@
   </section>
 
   <!-- Ritual marquee -->
-  <div class="bg-orange border-y-2 border-charcoal py-4 marquee-outer">
+  <div class="bg-orange border-y-2 border-charcoal py-2 marquee-outer">
     <div class="marquee-track">
-      <div class="flex items-center gap-12 pr-12 flex-shrink-0">
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Steak Night</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Oyster Day</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Odd Saturdays</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Late Night Only</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">The Craver's Loop</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
+      <div class="flex items-center gap-6 pr-6 flex-shrink-0">
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Steak Night</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Oyster Day</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Odd Saturdays</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Late Night Only</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">The Craver's Loop</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
       </div>
-      <div class="flex items-center gap-12 pr-12 flex-shrink-0" aria-hidden="true">
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Steak Night</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Oyster Day</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Odd Saturdays</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">Late Night Only</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
-        <span class="font-anton text-cream text-2xl uppercase whitespace-nowrap">The Craver's Loop</span><span class="font-anton text-charcoal/60 text-xl">✦</span>
+      <div class="flex items-center gap-6 pr-6 flex-shrink-0" aria-hidden="true">
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Steak Night</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Oyster Day</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Odd Saturdays</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">Late Night Only</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
+        <span class="font-anton text-cream text-sm md:text-base uppercase whitespace-nowrap tracking-wide">The Craver's Loop</span><span class="font-anton text-charcoal/60 text-sm">✦</span>
       </div>
     </div>
   </div>
@@ -111,7 +112,7 @@
 
         <article class="ritual-card">
           <div class="ritual-card__media">
-            <img src="Gallery/editorial/naked-oysters.jpg" alt="Naked Oysters" loading="lazy" decoding="async" />
+            <img src="Gallery/menu/24k-oysters.png" alt="Naked Oysters" loading="lazy" decoding="async" />
             <div class="ritual-card__badge">
               <div class="font-anton text-cream text-lg leading-none">EVERY</div>
               <div class="font-oswald font-700 text-cream text-xs uppercase tracking-widest">Sunday</div>
@@ -144,42 +145,7 @@
     </div>
   </section>
 
-  <!-- ═══ 3. TONIGHT'S ATMOSPHERE ═══ -->
-  <section class="py-24 md:py-36 px-6 md:px-16 max-w-screen-2xl mx-auto" id="atmosphere">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14">
-      <div>
-        <div class="flex items-center gap-4 mb-5">
-          <div class="w-10 h-px bg-orange"></div>
-          <span class="section-label text-orange">Tonight's Atmosphere</span>
-        </div>
-        <div data-reveal data-reveal-stagger="0.07">
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-charcoal uppercase" style="font-size:clamp(2.4rem,5vw,4.2rem); line-height:.9;">How a night</div></div>
-          <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:clamp(2.4rem,5vw,4.2rem); line-height:.9;">actually looks.</div></div>
-        </div>
-      </div>
-      <p class="font-inter text-charcoal/55 text-sm max-w-xs leading-relaxed">Real plates. Real tables. Real footage from the room — not a staged event flyer.</p>
-    </div>
-
-    <div class="atmosphere">
-      <div class="atmosphere__cell atmosphere__cell--hero">
-        <img src="Gallery/editorial/aristocrat.jpg" alt="Editorial plate at Lost in Burg" loading="lazy" decoding="async" />
-      </div>
-      <div class="atmosphere__cell">
-        <img src="Gallery/CUSTOMER PICTURE 4.jpg" alt="Guests at Lost in Burg" loading="lazy" decoding="async" />
-      </div>
-      <div class="atmosphere__cell">
-        <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron at Lost in Burg" loading="lazy" decoding="async" />
-      </div>
-      <div class="atmosphere__cell">
-        <img src="Gallery/editorial/gods-plan.jpg" alt="Bone marrow burger" loading="lazy" decoding="async" />
-      </div>
-      <div class="atmosphere__cell">
-        <img src="Gallery/CUSTOMER PICTURE 8.jpg" alt="Table energy at Lost in Burg" loading="lazy" decoding="async" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 4. WHAT HAPPENS HERE ═══ -->
+  <!-- ═══ 3. WHAT HAPPENS HERE ═══ -->
   <section class="bg-warm-gray border-y-2 border-charcoal py-24 md:py-32" id="happens">
     <div class="max-w-screen-2xl mx-auto px-6 md:px-16">
       <div class="text-center mb-12 md:mb-16">
@@ -255,10 +221,12 @@
     </div>
   </section>
 
-  <!-- ═══ 6. FIND US TONIGHT ═══ -->
+  <!-- ═══ 5. FIND US TONIGHT ═══ -->
   <section class="nights-close" id="find-us" aria-label="Find Us Tonight">
     <div class="nights-close__media" aria-hidden="true">
-      <img src="Gallery/editorial/rib-eye.jpg" alt="" loading="lazy" decoding="async" />
+      <video autoplay muted loop playsinline poster="Gallery/CUSTOMER PICTURE 5.jpg" data-lib-video="nightsClose">
+        <source src="Gallery/videos/nights.mp4" type="video/mp4" />
+      </video>
     </div>
     <div class="nights-close__content">
       <span class="section-label text-orange mb-5 block">Find Us Tonight</span>
@@ -270,13 +238,14 @@
       <p class="font-oswald font-600 uppercase tracking-widest text-cream text-lg mb-10">4:30 PM – 3:00 AM · Every day</p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="contact.html" class="btn-primary" data-magnetic="0.28"><span class="btn-inner">Get Directions</span></a>
-        <a href="menu.html" class="btn-outline-light" data-magnetic="0.22"><span class="btn-inner">Explore Menu</span></a>
+        <a href="partner.html" class="btn-outline-light" data-magnetic="0.22"><span class="btn-inner">How to Be a Partner</span></a>
       </div>
     </div>
   </section>
 
   <div id="site-footer"></div>
 
+  <script src="js/media.js"></script>
   <script src="js/site-chrome.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -289,10 +258,6 @@
       gsap.from('.ritual-card', {
         scrollTrigger: { trigger: '.ritual-grid', start: 'top 82%', once: true },
         y: 50, opacity: 0, stagger: 0.12, duration: 0.85, ease: 'power3.out'
-      });
-      gsap.from('.atmosphere__cell', {
-        scrollTrigger: { trigger: '.atmosphere', start: 'top 85%', once: true },
-        y: 36, opacity: 0, stagger: 0.08, duration: 0.75, ease: 'power3.out'
       });
       gsap.from('.happens-cell', {
         scrollTrigger: { trigger: '.happens-grid', start: 'top 85%', once: true },

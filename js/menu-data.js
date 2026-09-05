@@ -1,7 +1,7 @@
 /**
  * Lost in Burg — Official Menu Data
  * Source: Gallery/Lost in burg menu 2026.pdf
- * Images: Gallery/editorial (AI editorial photography)
+ * Images: Gallery/menu (branded dish photos). Missing dishes use placeholder.
  * Prices excluding GST. Ingredients/pairings drawn only from PDF-named items.
  */
 window.LIB_MENU = {
@@ -13,18 +13,28 @@ window.LIB_MENU = {
   },
 
   images: {
-    aristocrat: 'Gallery/editorial/aristocrat.jpg',
-    godsPlan: 'Gallery/editorial/gods-plan.jpg',
-    oysters: 'Gallery/editorial/naked-oysters.jpg',
-    seven: 'Gallery/editorial/seven-wonders.jpg',
-    ribEye: 'Gallery/editorial/rib-eye.jpg',
-    fillet: 'Gallery/editorial/fillet.jpg',
-    wings: 'Gallery/editorial/wings.jpg',
-    pasta: 'Gallery/editorial/fishermans-rope.jpg',
-    fries: 'Gallery/editorial/crowded-fries.jpg',
-    mussels: 'Gallery/editorial/mussels.jpg',
-    burger: 'Gallery/editorial/classic-ruler.jpg',
-    drink: 'Gallery/editorial/mojito.jpg',
+    placeholder: 'Gallery/menu/placeholder.jpg',
+    aristocrat: 'Gallery/menu/aristocrat.jpg',
+    godsPlan: 'Gallery/menu/gods-plan.png',
+    oysters: 'Gallery/menu/24k-oysters.png',
+    seven: 'Gallery/menu/seven-wonders.png',
+    fries: 'Gallery/menu/crowded-fries.png',
+    friesReal: 'Gallery/menu/crowded-fries-real.jpg',
+    pasta: 'Gallery/menu/sandos-prawns-mussels.png',
+    mussels: 'Gallery/menu/sandos-prawns-mussels.png',
+    meatBony: 'Gallery/menu/meat-and-the-bony.png',
+    meatyFungus: 'Gallery/menu/meaty-fungus.png',
+    wrongBed: 'Gallery/menu/wrong-bed.png',
+    smaaashh: 'Gallery/menu/smaaashh.png',
+    smash: 'Gallery/menu/smash-burgers.png',
+    sunrooster: 'Gallery/menu/sunrooster.png',
+    cheesyChick: 'Gallery/menu/cheesy-chick.png',
+    loaded: 'Gallery/menu/loaded-bowl-real.jpg',
+    ribEye: 'Gallery/menu/placeholder.jpg',
+    fillet: 'Gallery/menu/placeholder.jpg',
+    wings: 'Gallery/menu/placeholder.jpg',
+    burger: 'Gallery/menu/smash-burgers.png',
+    drink: 'Gallery/menu/placeholder.jpg',
   },
 
   categories: [
@@ -49,7 +59,7 @@ window.LIB_MENU = {
           note: 'Night fuel — six pieces, sweet heat, built to share before the main event.',
           ingredients: ['Fried chicken wings', 'Sweet & spicy buffalo sauce'],
           pairing: 'Classic Peanut Shake or Crowded Fries',
-          img: 'Gallery/editorial/wings.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'musa-bos',
@@ -59,7 +69,7 @@ window.LIB_MENU = {
           note: 'Weird on paper. Right on the plate — banana, beef, cheese, crunch.',
           ingredients: ['Banana', 'Beef', 'Cheese', 'Crispy crackers'],
           pairing: 'Malabar Reserve or Cold Coffee',
-          img: 'Gallery/editorial/classic-ruler.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'crowded-fries',
@@ -69,7 +79,7 @@ window.LIB_MENU = {
           note: 'Loaded fries with a choice of chicken or beef — the table never leaves these alone.',
           ingredients: ['6mm fries', 'Cheese', 'House sauces', 'Spring onions', 'Jalapeños', 'Chicken or beef'],
           pairing: 'The Aristocrat or The Classic Ruler',
-          img: 'Gallery/editorial/crowded-fries.jpg',
+          img: 'Gallery/menu/crowded-fries.png',
         },
         {
           id: 'tiger-buffalo',
@@ -79,7 +89,7 @@ window.LIB_MENU = {
           note: 'Crispy prawns meet buffalo heat — six pieces with hot mayo on the side.',
           ingredients: ['Crispy fried prawns (6pc)', 'Sweet & spicy buffalo sauce', 'Hot mayo'],
           pairing: 'Virgin Mojito or Greenapple Mojito',
-          img: 'Gallery/editorial/wings.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'naked-oysters',
@@ -89,7 +99,7 @@ window.LIB_MENU = {
           note: 'Coastal and clean — raw oysters, pickle sharpness, green apple, lemon.',
           ingredients: ['Raw oysters', 'Pickled shallots', 'Green apple', 'Lemon'],
           pairing: 'Brazilian Lemonade or Peach Iced Tea',
-          img: 'Gallery/editorial/naked-oysters.jpg',
+          img: 'Gallery/menu/24k-oysters.png',
         },
         {
           id: 'milky-way',
@@ -99,7 +109,7 @@ window.LIB_MENU = {
           note: 'A bowl of mussel soup that eats like a meal — creamy, garlicky, with fries.',
           ingredients: ['Mussels', 'Creamy garlic butter broth', 'Vegetables', 'Herbs', 'Fries'],
           pairing: 'Crowded Fries or Virgin Mojito',
-          img: 'Gallery/editorial/mussels.jpg',
+          img: 'Gallery/menu/sandos-prawns-mussels.png',
         },
         {
           id: 'cultureless-mussels',
@@ -109,7 +119,7 @@ window.LIB_MENU = {
           note: 'Steamed mussels, green heat, gherkins for the cut-through.',
           ingredients: ['Steamed mussels', 'Green spicy sauce', 'Gherkins'],
           pairing: 'Cherittos Mojito',
-          img: 'Gallery/editorial/mussels.jpg',
+          img: 'Gallery/menu/sandos-prawns-mussels.png',
         },
         {
           id: 'beef-tartar',
@@ -119,7 +129,7 @@ window.LIB_MENU = {
           note: 'Never cooked with heat — chilled, seasoned, finished with egg yolk.',
           ingredients: ['Minced raw beef', 'Spices & sauces', 'Raw egg yolk'],
           pairing: 'Rib Eye Steak or Picanha Steak',
-          img: 'Gallery/editorial/fillet.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'seven-wonders',
@@ -129,7 +139,7 @@ window.LIB_MENU = {
           note: 'Seven oysters. Seven toppings. Built to share across the table.',
           ingredients: ['Oysters (7)', 'Seven different toppings'],
           pairing: 'Tropical Fiesta or Passion Mojito',
-          img: 'Gallery/editorial/seven-wonders.jpg',
+          img: 'Gallery/menu/seven-wonders.png',
         },
       ],
     },
@@ -146,7 +156,7 @@ window.LIB_MENU = {
           note: 'Comfort in a bowl — penne, white sauce, Parmesan, garlic bread.',
           ingredients: ['Penne', 'White sauce', 'Parmesan cheese', 'Garlic bread'],
           pairing: 'Chicken Steak or The Sunrooster',
-          img: 'Gallery/editorial/fishermans-rope.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'fishermans-rope',
@@ -156,7 +166,7 @@ window.LIB_MENU = {
           note: 'Beach catch in butter and garlic, tangled through creamy spaghetti.',
           ingredients: ['Prawn', 'Squid', 'Mussels', 'Butter', 'Garlic', 'Creamy spaghetti'],
           pairing: 'Naked Oysters or Watermelon Mojito',
-          img: 'Gallery/editorial/fishermans-rope.jpg',
+          img: 'Gallery/menu/sandos-prawns-mussels.png',
         },
         {
           id: 'meat-bony',
@@ -166,7 +176,7 @@ window.LIB_MENU = {
           note: 'Bone stock pasta with minced beef — marrow on the side for the deep cut.',
           ingredients: ['Fettuccine or spaghetti', 'Bone stock', 'Minced beef', 'Bone marrow'],
           pairing: "The God's Plan or Bone Marrow pairing (3pc)",
-          img: 'Gallery/editorial/gods-plan.jpg',
+          img: 'Gallery/menu/meat-and-the-bony.png',
         },
       ],
     },
@@ -183,7 +193,7 @@ window.LIB_MENU = {
           note: 'The softest cut on the card. Ask the floor for tonight’s weight.',
           ingredients: ['Fillet mignon / tenderloin'],
           pairing: 'Chimichurri · Creamy mashed potato · Grilled prawn (4pc)',
-          img: 'Gallery/editorial/fillet.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'tbone',
@@ -193,7 +203,7 @@ window.LIB_MENU = {
           note: 'Two muscles, one bone — finished with 24k gold leaf.',
           ingredients: ['Tenderloin', 'Striploin', 'T-bone', '24k gold leaf'],
           pairing: 'Mushroom cream sauce · Potato wedges',
-          img: 'Gallery/editorial/rib-eye.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'rib-eye',
@@ -203,7 +213,7 @@ window.LIB_MENU = {
           note: 'Texture-forward rib cut. Built for people who want flavour over softness.',
           ingredients: ['Rib eye beef'],
           pairing: 'Chimichurri · French fries · Steamed mussels (10pc)',
-          img: 'Gallery/editorial/rib-eye.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'picanha',
@@ -213,7 +223,7 @@ window.LIB_MENU = {
           note: 'Fat cap through the meat — recommended for beef lovers.',
           ingredients: ['Picanha beef with fat cap'],
           pairing: 'Bone marrow (3pc) · Grilled veggies',
-          img: 'Gallery/editorial/rib-eye.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'chicken-steak',
@@ -223,7 +233,7 @@ window.LIB_MENU = {
           note: 'A full plate — 250g chicken breast, grilled vegetables, sauce your way.',
           ingredients: ['Boneless chicken breast (250g)', 'Broccoli', 'Carrots', 'Mushrooms', 'Bell peppers', 'Mushroom glaze or creamy tomato sauce'],
           pairing: 'Alfredo Pasta or Orange Iced Tea',
-          img: 'Gallery/editorial/fillet.jpg',
+          img: 'Gallery/menu/placeholder.jpg',
         },
       ],
       extras: [
@@ -270,7 +280,7 @@ window.LIB_MENU = {
               note: 'The baseline smash — seasoned beef, caramelised onion, no noise.',
               ingredients: ['In-house minced beef patties', 'Caramelised onion'],
               pairing: 'Crowded Fries · Cold Coffee',
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/smash-burgers.png',
             },
             {
               id: 'dinamate-pinea',
@@ -280,7 +290,7 @@ window.LIB_MENU = {
               note: 'Sweet char from grilled pineapple over the patty.',
               ingredients: ['Grilled beef patties', 'Grilled pineapple'],
               pairing: 'Pineapple Juice · Passion Mojito',
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/placeholder.jpg',
             },
             {
               id: 'meaty-fungus',
@@ -290,7 +300,7 @@ window.LIB_MENU = {
               note: 'Mushroom-loaded — earthy, heavy, satisfying.',
               ingredients: ['Beef patty', 'Mushrooms'],
               pairing: 'Mushroom cream sauce on the side · Special Coffee',
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/meaty-fungus.png',
             },
             {
               id: 'aristocrat',
@@ -300,7 +310,7 @@ window.LIB_MENU = {
               note: 'The champion on the card — double patty, beef bacon, raw onion rings.',
               ingredients: ['Double beef patty', 'Beef bacon', 'Raw onion rings'],
               pairing: 'Crowded Fries · Malabar Reserve',
-              img: 'Gallery/editorial/aristocrat.jpg',
+              img: 'Gallery/menu/aristocrat.jpg',
             },
             {
               id: 'fat-guy',
@@ -310,7 +320,7 @@ window.LIB_MENU = {
               note: 'Meat and cheese stacked until it becomes the whole meal.',
               ingredients: ['Beef', 'Cheese'],
               pairing: 'Large Fries · Nutella Pistachio Shake',
-              img: 'Gallery/editorial/aristocrat.jpg',
+              img: 'Gallery/menu/placeholder.jpg',
             },
             {
               id: 'wrong-bed',
@@ -320,7 +330,7 @@ window.LIB_MENU = {
               note: 'Surf meets smash — grilled prawns over beef.',
               ingredients: ['Beef', 'Grilled prawns'],
               pairing: "Fisherman's Rope · Tropical Fiesta",
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/wrong-bed.png',
             },
             {
               id: 'gods-plan',
@@ -330,7 +340,7 @@ window.LIB_MENU = {
               note: 'Recommended for beef lovers — cheese and buttery bone marrow. Highly addictive.',
               ingredients: ['Beef patty', 'Cheese', 'Buttery bone marrow'],
               pairing: 'Meat and the Bony · Bone Marrow (3pc)',
-              img: 'Gallery/editorial/gods-plan.jpg',
+              img: 'Gallery/menu/gods-plan.png',
             },
             {
               id: 'smaaashh',
@@ -340,7 +350,7 @@ window.LIB_MENU = {
               note: 'The large one — triple patty, six cheeses, bacon honey jam.',
               ingredients: ['Triple beef patty', 'Cheese (6)', 'Bacon honey jam'],
               pairing: 'Large Fries · Lotus Biscoff Shake',
-              img: 'Gallery/editorial/aristocrat.jpg',
+              img: 'Gallery/menu/smaaashh.png',
             },
           ],
         },
@@ -355,7 +365,7 @@ window.LIB_MENU = {
               note: 'The vegan path — patty, cheese, caramelised onion, grilled tomato.',
               ingredients: ['Vegan patty', 'Cheese', 'Caramelised onion', 'Grilled tomato'],
               pairing: 'Apple Beetroot Carrot Juice',
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/placeholder.jpg',
             },
           ],
         },
@@ -370,7 +380,7 @@ window.LIB_MENU = {
               note: 'The burger meets a bowl of melted cheddar.',
               ingredients: ['Chicken burger', 'Melted cheddar'],
               pairing: 'Crowded Fries · Caramel Cold Coffee',
-              img: 'Gallery/editorial/classic-ruler.jpg',
+              img: 'Gallery/menu/cheesy-chick.png',
             },
             {
               id: 'third-bird',
@@ -380,7 +390,7 @@ window.LIB_MENU = {
               note: 'Crispy chicken, house buffalo — sweet heat.',
               ingredients: ['Crispy chicken patty', 'House buffalo sauce'],
               pairing: 'Lost in Wings · Cherittos',
-              img: 'Gallery/editorial/wings.jpg',
+              img: 'Gallery/menu/placeholder.jpg',
             },
             {
               id: 'sunrooster',
@@ -390,7 +400,7 @@ window.LIB_MENU = {
               note: 'Grilled breast, sauces, egg sunshine on top.',
               ingredients: ['Grilled chicken breast', 'Special sauces', 'Egg'],
               pairing: 'Alfredo Pasta · Hot Chocolate',
-              img: 'Gallery/editorial/fillet.jpg',
+              img: 'Gallery/menu/sunrooster.png',
             },
             {
               id: 'chick-thighs',
@@ -400,7 +410,7 @@ window.LIB_MENU = {
               note: 'Triple thigh attack — gherkins and lettuce for crunch.',
               ingredients: ['Chicken thighs (triple)', 'Gherkins', 'Fresh lettuce'],
               pairing: 'Large Fries · Butter Cookie Shake',
-              img: 'Gallery/editorial/wings.jpg',
+              img: 'Gallery/menu/placeholder.jpg',
             },
           ],
         },
@@ -427,61 +437,61 @@ window.LIB_MENU = {
         {
           label: 'Fresh Juice',
           items: [
-            { id: 'j-pineapple', name: 'Pineapple', price: '₹149', desc: 'Fresh pineapple juice.', note: 'Cold, clean, beach-ready.', ingredients: ['Pineapple'], pairing: 'The Dinamate Pinea', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'j-orange', name: 'Orange', price: '₹149', desc: 'Fresh orange juice.', note: 'Bright citrus for the early side of the night.', ingredients: ['Orange'], pairing: 'Chicken Steak', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'j-carrot', name: 'Carrot', price: '₹149', desc: 'Fresh carrot juice.', note: 'Simple and straight.', ingredients: ['Carrot'], pairing: 'The Lost Oregano', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'j-watermelon', name: 'Watermelon', price: '₹149', desc: 'Fresh watermelon juice.', note: 'Light and late-night friendly.', ingredients: ['Watermelon'], pairing: 'Watermelon Mojito', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'j-cucumber', name: 'Cucumber', price: '₹149', desc: 'Fresh cucumber juice.', note: 'Cool cut-through between heavy plates.', ingredients: ['Cucumber'], pairing: 'Beef Tartar', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'j-abc', name: 'Apple Beetroot Carrot', price: '₹199', desc: 'Apple, beetroot, and carrot juice.', note: 'The denser fresh press on the card.', ingredients: ['Apple', 'Beetroot', 'Carrot'], pairing: 'The Lost Oregano', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 'j-pineapple', name: 'Pineapple', price: '₹149', desc: 'Fresh pineapple juice.', note: 'Cold, clean, beach-ready.', ingredients: ['Pineapple'], pairing: 'The Dinamate Pinea', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'j-orange', name: 'Orange', price: '₹149', desc: 'Fresh orange juice.', note: 'Bright citrus for the early side of the night.', ingredients: ['Orange'], pairing: 'Chicken Steak', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'j-carrot', name: 'Carrot', price: '₹149', desc: 'Fresh carrot juice.', note: 'Simple and straight.', ingredients: ['Carrot'], pairing: 'The Lost Oregano', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'j-watermelon', name: 'Watermelon', price: '₹149', desc: 'Fresh watermelon juice.', note: 'Light and late-night friendly.', ingredients: ['Watermelon'], pairing: 'Watermelon Mojito', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'j-cucumber', name: 'Cucumber', price: '₹149', desc: 'Fresh cucumber juice.', note: 'Cool cut-through between heavy plates.', ingredients: ['Cucumber'], pairing: 'Beef Tartar', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'j-abc', name: 'Apple Beetroot Carrot', price: '₹199', desc: 'Apple, beetroot, and carrot juice.', note: 'The denser fresh press on the card.', ingredients: ['Apple', 'Beetroot', 'Carrot'], pairing: 'The Lost Oregano', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
         {
           label: 'Mojitos',
           items: [
-            { id: 'm-cherittos', name: 'Cherittos', price: '₹199', desc: 'House mojito.', note: 'A Lost in Burg mojito staple.', ingredients: ['Mojito base', 'Cherry profile'], pairing: 'Tiger and Buffalo', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'm-greenapple', name: 'Greenapple Mojito', price: '₹199', desc: 'Green apple mojito.', note: 'Sharp apple lift over mint and ice.', ingredients: ['Green apple', 'Mojito base'], pairing: 'Naked Oysters', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'm-watermelon', name: 'Watermelon Mojito', price: '₹199', desc: 'Watermelon mojito.', note: 'Soft fruit, cold glass.', ingredients: ['Watermelon', 'Mojito base'], pairing: "Fisherman's Rope", img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'm-virgin', name: 'Virgin Mojito', price: '₹199', desc: 'Virgin mojito.', note: 'All the chill, no alcohol claim — as listed on the card.', ingredients: ['Mojito base'], pairing: 'Lost in Wings', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'm-passion', name: 'Passion Mojito', price: '₹199', desc: 'Passion fruit mojito.', note: 'Tropical edge for longer tables.', ingredients: ['Passion fruit', 'Mojito base'], pairing: 'Seven Wonders', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 'm-cherittos', name: 'Cherittos', price: '₹199', desc: 'House mojito.', note: 'A Lost in Burg mojito staple.', ingredients: ['Mojito base', 'Cherry profile'], pairing: 'Tiger and Buffalo', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'm-greenapple', name: 'Greenapple Mojito', price: '₹199', desc: 'Green apple mojito.', note: 'Sharp apple lift over mint and ice.', ingredients: ['Green apple', 'Mojito base'], pairing: 'Naked Oysters', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'm-watermelon', name: 'Watermelon Mojito', price: '₹199', desc: 'Watermelon mojito.', note: 'Soft fruit, cold glass.', ingredients: ['Watermelon', 'Mojito base'], pairing: "Fisherman's Rope", img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'm-virgin', name: 'Virgin Mojito', price: '₹199', desc: 'Virgin mojito.', note: 'All the chill, no alcohol claim — as listed on the card.', ingredients: ['Mojito base'], pairing: 'Lost in Wings', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'm-passion', name: 'Passion Mojito', price: '₹199', desc: 'Passion fruit mojito.', note: 'Tropical edge for longer tables.', ingredients: ['Passion fruit', 'Mojito base'], pairing: 'Seven Wonders', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
         {
           label: 'Lost Special',
           items: [
-            { id: 's-brazilian', name: 'Brazilian Lemonade', price: '₹200', desc: 'Brazilian lemonade.', note: 'Bright, cold, built for oyster nights.', ingredients: ['Lemonade'], pairing: 'Naked Oysters', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-tropical', name: 'Tropical Fiesta', price: '₹319', desc: 'Tropical house special.', note: 'The bigger special on the drinks card.', ingredients: ['Tropical mix'], pairing: 'The Wrong Bed', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-peach', name: 'Peach Iced Tea', price: '₹219', desc: 'Peach iced tea.', note: 'Soft iced tea for mid-meal.', ingredients: ['Peach', 'Iced tea'], pairing: 'Alfredo Pasta', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-orange-tea', name: 'Orange Iced Tea', price: '₹219', desc: 'Orange iced tea.', note: 'Citrus iced tea.', ingredients: ['Orange', 'Iced tea'], pairing: 'Chicken Steak', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-cherry-tea', name: 'Cherry Iced Tea', price: '₹219', desc: 'Cherry iced tea.', note: 'Cherry iced tea.', ingredients: ['Cherry', 'Iced tea'], pairing: 'The Third Bird', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-cold-coffee', name: 'Cold Coffee', price: '₹199', desc: 'Cold coffee.', note: 'Late-night coffee, cold.', ingredients: ['Coffee'], pairing: 'The Classic Ruler', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 's-caramel', name: 'Caramel Cold Coffee', price: '₹219', desc: 'Caramel cold coffee.', note: 'Cold coffee with caramel.', ingredients: ['Coffee', 'Caramel'], pairing: 'The Cheesy Chick 2.0', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 's-brazilian', name: 'Brazilian Lemonade', price: '₹200', desc: 'Brazilian lemonade.', note: 'Bright, cold, built for oyster nights.', ingredients: ['Lemonade'], pairing: 'Naked Oysters', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-tropical', name: 'Tropical Fiesta', price: '₹319', desc: 'Tropical house special.', note: 'The bigger special on the drinks card.', ingredients: ['Tropical mix'], pairing: 'The Wrong Bed', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-peach', name: 'Peach Iced Tea', price: '₹219', desc: 'Peach iced tea.', note: 'Soft iced tea for mid-meal.', ingredients: ['Peach', 'Iced tea'], pairing: 'Alfredo Pasta', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-orange-tea', name: 'Orange Iced Tea', price: '₹219', desc: 'Orange iced tea.', note: 'Citrus iced tea.', ingredients: ['Orange', 'Iced tea'], pairing: 'Chicken Steak', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-cherry-tea', name: 'Cherry Iced Tea', price: '₹219', desc: 'Cherry iced tea.', note: 'Cherry iced tea.', ingredients: ['Cherry', 'Iced tea'], pairing: 'The Third Bird', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-cold-coffee', name: 'Cold Coffee', price: '₹199', desc: 'Cold coffee.', note: 'Late-night coffee, cold.', ingredients: ['Coffee'], pairing: 'The Classic Ruler', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 's-caramel', name: 'Caramel Cold Coffee', price: '₹219', desc: 'Caramel cold coffee.', note: 'Cold coffee with caramel.', ingredients: ['Coffee', 'Caramel'], pairing: 'The Cheesy Chick 2.0', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
         {
           label: 'Milk Shakes',
           items: [
-            { id: 'sh-peanut', name: 'Classic Peanut', price: '₹250', desc: 'Peanut milkshake.', note: 'Classic peanut shake.', ingredients: ['Peanut', 'Milkshake base'], pairing: 'Lost in Wings', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'sh-biscoff', name: 'Lotus Biscoff', price: '₹250', desc: 'Lotus Biscoff milkshake.', note: 'Biscoff shake.', ingredients: ['Lotus Biscoff', 'Milkshake base'], pairing: 'The Smaaashh', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'sh-nutella', name: 'Nutella Pistachio', price: '₹299', desc: 'Nutella pistachio milkshake.', note: 'Nutella and pistachio.', ingredients: ['Nutella', 'Pistachio', 'Milkshake base'], pairing: 'The Fat Guy', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'sh-malabar', name: 'Malabar Reserve', price: '₹299', desc: 'Malabar Reserve milkshake.', note: 'House reserve shake.', ingredients: ['Milkshake base'], pairing: 'The Aristocrat', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'sh-cookie', name: 'Butter Cookie', price: '₹250', desc: 'Butter cookie milkshake.', note: 'Cookie shake.', ingredients: ['Butter cookie', 'Milkshake base'], pairing: 'The Chick Thighs XL', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 'sh-peanut', name: 'Classic Peanut', price: '₹250', desc: 'Peanut milkshake.', note: 'Classic peanut shake.', ingredients: ['Peanut', 'Milkshake base'], pairing: 'Lost in Wings', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'sh-biscoff', name: 'Lotus Biscoff', price: '₹250', desc: 'Lotus Biscoff milkshake.', note: 'Biscoff shake.', ingredients: ['Lotus Biscoff', 'Milkshake base'], pairing: 'The Smaaashh', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'sh-nutella', name: 'Nutella Pistachio', price: '₹299', desc: 'Nutella pistachio milkshake.', note: 'Nutella and pistachio.', ingredients: ['Nutella', 'Pistachio', 'Milkshake base'], pairing: 'The Fat Guy', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'sh-malabar', name: 'Malabar Reserve', price: '₹299', desc: 'Malabar Reserve milkshake.', note: 'House reserve shake.', ingredients: ['Milkshake base'], pairing: 'The Aristocrat', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'sh-cookie', name: 'Butter Cookie', price: '₹250', desc: 'Butter cookie milkshake.', note: 'Cookie shake.', ingredients: ['Butter cookie', 'Milkshake base'], pairing: 'The Chick Thighs XL', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
         {
           label: 'Matcha',
           items: [
-            { id: 'ma-tender', name: 'Tender Matcha', price: '₹200', desc: 'Tender matcha.', note: 'Matcha, tender style.', ingredients: ['Matcha'], pairing: 'The Lost Oregano', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'ma-mango', name: 'Mango Matcha', price: '₹200', desc: 'Mango matcha.', note: 'Matcha with mango.', ingredients: ['Matcha', 'Mango'], pairing: 'Passion Mojito', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'ma-strawberry', name: 'Strawberry Matcha', price: '₹200', desc: 'Strawberry matcha.', note: 'Matcha with strawberry.', ingredients: ['Matcha', 'Strawberry'], pairing: 'Peach Iced Tea', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 'ma-tender', name: 'Tender Matcha', price: '₹200', desc: 'Tender matcha.', note: 'Matcha, tender style.', ingredients: ['Matcha'], pairing: 'The Lost Oregano', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'ma-mango', name: 'Mango Matcha', price: '₹200', desc: 'Mango matcha.', note: 'Matcha with mango.', ingredients: ['Matcha', 'Mango'], pairing: 'Passion Mojito', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'ma-strawberry', name: 'Strawberry Matcha', price: '₹200', desc: 'Strawberry matcha.', note: 'Matcha with strawberry.', ingredients: ['Matcha', 'Strawberry'], pairing: 'Peach Iced Tea', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
         {
           label: 'Hot Beverage',
           items: [
-            { id: 'h-black', name: 'Black Coffee', price: '₹60', desc: 'Black coffee.', note: 'Straight coffee.', ingredients: ['Coffee'], pairing: 'Add Your Cookie', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'h-special', name: 'Special Coffee', price: '₹70', desc: 'Special coffee.', note: 'House special coffee.', ingredients: ['Coffee'], pairing: 'The Meaty Fungus', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'h-choc', name: 'Hot Chocolate', price: '₹220', desc: 'Hot chocolate.', note: 'Hot chocolate for the quieter end of the night.', ingredients: ['Hot chocolate'], pairing: 'The Sunrooster', img: 'Gallery/editorial/mojito.jpg' },
-            { id: 'h-cookie', name: 'Add Your Cookie', price: '₹50', desc: 'Add a cookie to your hot beverage.', note: 'Cookie add-on.', ingredients: ['Cookie'], pairing: 'Black Coffee or Special Coffee', img: 'Gallery/editorial/mojito.jpg' },
+            { id: 'h-black', name: 'Black Coffee', price: '₹60', desc: 'Black coffee.', note: 'Straight coffee.', ingredients: ['Coffee'], pairing: 'Add Your Cookie', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'h-special', name: 'Special Coffee', price: '₹70', desc: 'Special coffee.', note: 'House special coffee.', ingredients: ['Coffee'], pairing: 'The Meaty Fungus', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'h-choc', name: 'Hot Chocolate', price: '₹220', desc: 'Hot chocolate.', note: 'Hot chocolate for the quieter end of the night.', ingredients: ['Hot chocolate'], pairing: 'The Sunrooster', img: 'Gallery/menu/placeholder.jpg' },
+            { id: 'h-cookie', name: 'Add Your Cookie', price: '₹50', desc: 'Add a cookie to your hot beverage.', note: 'Cookie add-on.', ingredients: ['Cookie'], pairing: 'Black Coffee or Special Coffee', img: 'Gallery/menu/placeholder.jpg' },
           ],
         },
       ],

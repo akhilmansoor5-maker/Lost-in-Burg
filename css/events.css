@@ -6,10 +6,12 @@
 .reveal-wrap { overflow: hidden; }
 .reveal-line { display: block; will-change: transform; }
 
-/* ── Hero ── */
+/* ── Hero (shared inner height) ── */
 .nights-hero {
   position: relative;
-  min-height: 85vh;
+  height: var(--inner-hero-h);
+  min-height: var(--inner-hero-min);
+  max-height: var(--inner-hero-max);
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -35,26 +37,30 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1536px;
+  max-width: var(--page-max, 1536px);
   margin: 0 auto;
-  padding: 6.5rem 1.5rem 4.5rem;
+  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
 }
 @media (min-width: 768px) {
-  .nights-hero__content { padding: 7.5rem 4rem 5.5rem; }
+  .nights-hero__content {
+    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
+  }
 }
 .nights-hero__ghost {
   position: absolute;
-  top: 22%;
+  top: 42%;
   left: 0;
   right: 0;
   text-align: center;
   font-family: var(--font-display);
-  font-size: clamp(5rem, 16vw, 13rem);
-  line-height: 0.85;
+  font-size: clamp(5rem, 14vw, 12rem);
   color: rgba(254, 245, 237, 0.035);
   text-transform: uppercase;
+  line-height: 1;
   pointer-events: none;
   user-select: none;
+  z-index: 1;
+  transform: translateY(-50%);
 }
 
 /* ── Marquee ── */

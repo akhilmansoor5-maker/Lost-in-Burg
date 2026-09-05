@@ -33,7 +33,7 @@
 
 <header class="menu-header">
   <div class="menu-header__media" aria-hidden="true">
-    <img src="Gallery/editorial/gods-plan.jpg" alt="" fetchpriority="high" />
+    <img src="Gallery/menu/gods-plan.png" alt="" fetchpriority="high" />
   </div>
   <div class="menu-header__smoke" aria-hidden="true"></div>
   <div class="menu-header__veil" aria-hidden="true"></div>
@@ -71,7 +71,7 @@
   <aside class="menu-stage" aria-label="Plate preview">
     <div class="menu-stage__card">
       <div class="menu-stage__media">
-        <img id="stageImg" src="Gallery/editorial/aristocrat.jpg" alt="The Aristocrat" />
+        <img id="stageImg" src="Gallery/menu/aristocrat.jpg" alt="The Aristocrat" />
       </div>
       <div class="menu-stage__body">
         <div class="menu-stage__kicker" id="stageKicker">Featured plate</div>
@@ -124,6 +124,7 @@
 
 <div id="site-footer" data-variant="dark"></div>
 
+<script src="js/media.js"></script>
 <script src="js/site-chrome.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -227,9 +228,7 @@
   });
 
   const modal = document.getElementById('dishModal');
-  const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const lenis = { stop() {}, start() {} };
 
   function openDish(item) {
     document.getElementById('dishImg').src = item.img;

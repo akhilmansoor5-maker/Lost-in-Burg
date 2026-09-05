@@ -34,14 +34,17 @@
 @media (max-width: 860px) {
   .hero-left-col {
     width: 100% !important;
-    padding: clamp(5rem,16vw,7rem) 1.75rem 2.5rem !important;
+    padding: clamp(4.25rem,14vw,5.5rem) 1.75rem 1.75rem !important;
     justify-content: center !important;
   }
-  .hero-left-inner { transform: translateY(2vh) !important; }
+  .hero-left-inner { transform: translateY(0) !important; }
   .hero-right-col { opacity: .18 !important; }
   .hero-hours-strip { display: none !important; }
-  .hero-hl1 { font-size: clamp(2.8rem,11vw,4.5rem) !important; }
-  .hero-hl2 { font-size: clamp(4.8rem,17vw,7.5rem) !important; }
+  .hero-left-col { text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-tagline { justify-content: center; }
+  .hero-ctas { justify-content: center; }
+  .logo-hero { filter: brightness(0) invert(1); }
 }
 
 /* ── Marquee ── */
@@ -85,6 +88,13 @@
   user-select: none;
   z-index: 0;
 }
+.culture-band__mark--center {
+  left: 50%;
+  top: 48%;
+  width: min(42vw, 280px);
+  opacity: 0.055;
+  transform: translate(-50%, -50%);
+}
 .culture-band__mark--right {
   right: -3%;
   transform: translateY(-50%);
@@ -97,6 +107,10 @@
   .culture-band__mark {
     width: min(48vw, 220px);
     opacity: 0.05;
+  }
+  .culture-band__mark--center {
+    width: min(56vw, 200px);
+    opacity: 0.045;
   }
   .culture-band__mark--left { left: -8%; }
   .culture-band__mark--right { right: -8%; }
@@ -177,17 +191,55 @@
 @media (min-width: 768px) {
   .home-endcard__inner { padding: 5rem 2rem 5.5rem; }
 }
+.partner-cta-band {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #F5EDE3 0%, #FEF5ED 100%);
+}
 
-/* Featured hits — more air */
+/* Compact partner CTA — sits before Instagram, not a tall ad block */
+.home-partner-cta {
+  border-top: 2px solid var(--charcoal);
+  border-bottom: 2px solid var(--charcoal);
+  background: linear-gradient(180deg, #F5EDE3 0%, #FEF5ED 100%);
+}
+.home-partner-cta__inner {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 2.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+@media (min-width: 768px) {
+  .home-partner-cta__inner {
+    padding: 2.75rem 4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+/* Featured hits — tighter vertical rhythm */
 .hits-section {
-  padding-top: 5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3.25rem;
 }
 @media (min-width: 768px) {
   .hits-section {
-    padding-top: 7rem;
-    padding-bottom: 7.5rem;
+    padding-top: 4rem;
+    padding-bottom: 4.5rem;
   }
+}
+.hits-section .edit-a { min-height: 360px !important; }
+.hits-section .edit-b,
+.hits-section .edit-c { min-height: 180px !important; }
+@media (max-width: 767px) {
+  .hits-section .edit-a,
+  .hits-section .edit-b,
+  .hits-section .edit-c { min-height: 220px !important; }
 }
 .hits-row {
   display: grid;
@@ -200,7 +252,7 @@
 .hits-row__cell {
   position: relative;
   display: block;
-  min-height: 220px;
+  min-height: 160px;
   border-top: 0;
 }
 @media (max-width: 767px) {
@@ -380,7 +432,7 @@
   line-height: 1;
 }
 
-/* ── Instagram editorial ── */
+/* ── Instagram grid ── */
 .ig-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -417,3 +469,16 @@
   text-transform: uppercase;
 }
 .ig-cell:hover .ig-cell__hover { opacity: 1; }
+.ig-cell--embed iframe {
+  position: absolute;
+  inset: -12% -12% auto -12%;
+  width: 124%;
+  height: 140%;
+  border: 0;
+  pointer-events: none;
+  transform: scale(1.02);
+  transform-origin: top center;
+}
+.ig-cell--live {
+  aspect-ratio: auto;
+}

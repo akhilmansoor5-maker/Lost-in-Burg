@@ -50,9 +50,9 @@
     <div class="hero-right-col" style="position:absolute;right:0;top:0;bottom:0;width:66%;overflow:hidden;">
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,.65) 22%,rgba(8,8,8,.14) 54%,transparent 78%);pointer-events:none;"></div>
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,8,8,.62) 0%,transparent 22%,transparent 65%,rgba(8,8,8,.72) 100%);pointer-events:none;"></div>
-      <video autoplay muted loop playsinline poster="Gallery/ARISTROCRAT BURGER.jpeg"
+      <video autoplay muted loop playsinline poster="Gallery/ARISTROCRAT BURGER.jpeg" data-lib-video="homeHero"
         style="width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(.84) contrast(1.24) saturate(1.08);">
-        <source src="Gallery/LOST IN BURG MAIN VIDEO.mp4" type="video/mp4" />
+        <source src="Gallery/videos/LOST%20IN%20BURG%20MAIN%20VIDEO.mp4" type="video/mp4" />
         <img src="Gallery/ARISTROCRAT BURGER.jpeg" alt="Lost in Burg — late night on Kozhikode Beach" />
       </video>
       <div id="embersWrap" style="position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;"></div>
@@ -65,20 +65,19 @@
       </div>
     </div>
 
-    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,8rem) 2.5vw 3rem 6vw;">
-      <div class="hero-left-inner" style="transform:translateY(4vh);">
-        <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;">
+    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:clamp(3.75rem,7.5vh,5.25rem) 2.5vw 1.5rem 5.5vw;">
+      <div class="hero-left-inner" style="transform:translateY(0);">
+        <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:0.2rem;">
           <div style="width:38px;height:1px;background:#FF5722;flex-shrink:0;"></div>
           <span class="section-label text-orange" style="letter-spacing:.28em;">Kozhikode Beach</span>
         </div>
-        <h1 aria-label="Lost in Burg" style="margin:0;">
-          <div class="font-anton text-cream hero-hl1 uppercase" style="font-size:clamp(3.5rem,7vw,7.5rem);line-height:.86;letter-spacing:-.02em;">LOST IN</div>
-          <div class="font-anton text-orange hero-hl2 uppercase" style="font-size:clamp(5rem,11vw,11.5rem);line-height:.82;letter-spacing:-.03em;margin-top:-.05em;">BURG</div>
+        <h1 aria-label="Lost in Burg" style="margin:0;line-height:0;">
+          <img src="Gallery/LOGO%20BW%20PNG.png" data-lib-logo="hero" alt="Lost in Burg — The Craver's Loop" class="logo-hero" width="440" height="480" />
         </h1>
-        <div class="hero-tagline" style="display:flex;gap:1.2rem;align-items:stretch;margin-top:1.75rem;margin-bottom:2rem;">
+        <div class="hero-tagline" style="display:flex;gap:1.2rem;align-items:stretch;margin-top:0.35rem;margin-bottom:0.5rem;">
           <div style="width:2px;flex-shrink:0;background:linear-gradient(to bottom,#FF5722,rgba(255,87,34,.08));"></div>
-          <div class="font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:2.1;">
-            The Craver's Loop.<br>Open until 3 AM.
+          <div class="font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:1.55;">
+            Open until 3 AM.<br>Kozhikode Beach.
           </div>
         </div>
         <div class="hero-ctas" style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;">
@@ -115,8 +114,7 @@
 <!-- ══════════ CULTURE — pull-quote + watermark marks ══════════ -->
 <section class="culture-band">
   <div class="culture-band__glow" aria-hidden="true"></div>
-  <img src="Gallery/logo-footer.png" alt="" class="culture-band__mark culture-band__mark--left" aria-hidden="true" />
-  <img src="Gallery/logo-footer.png" alt="" class="culture-band__mark culture-band__mark--right" aria-hidden="true" />
+  <img src="Gallery/LOGO%20BW%20PNG.png" data-lib-logo="mark" alt="" class="logo-watermark logo-watermark--right" aria-hidden="true" />
   <div class="culture-band__inner">
     <div class="flex items-center justify-center gap-4 mb-8">
       <div class="w-10 h-px bg-orange"></div>
@@ -137,7 +135,7 @@
 
 <!-- ══════════ SIGNATURES — magazine mosaic ══════════ -->
 <section class="hits-section px-6 md:px-16 max-w-screen-2xl mx-auto">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 md:mb-14">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-10">
     <div>
       <span class="section-label text-orange mb-3 block">Signatures</span>
       <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2.4rem,5vw,4rem);line-height:.9;">Featured hits.</h2>
@@ -146,50 +144,50 @@
   </div>
 
   <div class="edit-grid">
-    <a href="menu.html" class="edit-a rough-border block relative img-hover" style="min-height:520px;">
-      <img src="Gallery/editorial/aristocrat.jpg" alt="The Aristocrat" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    <a href="menu.html" class="edit-a rough-border block relative img-hover">
+      <img src="Gallery/menu/smaaashh.png" alt="The Smaaashh" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
       <div class="card-overlay">
-        <div class="section-label text-orange/80 mb-2">Burgers · ₹349</div>
-        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:.9;">The Aristocrat</h3>
-        <p class="font-inter text-white/60 text-sm mt-2 max-w-xs">Double patty, beef bacon &amp; raw onion rings.</p>
+        <div class="section-label text-orange/80 mb-2">Burgers · ₹569</div>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:.9;">The Smaaashh</h3>
+        <p class="font-inter text-white/60 text-sm mt-2 max-w-xs">Triple patty, six cheeses, bacon honey jam.</p>
       </div>
     </a>
-    <a href="menu.html" class="edit-b rough-border border-l-0 block relative img-hover" style="min-height:260px;">
-      <img src="Gallery/editorial/rib-eye.jpg" alt="Rib Eye Steak" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-      <div class="card-overlay">
-        <div class="section-label text-orange/80 mb-1">Steaks · ₹480/100G</div>
-        <h3 class="font-oswald font-700 text-white uppercase text-lg">Rib Eye Steak</h3>
-      </div>
-    </a>
-    <a href="menu.html" class="edit-c rough-border border-l-0 border-t-0 block relative img-hover" style="min-height:260px;">
-      <img src="Gallery/editorial/gods-plan.jpg" alt="The God's Plan" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    <a href="menu.html" class="edit-b rough-border border-l-0 block relative img-hover">
+      <img src="Gallery/menu/gods-plan.png" alt="The God's Plan" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
       <div class="card-overlay">
         <div class="section-label text-orange/80 mb-1">Burgers · ₹499</div>
-        <h3 class="font-oswald font-700 text-white uppercase text-lg">The God's Plan</h3>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:.9;">The God's Plan</h3>
+      </div>
+    </a>
+    <a href="menu.html" class="edit-c rough-border border-l-0 border-t-0 block relative img-hover">
+      <img src="Gallery/menu/wrong-bed.png" alt="The Wrong Bed" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+      <div class="card-overlay">
+        <div class="section-label text-orange/80 mb-1">Burgers · ₹459</div>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:.9;">The Wrong Bed</h3>
       </div>
     </a>
   </div>
 
   <div class="hits-row">
     <a href="menu.html" class="hits-row__cell rough-border relative group overflow-hidden">
-      <img src="Gallery/editorial/naked-oysters.jpg" alt="Naked Oysters" loading="lazy" decoding="async" />
+      <img src="Gallery/menu/24k-oysters.png" alt="Naked Oysters" loading="lazy" decoding="async" />
       <div class="hits-row__veil">
         <div class="section-label text-orange/80 mb-2">Starters · ₹399</div>
         <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Naked Oysters</h3>
       </div>
     </a>
     <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
-      <img src="Gallery/editorial/fishermans-rope.jpg" alt="Fisherman's Rope" loading="lazy" decoding="async" />
-      <div class="hits-row__veil">
-        <div class="section-label text-orange/80 mb-2">Pastas · ₹439</div>
-        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Fisherman's Rope</h3>
-      </div>
-    </a>
-    <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
-      <img src="Gallery/editorial/seven-wonders.jpg" alt="Seven Wonders" loading="lazy" decoding="async" />
+      <img src="Gallery/menu/seven-wonders.png" alt="Seven Wonders" loading="lazy" decoding="async" />
       <div class="hits-row__veil">
         <div class="section-label text-orange/80 mb-2">Starters · ₹999</div>
         <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Seven Wonders</h3>
+      </div>
+    </a>
+    <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
+      <img src="Gallery/menu/crowded-fries.png" alt="Crowded Fries" loading="lazy" decoding="async" />
+      <div class="hits-row__veil">
+        <div class="section-label text-orange/80 mb-2">Starters · ₹329</div>
+        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Crowded Fries</h3>
       </div>
     </a>
   </div>
@@ -212,10 +210,8 @@
   </div>
 </section>
 
-<!-- ══════════ RITUALS — cream + logo marks (no photo field) ══════════ -->
+<!-- ══════════ RITUALS — cream, no watermark (logo only in Culture) ══════════ -->
 <section class="rituals-band rituals-band--marks">
-  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--left" aria-hidden="true" />
-  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--right" aria-hidden="true" />
   <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 py-24 md:py-32">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
       <div>
@@ -283,21 +279,15 @@
   </div>
 </section>
 
-<!-- ══════════ FIND US — destination ══════════ -->
-<section class="dest-section bg-charcoal text-cream border-b border-white/10">
-  <div class="max-w-screen-2xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+<!-- Compact partner CTA — before Instagram -->
+<section class="home-partner-cta" aria-label="How to Be a Partner">
+  <div class="home-partner-cta__inner">
     <div>
-      <div class="section-label text-orange mb-4">The Destination</div>
-      <h2 class="font-anton uppercase" style="font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:.88;">Open every<br /><span class="text-orange">damn night.</span></h2>
+      <span class="section-label text-orange mb-3 block">Franchise</span>
+      <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(1.85rem,3.5vw,2.75rem);line-height:.92;">How to be a <span class="text-orange">partner.</span></h2>
+      <p class="font-inter text-charcoal/55 text-sm mt-3 max-w-md leading-relaxed">Own the outlet. We run the operations.</p>
     </div>
-    <div class="flex flex-col gap-4 lg:text-right">
-      <p class="font-inter text-white/45 text-sm">Kozhikode Beach, Kerala</p>
-      <p class="font-oswald font-600 text-cream text-xl uppercase">4:30 PM – 3:00 AM</p>
-      <div class="flex flex-wrap gap-3 lg:justify-end">
-        <a href="contact.html" class="btn-outline-light" data-magnetic="0.2"><span class="btn-inner">Get Directions</span></a>
-        <a href="menu.html" class="btn-primary" data-magnetic="0.2"><span class="btn-inner">See Menu</span></a>
-      </div>
-    </div>
+    <a href="partner.html" class="btn-primary" data-magnetic="0.22"><span class="btn-inner">How to Be a Partner</span></a>
   </div>
 </section>
 
@@ -312,38 +302,18 @@
       <span class="btn-inner">Follow @lostinburg_</span>
     </a>
   </div>
-  <div class="ig-grid ig-grid--four">
-    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
-      <img src="Gallery/editorial/aristocrat.jpg" alt="Aristocrat" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
-    </a>
-    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
-      <img src="Gallery/editorial/naked-oysters.jpg" alt="Oysters" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
-    </a>
-    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
-      <img src="Gallery/CUSTOMER PICTURE 4.jpg" alt="Night guests" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
-    </a>
-    <a class="ig-cell" href="https://www.instagram.com/lostinburg_/" target="_blank" rel="noopener noreferrer">
-      <img src="Gallery/editorial/rib-eye.jpg" alt="Rib eye" loading="lazy" decoding="async" /><span class="ig-cell__hover">View</span>
-    </a>
+  <div class="ig-grid ig-grid--four" id="igFeed" data-ig-feed="lostinburg_">
+    <!-- Populated by js/instagram-feed.js from Instagram post embeds -->
   </div>
-</section>
-
-<!-- Center end-card CTA — same energy as Our Story close -->
-<section class="home-endcard border-t-2 border-charcoal">
-  <img src="Gallery/logo-footer.png" alt="" class="section-mark section-mark--center" aria-hidden="true" />
-  <div class="home-endcard__inner">
-    <p class="section-label text-orange mb-4">The loop is open tonight</p>
-    <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(2rem,4.5vw,3.2rem);line-height:.9;">Come find out<br />for yourself.</h2>
-    <p class="font-inter text-charcoal/55 text-sm mt-4 mb-8">Kozhikode Beach · 4:30 PM – 3:00 AM</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="menu.html" class="btn-primary" data-magnetic="0.25"><span class="btn-inner">See the Menu</span></a>
-      <a href="contact.html" class="btn-outline" data-magnetic="0.2"><span class="btn-inner">Find Us Tonight</span></a>
-    </div>
-  </div>
+  <p class="font-inter text-charcoal/40 text-xs mt-6 text-center max-w-lg mx-auto leading-relaxed" id="igFeedNote">
+    Live from <a href="https://www.instagram.com/lostinburg_/" class="text-orange underline" target="_blank" rel="noopener noreferrer">@lostinburg_</a>
+  </p>
 </section>
 
 <div id="site-footer"></div>
 
+<script src="js/media.js"></script>
+<script src="js/instagram-feed.js"></script>
 <script src="js/site-chrome.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -355,10 +325,9 @@
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
       .from('.hero-eyebrow', { y: 22, opacity: 0, duration: 0.6 }, 0.1)
-      .from('.hero-hl1', { y: 50, opacity: 0, duration: 0.8 }, 0.2)
-      .from('.hero-hl2', { y: 60, opacity: 0, duration: 0.9 }, 0.32)
-      .from('.hero-tagline', { x: -18, opacity: 0, duration: 0.55 }, 0.5)
-      .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.5 }, 0.65);
+      .from('.logo-hero', { y: 40, opacity: 0, duration: 0.9 }, 0.22)
+      .from('.hero-tagline', { x: -18, opacity: 0, duration: 0.55 }, 0.48)
+      .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.5 }, 0.62);
 
     gsap.from('.hero-right-col', { opacity: 0, duration: 1.4, ease: 'power2.out' });
 
