@@ -53,6 +53,13 @@ img, video {
   height: auto;
 }
 
+/* Hero video must fill its frame — ignore the global height:auto rule */
+.home-hero .hero-video,
+.home-hero video.hero-video {
+  max-width: none;
+  height: 100%;
+}
+
 /* Touch-friendly tap targets on small screens (drawer craft lives in mobile.css) */
 @media (max-width: 767px) {
   .btn-primary,

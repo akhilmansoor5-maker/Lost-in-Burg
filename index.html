@@ -46,11 +46,11 @@
     </defs>
   </svg>
 
-  <div style="flex:1;display:flex;min-height:0;position:relative;">
+  <div class="home-hero__stage" style="flex:1;display:flex;min-height:0;position:relative;">
     <div class="hero-right-col" style="position:absolute;right:0;top:0;bottom:0;width:66%;overflow:hidden;">
-      <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,.65) 22%,rgba(8,8,8,.14) 54%,transparent 78%);pointer-events:none;"></div>
-      <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,8,8,.62) 0%,transparent 22%,transparent 65%,rgba(8,8,8,.72) 100%);pointer-events:none;"></div>
-      <video autoplay muted loop playsinline data-lib-video="homeHero"
+      <div class="hero-video-veil hero-video-veil--side" style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,.65) 22%,rgba(8,8,8,.14) 54%,transparent 78%);pointer-events:none;"></div>
+      <div class="hero-video-veil hero-video-veil--edge" style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,8,8,.62) 0%,transparent 22%,transparent 65%,rgba(8,8,8,.72) 100%);pointer-events:none;"></div>
+      <video class="hero-video" autoplay muted loop playsinline data-lib-video="homeHero"
         style="width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(.84) contrast(1.24) saturate(1.08);background:#080808;">
         <source src="Gallery/videos/LOST%20IN%20BURG%20MAIN%20VIDEO.mp4" type="video/mp4" />
       </video>
