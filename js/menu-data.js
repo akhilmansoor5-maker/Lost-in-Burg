@@ -30,6 +30,7 @@ window.LIB_MENU = {
     sunrooster: 'Gallery/menu/sunrooster.png',
     cheesyChick: 'Gallery/menu/cheesy-chick.png',
     loaded: 'Gallery/menu/loaded-bowl-real.jpg',
+    musaBos: 'Gallery/menu/musa-bos.jpg',
     ribEye: 'Gallery/menu/placeholder.jpg',
     fillet: 'Gallery/menu/placeholder.jpg',
     wingsFood: 'Gallery/menu/placeholder.jpg',
@@ -70,7 +71,7 @@ window.LIB_MENU = {
           note: 'Weird on paper. Right on the plate — banana, beef, cheese, crunch.',
           ingredients: ['Banana', 'Beef', 'Cheese', 'Crispy crackers'],
           pairing: 'Malabar Reserve or Cold Coffee',
-          img: 'Gallery/menu/placeholder.jpg',
+          img: 'Gallery/menu/musa-bos.jpg',
         },
         {
           id: 'crowded-fries',

@@ -71,6 +71,9 @@
   color: var(--cream);
 }
 .partner-strip__inner span { opacity: 0.85; }
+@media (min-width: 768px) {
+  .partner-strip__inner span:nth-child(n+9) { display: none; }
+}
 
 .model-grid {
   display: grid;
@@ -301,4 +304,216 @@
   z-index: 1;
   max-width: 720px;
   margin: 0 auto;
+}
+
+/* Live POS proof chips */
+.proof-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 768px) {
+  .proof-split {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+.proof-chip {
+  border: 2px solid rgba(254, 245, 237, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.15rem 1rem;
+}
+.proof-chip__k {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 87, 34, 0.85);
+  margin-bottom: 0.45rem;
+}
+.proof-chip__v {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  line-height: 1;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+/* ── Mobile alignment polish ── */
+@media (max-width: 767px) {
+  .partner-hero {
+    height: min(78svh, 620px);
+    min-height: 480px;
+    max-height: none;
+  }
+
+  .partner-hero__ghost {
+    font-size: clamp(3.5rem, 22vw, 6rem);
+    top: 38%;
+    opacity: 0.9;
+  }
+
+  .partner-hero__content {
+    padding-left: max(1.15rem, env(safe-area-inset-left));
+    padding-right: max(1.15rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
+  .partner-hero__content > .flex.flex-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+    width: 100%;
+  }
+
+  .partner-hero__content .btn-primary,
+  .partner-hero__content .btn-outline-light {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .partner-strip {
+    padding: 0.95rem 0;
+    overflow: hidden;
+  }
+
+  .partner-strip__inner {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0;
+    width: max-content;
+    max-width: none;
+    margin: 0;
+    padding-inline: 1.15rem;
+    animation: partner-strip-scroll 22s linear infinite;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .partner-strip__inner span {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding-right: 1.35rem;
+  }
+
+  @keyframes partner-strip-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partner-strip__inner {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+      justify-content: center;
+      gap: 0.55rem 1.1rem;
+      padding-inline: 1.15rem;
+    }
+  }
+
+  #model,
+  #roles,
+  #documents {
+    padding-left: max(1.15rem, env(safe-area-inset-left));
+    padding-right: max(1.15rem, env(safe-area-inset-right));
+  }
+
+  #model h2,
+  #roles h2,
+  #documents h2,
+  #terms h2,
+  #criteria h2 {
+    max-width: 12ch;
+  }
+
+  #model > p,
+  #documents > p {
+    max-width: none;
+  }
+
+  .model-grid {
+    border-width: 2px;
+  }
+
+  .model-cell {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .model-cell:last-child {
+    border-bottom: 0;
+  }
+
+  .model-cell__v {
+    font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+    line-height: 1.05;
+    word-break: break-word;
+  }
+
+  #terms > div,
+  #criteria > div {
+    padding-left: max(1.15rem, env(safe-area-inset-left));
+    padding-right: max(1.15rem, env(safe-area-inset-right));
+  }
+
+  .fee-card {
+    padding: 1.45rem 1.2rem;
+  }
+
+  .fee-card__amount {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .split-panel {
+    padding: 1.45rem 1.2rem;
+  }
+
+  .split-panel h3 {
+    font-size: 1.35rem;
+  }
+
+  .terms-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .term-chip {
+    padding: 1.1rem 1.05rem;
+  }
+
+  .term-chip__v {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .doc-card {
+    padding: 1.45rem 1.2rem;
+  }
+
+  .doc-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .doc-card:active {
+    border-color: var(--orange);
+  }
+
+  .partner-end {
+    padding: 3.5rem max(1.15rem, env(safe-area-inset-left)) max(3.5rem, env(safe-area-inset-bottom));
+    padding-right: max(1.15rem, env(safe-area-inset-right));
+  }
+
+  .partner-end .flex.flex-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+
+  .partner-end .btn-primary,
+  .partner-end .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
 }
