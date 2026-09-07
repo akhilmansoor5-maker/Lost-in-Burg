@@ -31,6 +31,10 @@
   --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+@media (max-width: 767px) {
+  :root { --nav-h: 64px; }
+}
+
 /* ─── 2. BASE ─── */
 html { overflow-x: clip; }
 body {
@@ -40,6 +44,49 @@ body {
   color: var(--charcoal);
   background: var(--cream);
   -webkit-font-smoothing: antialiased;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Touch-friendly tap targets on small screens */
+@media (max-width: 767px) {
+  .btn-primary,
+  .btn-outline,
+  .btn-hp,
+  .btn-hg,
+  .site-nav__ham {
+    min-height: 44px;
+  }
+  .site-nav__mobile a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .site-nav__inner {
+    padding-left: max(1.1rem, env(safe-area-inset-left));
+    padding-right: max(1.1rem, env(safe-area-inset-right));
+  }
+  .site-nav__mobile {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+  .logo-wordmark {
+    height: 36px;
+    max-width: 160px;
+  }
+  .site-footer__inner {
+    padding-left: max(1.1rem, env(safe-area-inset-left));
+    padding-right: max(1.1rem, env(safe-area-inset-right));
+  }
+  .site-footer__grid {
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
 }
 
 body.theme-dark {
@@ -99,34 +146,36 @@ body.theme-dark {
   .logo-wordmark { height: 52px; max-width: 240px; }
 }
 
-/* Homepage hero — official BW lockup (invert → cream on dark) */
+/* Homepage hero — full lockup (padding trimmed in Gallery/logo-hero-cropped.png) */
+.logo-hero-wrap {
+  display: block;
+  margin: 0;
+  line-height: 0;
+  z-index: 2;
+}
 .logo-hero {
   display: block;
-  width: min(78vw, 380px);
+  width: min(34vw, 320px);
   height: auto;
-  max-height: min(48vh, 360px);
+  max-height: min(44vh, 400px);
+  margin: 0;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
   filter: brightness(0) invert(1);
   opacity: 1;
-  position: relative;
-  z-index: 2;
-  margin: 0 0 0 -0.35rem;
-}
-@media (min-width: 768px) {
-  .logo-hero {
-    width: min(46vw, 440px);
-    max-height: min(52vh, 400px);
-    margin-left: -0.5rem;
-  }
 }
 @media (max-width: 860px) {
   .logo-hero {
-    width: min(82vw, 320px);
-    max-height: min(40vh, 300px);
+    width: min(58vw, 280px);
+    max-height: min(38vh, 340px);
     margin-left: auto;
     margin-right: auto;
-    object-position: center;
+  }
+}
+@media (max-width: 640px) {
+  .logo-hero {
+    width: min(68vw, 240px);
+    max-height: min(34vh, 300px);
   }
 }
 
@@ -198,16 +247,21 @@ body.theme-dark {
   min-height: var(--inner-hero-min);
   max-height: var(--inner-hero-max);
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
+  display: block;
   background: #080808;
 }
+/* Master content geometry for ALL inner pages */
 .inner-hero__content {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: var(--page-max);
   margin: 0 auto;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: var(--inner-hero-pad-top) var(--page-pad-x) var(--inner-hero-pad-bottom);
 }
 .inner-hero__title {
@@ -219,6 +273,34 @@ body.theme-dark {
   color: #fff;
 }
 .inner-hero__title .accent { color: var(--orange); }
+
+/* Page heroes plug into the shared content geometry */
+.about-hero-content,
+.nights-hero__content,
+.partner-hero__content,
+.menu-header__inner,
+.contact-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--page-max, 1536px);
+  margin: 0 auto;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
+}
+@media (min-width: 768px) {
+  .about-hero-content,
+  .nights-hero__content,
+  .partner-hero__content,
+  .menu-header__inner,
+  .contact-hero__content {
+    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
+  }
+}
 
 .logo-mark {
   display: block;

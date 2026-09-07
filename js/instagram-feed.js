@@ -1,19 +1,53 @@
 /**
  * Lost in Burg — Instagram feed grid
- * Source: window.LIB_MEDIA.instagram.posts (permalinks / shortcodes)
- * Renders official Instagram /embed/ iframes — not local stock photos.
+ * Source: window.LIB_MEDIA.instagram.posts
+ * Renders local poster images (not reel iframes).
  *
- * To update: paste latest post URLs into js/media.js → instagram.posts
- * Example: 'https://www.instagram.com/p/XXXXXXXX/'
+ * Each post: { title, href, image } or a legacy Instagram permalink string.
  */
 (function () {
   'use strict';
 
-  function shortcodeFrom(entry) {
-    if (!entry) return '';
-    if (/^[A-Za-z0-9_-]+$/.test(entry)) return entry;
-    const m = String(entry).match(/instagram\.com\/(?:p|reel)\/([A-Za-z0-9_-]+)/i);
-    return m ? m[1] : '';
+  function parseEntry(entry) {
+    if (!entry) return null;
+
+    if (typeof entry === 'object') {
+      const href = entry.href || entry.url || '';
+      const image = entry.image || entry.src || '';
+      const title = entry.title || entry.caption || 'Instagram';
+      if (!image) return null;
+      return {
+        title,
+        href: href || 'https://www.instagram.com/lostinburg_/',
+        image,
+      };
+    }
+
+    if (/^[A-Za-z0-9_-]+$/.test(entry)) {
+      return {
+        title: 'Instagram',
+        href: `https://www.instagram.com/p/${entry}/`,
+        image: '',
+      };
+    }
+
+    const m = String(entry).match(
+      /instagram\.com\/(?:[^/?#]+\/)?(p|reel)\/([A-Za-z0-9_-]+)/i
+    );
+    if (!m) return null;
+    return {
+      title: 'Instagram',
+      href: `https://www.instagram.com/${m[1].toLowerCase()}/${m[2]}/`,
+      image: '',
+    };
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   function render() {
@@ -23,7 +57,9 @@
     const media = window.LIB_MEDIA || {};
     const ig = media.instagram || {};
     const profile = ig.profile || 'https://www.instagram.com/lostinburg_/';
-    const posts = Array.isArray(ig.posts) ? ig.posts.map(shortcodeFrom).filter(Boolean).slice(0, 4) : [];
+    const posts = Array.isArray(ig.posts)
+      ? ig.posts.map(parseEntry).filter((p) => p && p.image).slice(0, 7)
+      : [];
 
     if (!posts.length) {
       mount.innerHTML = `
@@ -38,15 +74,19 @@
       return;
     }
 
-    mount.innerHTML = posts.map((code) => {
-      const href = `https://www.instagram.com/p/${code}/`;
-      const embed = `https://www.instagram.com/p/${code}/embed/`;
-      return `
-        <a class="ig-cell ig-cell--embed" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Instagram post">
-          <iframe src="${embed}" title="Instagram post ${code}" loading="lazy" scrolling="no" allowtransparency="true"></iframe>
-          <span class="ig-cell__hover">View</span>
+    mount.classList.toggle('ig-grid--five', posts.length >= 5);
+    mount.classList.toggle('ig-grid--seven', posts.length >= 7);
+
+    mount.innerHTML = posts
+      .map((post) => {
+        const title = escapeHtml(post.title);
+        return `
+        <a class="ig-cell" href="${escapeHtml(post.href)}" target="_blank" rel="noopener noreferrer" aria-label="${title}">
+          <img src="${escapeHtml(post.image)}" alt="${title}" loading="lazy" decoding="async" width="640" height="640" />
+          <span class="ig-cell__hover">${title}</span>
         </a>`;
-    }).join('');
+      })
+      .join('');
   }
 
   if (document.readyState === 'loading') {

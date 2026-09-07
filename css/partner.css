@@ -50,26 +50,7 @@
   transform: translateY(-50%);
   z-index: 1;
 }
-/* Shared inner-hero geometry: fill the hero, reserve header safe area,
-   then pin copy to the bottom (same system as Nights / .inner-hero). */
-.partner-hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--page-max, 1536px);
-  margin: 0 auto;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
-}
-@media (min-width: 768px) {
-  .partner-hero__content {
-    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
-  }
-}
+/* .partner-hero__content geometry from brand.css shared system */
 
 .partner-strip {
   background: var(--orange);

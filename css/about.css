@@ -22,6 +22,20 @@
   gap: 0.35rem;
   overflow-x: auto;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 767px) {
+  .chapter-rail__inner {
+    padding: 0.65rem 1rem;
+    gap: 0.25rem;
+  }
+  .chapter-rail a {
+    font-size: 0.58rem;
+    padding: 0.5rem 0.65rem;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 .chapter-rail__inner::-webkit-scrollbar { display: none; }
 .chapter-rail a {
@@ -52,8 +66,7 @@
   height: var(--inner-hero-h);
   min-height: var(--inner-hero-min);
   max-height: var(--inner-hero-max);
-  display: flex;
-  align-items: flex-end;
+  display: block;
 }
 .about-hero-img { position: absolute; inset: 0; }
 .about-hero-img img {
@@ -72,14 +85,7 @@
     linear-gradient(to top, rgba(8, 8, 8, 0.72) 0%, rgba(8, 8, 8, 0.28) 42%, rgba(8, 8, 8, 0.2) 100%),
     linear-gradient(to right, rgba(8, 8, 8, 0.35) 0%, transparent 45%);
 }
-.about-hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--page-max, 1536px);
-  margin: 0 auto;
-  padding: 0 var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
-}
+/* Content geometry comes from shared .about-hero-content in brand.css */
 
 /* Ch.04 — white field so it separates from the dark intertitle above */
 #ch-04.chapter-band--light {
@@ -265,12 +271,15 @@
   margin-bottom: 1rem;
 }
 
-/* Landscape / near-square editorial frame (match Ch.2 feel, not portrait) */
+/* Shared Chapter 1 / Chapter 2 media frame — landscape, contained (not full-bleed) */
+.story-media-frame,
 .ch01-photo {
   aspect-ratio: 16 / 10;
   max-height: none;
   width: 100%;
 }
+.story-media-frame video,
+.story-media-frame img,
 .ch01-photo video,
 .ch01-photo img {
   width: 100%;
@@ -279,6 +288,7 @@
   display: block;
 }
 @media (max-width: 767px) {
+  .story-media-frame,
   .ch01-photo {
     aspect-ratio: 1 / 1;
   }

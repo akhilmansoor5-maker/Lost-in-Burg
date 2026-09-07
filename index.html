@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Lost in Burg — Kozhikode Beach</title>
   <meta name="description" content="Lost in Burg — The Craver's Loop. Premium late-night burgers on Kozhikode Beach. Open daily 4:30 PM–3:00 AM." />
   <link rel="icon" href="Gallery/LOGO%20FAVICON.jpeg" type="image/jpeg" />
-  <link rel="preload" as="image" href="Gallery/ARISTROCRAT BURGER.jpeg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,10 +31,10 @@
 <div id="site-nav" data-variant="hero" data-cta="Explore Menu" data-cta-href="menu.html"></div>
 
 <!-- ══════════ HERO — original video treatment ══════════ -->
-<section style="position:relative;height:100vh;min-height:640px;background:#080808;overflow:hidden;display:flex;flex-direction:column;">
+<section class="home-hero" style="position:relative;height:100vh;min-height:640px;background:#080808;overflow:hidden;display:flex;flex-direction:column;">
   <div class="h-grain" aria-hidden="true"></div>
-  <div style="position:absolute;top:0;left:0;right:0;height:160px;z-index:12;pointer-events:none;background:linear-gradient(to bottom,rgba(4,4,4,.78) 0%,rgba(4,4,4,.28) 55%,transparent 100%);" aria-hidden="true"></div>
-  <div style="position:absolute;top:0;left:0;bottom:0;width:52%;z-index:1;pointer-events:none;background:linear-gradient(to right,#080808 0%,#080808 58%,rgba(8,8,8,.72) 80%,transparent 100%);" aria-hidden="true"></div>
+  <div class="home-hero__top-veil" style="position:absolute;top:0;left:0;right:0;height:160px;z-index:12;pointer-events:none;background:linear-gradient(to bottom,rgba(4,4,4,.78) 0%,rgba(4,4,4,.28) 55%,transparent 100%);" aria-hidden="true"></div>
+  <div class="home-hero__side-veil" style="position:absolute;top:0;left:0;bottom:0;width:52%;z-index:1;pointer-events:none;background:linear-gradient(to right,#080808 0%,#080808 58%,rgba(8,8,8,.72) 80%,transparent 100%);" aria-hidden="true"></div>
 
   <svg style="position:absolute;width:0;height:0;pointer-events:none;" aria-hidden="true">
     <defs>
@@ -50,10 +49,9 @@
     <div class="hero-right-col" style="position:absolute;right:0;top:0;bottom:0;width:66%;overflow:hidden;">
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,.65) 22%,rgba(8,8,8,.14) 54%,transparent 78%);pointer-events:none;"></div>
       <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,8,8,.62) 0%,transparent 22%,transparent 65%,rgba(8,8,8,.72) 100%);pointer-events:none;"></div>
-      <video autoplay muted loop playsinline poster="Gallery/ARISTROCRAT BURGER.jpeg" data-lib-video="homeHero"
-        style="width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(.84) contrast(1.24) saturate(1.08);">
+      <video autoplay muted loop playsinline data-lib-video="homeHero"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(.84) contrast(1.24) saturate(1.08);background:#080808;">
         <source src="Gallery/videos/LOST%20IN%20BURG%20MAIN%20VIDEO.mp4" type="video/mp4" />
-        <img src="Gallery/ARISTROCRAT BURGER.jpeg" alt="Lost in Burg — late night on Kozhikode Beach" />
       </video>
       <div id="embersWrap" style="position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;"></div>
       <div class="hero-hours-strip" style="position:absolute;right:1.6rem;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.55rem;">
@@ -65,20 +63,17 @@
       </div>
     </div>
 
-    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:clamp(3.75rem,7.5vh,5.25rem) 2.5vw 1.5rem 5.5vw;">
-      <div class="hero-left-inner" style="transform:translateY(0);">
-        <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:0.2rem;">
+    <div class="hero-left-col" style="width:48%;position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:clamp(3.25rem,6.5vh,4.75rem) 2.5vw 1.25rem 5.5vw;">
+      <div class="hero-left-inner hero-stack">
+        <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;">
           <div style="width:38px;height:1px;background:#FF5722;flex-shrink:0;"></div>
           <span class="section-label text-orange" style="letter-spacing:.28em;">Kozhikode Beach</span>
         </div>
-        <h1 aria-label="Lost in Burg" style="margin:0;line-height:0;">
-          <img src="Gallery/LOGO%20BW%20PNG.png" data-lib-logo="hero" alt="Lost in Burg — The Craver's Loop" class="logo-hero" width="440" height="480" />
+        <h1 class="logo-hero-wrap" aria-label="Lost in Burg">
+          <img src="Gallery/logo-hero-cropped.png" data-lib-logo="hero" alt="Lost in Burg — The Craver's Loop" class="logo-hero" width="420" height="525" />
         </h1>
-        <div class="hero-tagline" style="display:flex;gap:1.2rem;align-items:stretch;margin-top:0.35rem;margin-bottom:0.5rem;">
-          <div style="width:2px;flex-shrink:0;background:linear-gradient(to bottom,#FF5722,rgba(255,87,34,.08));"></div>
-          <div class="font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:1.55;">
-            Open until 3 AM.<br>Kozhikode Beach.
-          </div>
+        <div class="hero-tagline font-oswald text-cream/60 uppercase" style="font-size:.78rem;letter-spacing:.24em;line-height:1.4;">
+          Open until 3 AM.
         </div>
         <div class="hero-ctas" style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;">
           <a href="menu.html" class="btn-hp" data-magnetic="0.3"><span class="bhi">Explore Menu
@@ -168,15 +163,8 @@
     </a>
   </div>
 
-  <div class="hits-row">
+  <div class="hits-row hits-row--two">
     <a href="menu.html" class="hits-row__cell rough-border relative group overflow-hidden">
-      <img src="Gallery/menu/24k-oysters.png" alt="Naked Oysters" loading="lazy" decoding="async" />
-      <div class="hits-row__veil">
-        <div class="section-label text-orange/80 mb-2">Starters · ₹399</div>
-        <h3 class="font-anton text-white uppercase" style="font-size:clamp(1.35rem,2.5vw,2rem);">Naked Oysters</h3>
-      </div>
-    </a>
-    <a href="menu.html" class="hits-row__cell rough-border border-l-0 relative group overflow-hidden">
       <img src="Gallery/menu/seven-wonders.png" alt="Seven Wonders" loading="lazy" decoding="async" />
       <div class="hits-row__veil">
         <div class="section-label text-orange/80 mb-2">Starters · ₹999</div>
@@ -195,23 +183,25 @@
 
 <!-- ══════════ THE FIRE — asymmetrical split ══════════ -->
 <section class="fire-section bg-charcoal text-cream border-y-2 border-charcoal">
-  <div class="max-w-screen-2xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2">
-      <div class="relative overflow-hidden fire-section__media">
-        <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.75) contrast(1.1);" />
-      </div>
-      <div class="px-6 md:px-14 py-20 md:py-28 flex flex-col justify-center">
-        <span class="section-label text-orange mb-5 block">The Fire</span>
-        <h2 class="font-anton uppercase" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.9;">Cooked for<br /><span class="text-orange">the night.</span></h2>
-        <p class="font-inter text-white/50 text-base leading-relaxed mt-7 max-w-md">Hot iron. Double-ground beef. Bone marrow when the craving goes deeper. Late-night craft — not a lunch rush.</p>
-        <a href="menu.html" class="btn-primary mt-8 self-start" data-magnetic="0.22"><span class="btn-inner">See What We Cook</span></a>
-      </div>
+  <div class="fire-section__inner">
+    <div class="fire-section__frame rough-border overflow-hidden">
+      <img src="Gallery/BEEF PATTY IN COOKING.jpeg" alt="On the iron" loading="lazy" decoding="async" />
+    </div>
+    <div class="fire-section__copy">
+      <span class="section-label text-orange mb-5 block">The Fire</span>
+      <h2 class="font-anton uppercase" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.9;">Cooked for<br /><span class="text-orange">the night.</span></h2>
+      <p class="font-inter text-white/50 text-base leading-relaxed mt-7 max-w-md">Hot iron. Double-ground beef. Bone marrow when the craving goes deeper. Late-night craft — not a lunch rush.</p>
+      <a href="menu.html" class="btn-primary mt-8 self-start" data-magnetic="0.22"><span class="btn-inner">See What We Cook</span></a>
     </div>
   </div>
 </section>
 
 <!-- ══════════ RITUALS — cream, no watermark (logo only in Culture) ══════════ -->
-<section class="rituals-band rituals-band--marks">
+<section class="rituals-band rituals-band--photo">
+  <div class="rituals-band__bg" aria-hidden="true">
+    <img src="Gallery/CUSTOMER PICTURE 7.jpg" alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="rituals-band__veil" aria-hidden="true"></div>
   <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 py-24 md:py-32">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
       <div>
@@ -279,19 +269,7 @@
   </div>
 </section>
 
-<!-- Compact partner CTA — before Instagram -->
-<section class="home-partner-cta" aria-label="How to Be a Partner">
-  <div class="home-partner-cta__inner">
-    <div>
-      <span class="section-label text-orange mb-3 block">Franchise</span>
-      <h2 class="font-anton text-charcoal uppercase" style="font-size:clamp(1.85rem,3.5vw,2.75rem);line-height:.92;">How to be a <span class="text-orange">partner.</span></h2>
-      <p class="font-inter text-charcoal/55 text-sm mt-3 max-w-md leading-relaxed">Own the outlet. We run the operations.</p>
-    </div>
-    <a href="partner.html" class="btn-primary" data-magnetic="0.22"><span class="btn-inner">How to Be a Partner</span></a>
-  </div>
-</section>
-
-<!-- ══════════ INSTAGRAM — 4 images only ══════════ -->
+<!-- ══════════ INSTAGRAM — nights from the feed ══════════ -->
 <section class="py-24 md:py-28 px-6 md:px-16 max-w-screen-2xl mx-auto">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
     <div>
@@ -303,11 +281,24 @@
     </a>
   </div>
   <div class="ig-grid ig-grid--four" id="igFeed" data-ig-feed="lostinburg_">
-    <!-- Populated by js/instagram-feed.js from Instagram post embeds -->
+    <!-- Populated by js/instagram-feed.js from Gallery/instagram posters -->
   </div>
   <p class="font-inter text-charcoal/40 text-xs mt-6 text-center max-w-lg mx-auto leading-relaxed" id="igFeedNote">
     Live from <a href="https://www.instagram.com/lostinburg_/" class="text-orange underline" target="_blank" rel="noopener noreferrer">@lostinburg_</a>
   </p>
+</section>
+
+<!-- Final Partner CTA — after Instagram -->
+<section class="home-partner-cta" aria-label="How to Be a Partner">
+  <div class="home-partner-cta__inner home-partner-cta__inner--center">
+    <span class="section-label text-orange mb-2 block">Franchise</span>
+    <h2 class="font-anton text-charcoal uppercase home-partner-cta__title">How to be a <span class="text-orange">partner.</span></h2>
+    <p class="font-inter text-charcoal/55 text-sm mt-3 mb-5 home-partner-cta__copy">Own the outlet. We run the operations — one clear next step into the loop.</p>
+    <div class="home-partner-cta__actions">
+      <a href="partner.html" class="btn-primary" data-magnetic="0.22"><span class="btn-inner">How to Be a Partner</span></a>
+      <a href="contact.html" class="btn-outline" data-magnetic="0.18"><span class="btn-inner">Enquire Now</span></a>
+    </div>
+  </div>
 </section>
 
 <div id="site-footer"></div>
@@ -325,7 +316,7 @@
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
       .from('.hero-eyebrow', { y: 22, opacity: 0, duration: 0.6 }, 0.1)
-      .from('.logo-hero', { y: 40, opacity: 0, duration: 0.9 }, 0.22)
+      .from('.logo-hero-wrap', { y: 40, opacity: 0, duration: 0.9 }, 0.22)
       .from('.hero-tagline', { x: -18, opacity: 0, duration: 0.55 }, 0.48)
       .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.5 }, 0.62);
 

@@ -9,7 +9,7 @@
     logo: {
       nav: 'Gallery/text-logo-nav.png',
       /** Official lockup — black line art on transparent */
-      hero: 'Gallery/LOGO%20BW%20PNG.png',
+      hero: 'Gallery/logo-hero-cropped.png',
       mark: 'Gallery/LOGO%20BW%20PNG.png',
       favicon: 'Gallery/LOGO%20FAVICON.jpeg',
     },
@@ -35,11 +35,45 @@
       contactCta: 'Gallery/CUSTOMER PICTURE 7.jpg',
       aboutIntertitle: 'Gallery/CUSTOMER PICTURE 3.jpg',
     },
-    /** Paste latest Instagram post URLs or shortcodes (max 4 shown on homepage) */
+    /** Homepage Instagram grid — local poster images (not reel embeds) */
     instagram: {
       profile: 'https://www.instagram.com/lostinburg_/',
       posts: [
-        // 'https://www.instagram.com/p/SHORTCODE/',
+        {
+          title: 'Oyster',
+          href: 'https://www.instagram.com/platesoffflavour/reel/Dc8sC8-pYhU/',
+          image: 'Gallery/instagram/oyster.jpg',
+        },
+        {
+          title: 'Bone marrow pasta',
+          href: 'https://www.instagram.com/foodmaniac_nhd/reel/Dc73vZ0sz22/',
+          image: 'Gallery/instagram/bone-marrow-pasta.jpg',
+        },
+        {
+          title: 'Smaaashhing',
+          href: 'https://www.instagram.com/lostinburg_/reel/Dc0npDcpF6U/',
+          image: 'Gallery/instagram/smaaashhing.jpg',
+        },
+        {
+          title: 'lost in burg Calicut',
+          href: 'https://www.instagram.com/buckkket_list/reel/DclHER3OZQ3/',
+          image: 'Gallery/instagram/calicut.jpg',
+        },
+        {
+          title: 'SMASHED !N&OUT',
+          href: 'https://www.instagram.com/lostinburg_/reel/DcVimq9TXwU/',
+          image: 'Gallery/instagram/smashed.jpg',
+        },
+        {
+          title: 'Love at first bite',
+          href: 'https://www.instagram.com/homeinbites/reel/DbnCQc7PAGU/',
+          image: 'Gallery/instagram/love-at-first-bite.jpg',
+        },
+        {
+          title: 'Endlesscravings',
+          href: 'https://www.instagram.com/lostinburg_/reel/Dbp8N3aJSbx/',
+          image: 'Gallery/instagram/endlesscravings.jpg',
+        },
       ],
     },
   };

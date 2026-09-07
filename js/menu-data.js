@@ -13,15 +13,15 @@ window.LIB_MENU = {
   },
 
   images: {
-    placeholder: 'Gallery/menu/placeholder.jpg',
+    wings: 'Gallery/menu/placeholder.jpg',
     aristocrat: 'Gallery/menu/aristocrat.jpg',
     godsPlan: 'Gallery/menu/gods-plan.png',
-    oysters: 'Gallery/menu/24k-oysters.png',
+    oysters: 'Gallery/menu/placeholder.jpg',
     seven: 'Gallery/menu/seven-wonders.png',
     fries: 'Gallery/menu/crowded-fries.png',
     friesReal: 'Gallery/menu/crowded-fries-real.jpg',
-    pasta: 'Gallery/menu/sandos-prawns-mussels.png',
-    mussels: 'Gallery/menu/sandos-prawns-mussels.png',
+    pasta: 'Gallery/menu/placeholder.jpg',
+    mussels: 'Gallery/menu/placeholder.jpg',
     meatBony: 'Gallery/menu/meat-and-the-bony.png',
     meatyFungus: 'Gallery/menu/meaty-fungus.png',
     wrongBed: 'Gallery/menu/wrong-bed.png',
@@ -32,9 +32,10 @@ window.LIB_MENU = {
     loaded: 'Gallery/menu/loaded-bowl-real.jpg',
     ribEye: 'Gallery/menu/placeholder.jpg',
     fillet: 'Gallery/menu/placeholder.jpg',
-    wings: 'Gallery/menu/placeholder.jpg',
+    wingsFood: 'Gallery/menu/placeholder.jpg',
     burger: 'Gallery/menu/smash-burgers.png',
     drink: 'Gallery/menu/placeholder.jpg',
+    placeholder: 'Gallery/menu/placeholder.jpg',
   },
 
   categories: [
@@ -99,7 +100,7 @@ window.LIB_MENU = {
           note: 'Coastal and clean — raw oysters, pickle sharpness, green apple, lemon.',
           ingredients: ['Raw oysters', 'Pickled shallots', 'Green apple', 'Lemon'],
           pairing: 'Brazilian Lemonade or Peach Iced Tea',
-          img: 'Gallery/menu/24k-oysters.png',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'milky-way',
@@ -109,7 +110,7 @@ window.LIB_MENU = {
           note: 'A bowl of mussel soup that eats like a meal — creamy, garlicky, with fries.',
           ingredients: ['Mussels', 'Creamy garlic butter broth', 'Vegetables', 'Herbs', 'Fries'],
           pairing: 'Crowded Fries or Virgin Mojito',
-          img: 'Gallery/menu/sandos-prawns-mussels.png',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'cultureless-mussels',
@@ -119,7 +120,7 @@ window.LIB_MENU = {
           note: 'Steamed mussels, green heat, gherkins for the cut-through.',
           ingredients: ['Steamed mussels', 'Green spicy sauce', 'Gherkins'],
           pairing: 'Cherittos Mojito',
-          img: 'Gallery/menu/sandos-prawns-mussels.png',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'beef-tartar',
@@ -166,7 +167,7 @@ window.LIB_MENU = {
           note: 'Beach catch in butter and garlic, tangled through creamy spaghetti.',
           ingredients: ['Prawn', 'Squid', 'Mussels', 'Butter', 'Garlic', 'Creamy spaghetti'],
           pairing: 'Naked Oysters or Watermelon Mojito',
-          img: 'Gallery/menu/sandos-prawns-mussels.png',
+          img: 'Gallery/menu/placeholder.jpg',
         },
         {
           id: 'meat-bony',

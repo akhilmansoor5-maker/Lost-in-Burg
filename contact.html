@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Find Us — Lost in Burg</title>
   <meta name="description" content="Find Lost in Burg on Kozhikode Beach, Kerala. Open daily 4:30 PM–3:00 AM. Walk-ins welcome — no reservations needed." />
   <link rel="icon" href="Gallery/LOGO%20FAVICON.jpeg" type="image/jpeg" />
@@ -34,8 +34,7 @@
       height: var(--inner-hero-h);
       min-height: var(--inner-hero-min);
       max-height: var(--inner-hero-max);
-      display: flex;
-      align-items: flex-end;
+      display: block;
     }
     .contact-hero-bg { position: absolute; inset: 0; background: #080808; }
     .contact-hero-bg img {
@@ -151,12 +150,12 @@
       <span class="font-anton text-white/[0.04]" style="font-size:clamp(7rem,20vw,18rem); line-height:1; white-space:nowrap; padding-left:clamp(1rem,4vw,5rem);">FIND US</span>
     </div>
 
-    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 pb-16 md:pb-24 w-full" style="padding-top:var(--inner-hero-pad-top);padding-bottom:var(--inner-hero-pad-bottom);">
-      <div class="flex items-center gap-4 mb-5">
+    <div class="contact-hero__content">
+      <div class="flex items-center gap-4 mb-4">
         <div class="w-10 h-px bg-orange"></div>
         <span class="section-label text-orange">Get Here</span>
       </div>
-      <div data-reveal data-reveal-stagger="0.07" style="max-width:min(96vw, 1100px);">
+      <div data-reveal data-reveal-stagger="0.07">
         <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:var(--inner-hero-title); line-height:var(--inner-hero-title-lh);">Come find</div></div>
         <div class="reveal-wrap"><div class="reveal-line font-anton text-white uppercase" style="font-size:var(--inner-hero-title); line-height:var(--inner-hero-title-lh);">us on the</div></div>
         <div class="reveal-wrap"><div class="reveal-line font-anton text-orange uppercase" style="font-size:var(--inner-hero-title); line-height:var(--inner-hero-title-lh);">beach.</div></div>

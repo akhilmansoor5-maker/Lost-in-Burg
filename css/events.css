@@ -13,8 +13,7 @@
   min-height: var(--inner-hero-min);
   max-height: var(--inner-hero-max);
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
+  display: block;
   background: #080808;
 }
 .nights-hero__media { position: absolute; inset: 0; background: #080808; }
@@ -33,19 +32,7 @@
     linear-gradient(to top, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.35) 55%, rgba(8, 8, 8, 0.55) 100%),
     radial-gradient(ellipse at 70% 40%, rgba(255, 87, 34, 0.12) 0%, transparent 50%);
 }
-.nights-hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--page-max, 1536px);
-  margin: 0 auto;
-  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
-}
-@media (min-width: 768px) {
-  .nights-hero__content {
-    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
-  }
-}
+/* .nights-hero__content geometry from brand.css shared system */
 .nights-hero__ghost {
   position: absolute;
   top: 42%;

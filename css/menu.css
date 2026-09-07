@@ -19,19 +19,14 @@
   height: var(--inner-hero-h);
   min-height: var(--inner-hero-min);
   max-height: var(--inner-hero-max);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: var(--inner-hero-pad-top) var(--page-pad-x, 1.5rem) var(--inner-hero-pad-bottom);
+  display: block;
   overflow: hidden;
   background: #080808;
   border-bottom: 0;
 }
-@media (min-width: 768px) {
-  .menu-header {
-    padding: var(--inner-hero-pad-top) var(--page-pad-x, 4rem) var(--inner-hero-pad-bottom);
-  }
+/* .menu-header__inner geometry from brand.css shared system */
+.menu-header__inner {
+  max-width: var(--page-max, 1536px);
 }
 .menu-header__media {
   position: absolute;
@@ -78,21 +73,21 @@
 .menu-header__inner {
   position: relative;
   z-index: 2;
-  max-width: 600px;
 }
 .menu-header__eyebrow {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 .menu-header__title {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 8vw, 6.5rem);
-  line-height: 0.86;
+  font-size: var(--inner-hero-title);
+  line-height: var(--inner-hero-title-lh);
   text-transform: uppercase;
   color: var(--cream);
   margin: 0 0 0.85rem;
+  max-width: 14ch;
 }
 .menu-header__title span { color: var(--orange); }
 .menu-header__copy {
@@ -110,18 +105,23 @@
   margin-top: 1.6rem;
 }
 
-/* Cream rhythm bands */
+/* Cream rhythm bands — short intro, not a tall section */
 .menu-bridge {
   background: linear-gradient(180deg, #FEF5ED 0%, #F5EDE3 100%);
   border-bottom: 2px solid var(--charcoal);
-  padding: 3.25rem 1.5rem;
+  padding: 1.75rem 1.5rem 1.5rem;
 }
 @media (min-width: 768px) {
-  .menu-bridge { padding: 4rem 3rem; }
+  .menu-bridge { padding: 2rem 2.5rem 1.75rem; }
 }
 .menu-bridge__inner {
   max-width: 1400px;
   margin: 0 auto;
+}
+.menu-bridge__title {
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+  line-height: 0.95;
+  margin: 0;
 }
 
 /* ÔöÇÔöÇ Split shell ÔöÇÔöÇ */
@@ -156,12 +156,14 @@
   }
 }
 .menu-stage__card {
+  width: 100%;
   border: 1px solid rgba(255, 87, 34, 0.22);
   background: #111;
   overflow: hidden;
 }
 .menu-stage__media {
   aspect-ratio: 4 / 5;
+  width: 100%;
   overflow: hidden;
   background: #0a0a0a;
 }
@@ -406,6 +408,27 @@
   opacity: 0;
   transition: opacity 0.35s ease;
 }
+@media (max-width: 767px) {
+  #dishModal {
+    padding: max(0.65rem, env(safe-area-inset-top)) max(0.65rem, env(safe-area-inset-right)) max(0.65rem, env(safe-area-inset-bottom)) max(0.65rem, env(safe-area-inset-left));
+    align-items: flex-end;
+  }
+  #dishPanel {
+    max-height: min(92svh, 860px);
+    border-radius: 0;
+  }
+  .menu-shell {
+    padding: 0 1rem 3rem;
+  }
+  .menu-header__actions {
+    width: 100%;
+  }
+  .menu-header__actions .btn-primary,
+  .menu-header__actions .btn-outline {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
 #dishModal.open {
   pointer-events: all;
   opacity: 1;
@@ -426,21 +449,33 @@
   border: 1px solid rgba(255, 87, 34, 0.22);
   display: grid;
   grid-template-columns: 1fr;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transform: translateY(18px) scale(0.98);
   transition: transform 0.45s var(--ease-soft);
 }
 #dishModal.open #dishPanel { transform: translateY(0) scale(1); }
 @media (min-width: 800px) {
-  #dishPanel { grid-template-columns: 0.95fr 1.05fr; }
+  #dishPanel {
+    grid-template-columns: 0.95fr 1.05fr;
+    overflow: hidden;
+  }
 }
 #dishMedia {
   position: relative;
-  min-height: 220px;
+  min-height: 200px;
+  max-height: 38vh;
   background: #111;
   overflow: hidden;
 }
-@media (min-width: 800px) { #dishMedia { min-height: 100%; } }
+@media (min-width: 800px) {
+  #dishMedia {
+    min-height: 0;
+    max-height: none;
+    height: 100%;
+  }
+}
 #dishImg {
   width: 100%;
   height: 100%;
@@ -448,11 +483,16 @@
   display: block;
 }
 #dishContent {
-  padding: 1.75rem 1.5rem 2rem;
-  overflow-y: auto;
+  padding: 1.75rem 1.5rem 2.25rem;
+  overflow-y: visible;
 }
 @media (min-width: 800px) {
-  #dishContent { padding: 2.5rem 2.25rem; }
+  #dishContent {
+    padding: 2.25rem 2rem 2.5rem;
+    overflow-y: auto;
+    max-height: min(90vh, 820px);
+    -webkit-overflow-scrolling: touch;
+  }
 }
 .dish-kicker {
   font-family: var(--font-ui);
@@ -537,8 +577,11 @@
 .dish-gst {
   font-family: var(--font-body);
   font-size: 0.75rem;
-  color: rgba(254, 245, 237, 0.3);
+  color: rgba(254, 245, 237, 0.45);
   margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+}
 }
 
 /* ÔöÇÔöÇ Cream catalog theme (hero + modal stay dark) ÔöÇÔöÇ */
