@@ -72,6 +72,7 @@ window.LIB_MENU = {
           ingredients: ['Banana', 'Beef', 'Cheese', 'Crispy crackers'],
           pairing: 'Malabar Reserve or Cold Coffee',
           img: 'Gallery/menu/musa-bos.jpg',
+          video: 'Gallery/videos/musa-bos-cooking.mp4',
         },
         {
           id: 'crowded-fries',

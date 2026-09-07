@@ -96,7 +96,10 @@
   <div id="dishBackdrop"></div>
   <div id="dishPanel">
     <button type="button" class="dish-close" id="dishClose" aria-label="Close">✕</button>
-    <div id="dishMedia"><img id="dishImg" src="" alt="" /></div>
+    <div id="dishMedia">
+      <img id="dishImg" src="" alt="" />
+      <video id="dishVideo" muted loop playsinline preload="metadata" hidden></video>
+    </div>
     <div id="dishContent">
       <div class="dish-kicker">Chef's Note</div>
       <h2 class="dish-name" id="dishName">—</h2>
@@ -232,8 +235,22 @@
   const lenis = { stop() {}, start() {} };
 
   function openDish(item) {
-    document.getElementById('dishImg').src = item.img;
-    document.getElementById('dishImg').alt = item.name;
+    const img = document.getElementById('dishImg');
+    const vid = document.getElementById('dishVideo');
+    img.src = item.img;
+    img.alt = item.name;
+    if (item.video) {
+      vid.src = item.video;
+      vid.hidden = false;
+      img.hidden = true;
+      vid.play().catch(() => {});
+    } else {
+      vid.pause();
+      vid.removeAttribute('src');
+      vid.load();
+      vid.hidden = true;
+      img.hidden = false;
+    }
     document.getElementById('dishName').textContent = item.name;
     document.getElementById('dishPrice').textContent = item.price;
     document.getElementById('dishNote').textContent = item.note || item.desc;
@@ -248,6 +265,8 @@
   }
 
   function closeDish() {
+    const vid = document.getElementById('dishVideo');
+    vid.pause();
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';

@@ -27,6 +27,7 @@
       ambience: 'Gallery/videos/ambience.mp4',
       haario: 'Gallery/videos/haario.mp4',
       testimonial: 'Gallery/videos/testimonial.mp4',
+      musaBosCooking: 'Gallery/videos/musa-bos-cooking.mp4',
     },
     image: {
       menuPlaceholder: 'Gallery/menu/placeholder.jpg',
