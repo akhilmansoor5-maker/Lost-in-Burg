@@ -55,9 +55,10 @@
       return `<a href="${l.href}" class="site-nav__link${active}">${l.label}</a>`;
     }).join('');
 
-    const mobileLinks = NAV_LINKS.map((l) => {
+    const mobileLinks = NAV_LINKS.map((l, i) => {
       const active = l.id === page ? ' is-active' : '';
-      return `<a href="${l.href}" class="${active.trim()}">${l.label}</a>`;
+      const n = String(i + 1).padStart(2, '0');
+      return `<a href="${l.href}" class="${active.trim()}" data-n="${n}">${l.label}</a>`;
     }).join('');
 
     mount.outerHTML = `
@@ -77,13 +78,33 @@
       <span class="site-nav__ham-bar"></span>
     </button>
   </div>
-  <div id="mobileMenu" class="site-nav__mobile">
+  <div id="mobileMenu" class="site-nav__mobile" hidden>
     ${mobileLinks}
-    <div class="site-nav__mobile-hours"><p class="section-label" style="color:var(--orange);margin:0">Open Daily · ${BRAND.hours}</p></div>
+    <div class="site-nav__mobile-hours">
+      <p class="section-label" style="color:var(--orange);margin:0 0 .85rem">Open Daily · ${BRAND.hours}</p>
+      <a href="${ctaHref}" class="btn-primary site-nav__mobile-cta"><span class="btn-inner">${ctaLabel}</span></a>
+    </div>
   </div>
 </nav>`;
 
     bindNav(variant);
+  }
+
+  function setMenuOpen(nav, toggle, mobile, open) {
+    nav.classList.toggle('is-menu-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-lock', open);
+
+    if (open) {
+      mobile.removeAttribute('hidden');
+      requestAnimationFrame(() => mobile.classList.add('is-open'));
+    } else {
+      mobile.classList.remove('is-open');
+      window.setTimeout(() => {
+        if (!mobile.classList.contains('is-open')) mobile.setAttribute('hidden', '');
+      }, 420);
+    }
   }
 
   function bindNav(variant) {
@@ -93,13 +114,21 @@
     if (!nav || !toggle || !mobile) return;
 
     toggle.addEventListener('click', () => {
-      const open = mobile.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setMenuOpen(nav, toggle, mobile, !mobile.classList.contains('is-open'));
+    });
+
+    mobile.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => setMenuOpen(nav, toggle, mobile, false));
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobile.classList.contains('is-open')) {
+        setMenuOpen(nav, toggle, mobile, false);
+      }
     });
 
     window.toggleMobileMenu = function () {
-      const open = mobile.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setMenuOpen(nav, toggle, mobile, !mobile.classList.contains('is-open'));
     };
 
     if (variant === 'hero') {

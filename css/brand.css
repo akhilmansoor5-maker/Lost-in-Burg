@@ -53,7 +53,7 @@ img, video {
   height: auto;
 }
 
-/* Touch-friendly tap targets on small screens */
+/* Touch-friendly tap targets on small screens (drawer craft lives in mobile.css) */
 @media (max-width: 767px) {
   .btn-primary,
   .btn-outline,
@@ -62,17 +62,9 @@ img, video {
   .site-nav__ham {
     min-height: 44px;
   }
-  .site-nav__mobile a {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
   .site-nav__inner {
     padding-left: max(1.1rem, env(safe-area-inset-left));
     padding-right: max(1.1rem, env(safe-area-inset-right));
-  }
-  .site-nav__mobile {
-    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
   .logo-wordmark {
     height: 36px;
