@@ -189,7 +189,7 @@
     </div>
     <div class="site-footer__bottom">
       <p>© ${BRAND.year} ${BRAND.name}. All rights reserved.</p>
-      <p>Built for the late-night crowd.</p>
+      <a class="site-footer__credit" href="https://akhilmansoor.com" target="_blank" rel="noopener noreferrer">Made by <strong>Akhil Mansoor</strong></a>
     </div>
   </div>
 </footer>`;

@@ -821,3 +821,19 @@ body.theme-dark {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.25);
 }
+.site-footer__credit {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: rgba(254, 245, 237, 0.28);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.site-footer__credit strong {
+  font-weight: 600;
+  color: rgba(254, 245, 237, 0.45);
+}
+.site-footer__credit:hover,
+.site-footer__credit:hover strong {
+  color: var(--orange);
+}
